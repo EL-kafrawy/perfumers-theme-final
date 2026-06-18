@@ -21,6 +21,12 @@
 > Root cause of "buttons don't redirect": placeholder `href="#"`, empty `href=""` URL
 > settings, a JS handler that swallows `#` links, and `/account` links that 404.
 
+> **STATUS — Day 1 code COMPLETE (commit `7c34a3b`, tag `day1-nav-cart`).**
+> Done: git baseline; all redirection fixes (1.1a–1.1e); all cart fixes (1.2).
+> JS syntax-checked, Liquid tag-balanced.
+> **Pending = needs your Shopify login:** admin theme backup, `shopify theme dev`,
+> push to remote, and the in-browser QA gate (1.3). See "Handoff" at end of file.
+
 ## Block 1.0 — Safety net (30 min)
 - [ ] Init git on the **root** theme, commit current state, push to remote (root currently has 0 commits).
 - [ ] In Shopify admin, **duplicate the live theme** → "Backup pre-fix" (instant rollback later).
@@ -133,5 +139,28 @@ Audit and fix every link that renders `#` or empty:
 | Stitch screens | Provide link/export before Block 2.3 for parity |
 
 ## Day-end tags
-- End of Day 1 → `day1-nav-cart`
+- End of Day 1 → `day1-nav-cart` ✅ (done)
 - End of Day 2 → `v1.0.0`
+
+---
+
+## Handoff — what YOU need to do to verify Day 1
+These steps need your Shopify login (I can't do them from here):
+1. **Preview:** from the repo, run `shopify theme dev` (or `shopify theme push --unpublished`
+   then open the preview) to see the fixes on the real store.
+2. **Backup:** in Shopify admin → Online Store → Themes → duplicate the live theme
+   ("Backup pre-fix") for instant rollback.
+3. **Push code:** add a git remote and `git push` (root has no remote yet). Then push
+   the `day1-nav-cart` tag.
+4. **QA gate 1.3 (in browser, EN + AR):** click every nav element (header menu/search/cart,
+   mobile bottom nav, hero CTA, brand logos, gender tiles, footer links, product cards);
+   run ATC + Buy Now; confirm the cart badge shows the right count on reload.
+
+Report anything still mis-routing and I'll fix it before starting Day 2.
+
+## Day-1 decisions still needed before Day 2
+- **Customer accounts:** ON (build account templates) or OFF (disable + hide links)?
+  Current code points profile/account links to Shopify's canonical `routes.account_url`,
+  which is correct if accounts are ON. If OFF, I'll hide them in Day 2.
+- **Stitch screens:** received ✅ (6 screens in `stitch_homepage_perfumers/`) — ready for
+  the Day 2 parity pass.
