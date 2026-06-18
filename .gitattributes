@@ -1,0 +1,20 @@
+# Normalize line endings — Shopify themes use LF. Prevents CRLF churn/noisy diffs.
+* text=auto eol=lf
+
+# Liquid/JSON/CSS/JS explicitly LF
+*.liquid text eol=lf
+*.json   text eol=lf
+*.css    text eol=lf
+*.js     text eol=lf
+*.md     text eol=lf
+
+# Treat binary assets as binary (no EOL conversion)
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.gif  binary
+*.svg  text eol=lf
+*.ico  binary
+*.woff  binary
+*.woff2 binary
