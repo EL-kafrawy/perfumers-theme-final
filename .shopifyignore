@@ -1,0 +1,8 @@
+# Non-theme files — keep these out of Shopify uploads
+perfumers-theme/
+stitch_homepage_perfumers/
+.agent/
+.vscode/
+.git/
+*.md
+.gitignore
