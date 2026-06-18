@@ -25,20 +25,14 @@
         "heading": "Shop by Brand"
       },
       "blocks": {
-        "brand-1": { "type": "logo", "settings": { "brand_name": "Brand 1", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCEVWioaqmpeHIzhkFg8Akz671H0D9nl_P8PWMioLJfw2ECTvxRXTYS1k6ZOq0MFqbcD9YIfy3Vqfzi_fv4GEJgC7YKVgWSHeztxUI1PIOnagK_htlS1Z7E_n_MU4zLkSKzl87A6TGI50KxPsJ43CCTxnJlWXAgJJAG0HHmD2nhPid5bj3g16TT0pA63DoDPldbU1O2fRCHTPBr_DA9b3mDGZGn8iPYuM8XP4CXHzyEHjP2bPqprAV8G3RFedVACGUeWEF49jJzV10", "link": "#" } },
-        "brand-2": { "type": "logo", "settings": { "brand_name": "Brand 2", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC_NlE_CNIsUrFTJXANzvHwJw8gXBywNR4Hj1x-OlvxJZLWxEKl51TL07isP7zAm57F5aLkkvBTOnvAnoOblcW1If978UoeOiCkGGPKURURkEVPElZc34yQDO6UmP471m8-FKo0O_4UTlvAbhfTZGXtZUmlbMiHSCABv4mcj4QBsiwRpHUi00P329YQBcPRrjPe0voyFw7puOhjvlMjC3iVdU8J031PW-djmj9np6kLWMuqX5iKZToKA6VO5daOZzF8xCmsutvQXyE", "link": "#" } },
-        "brand-3": { "type": "logo", "settings": { "brand_name": "Brand 3", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAJZFHtCewfzPGqb5KnLH0mWqkU9iZOCyOt8KwUM9NoAlR4pulvbSPRRFikuEQixYXhRorgw2ppf2SaCpfAP1kMb6eG56XDo9hsDgITjMO87U_z0arEf4ez6DyF5_YMkIc5QslT2N09Ut7TuYJZIsmJMJY7txgD6ZCr-ffezKPpB4icgu0FCqnpmObJzs3M43C1tLiN-0HVKGaklk5Mq4cAhS7QhFtQjm50BFRVXswijreVS0oQmrXAPMZ9SM0veisgw4aS8DKz48o", "link": "#" } },
-        "brand-4": { "type": "logo", "settings": { "brand_name": "Brand 4", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAz91dfLn1UEsHMfu3kCAbZmguiSAzhrRABbQva6uwnVPFvdwzJrG3TU_SzOcx2u9OpCXNHrrIlFprL8_cR5pF4CHFy9p0anIzslYmuPiTEeqkgmn0HfnxlQVXGYfrbPGaR5GFDRDzJO1WEBHkCPV32moLIOSTWvSYYe2ueiCLojSyRMrnFEiRDKuPauaELF65e-QAQLR6AtwMbSVznkthwEY4yxil1SMfMyi2PjhW8j7uoyooffBBE647E_93PcFCOXv3fRDtkq4I", "link": "#" } },
-        "brand-5": { "type": "logo", "settings": { "brand_name": "Brand 5", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAPMvV94urPUyvNLth03MA6ibNHdZycm-NI3_X-PnicFj3XgGxTYzJdlYV8jAuiPBt_FXEKoDGRJpWCUN9HWSZ8M7i5vbtyq2pirbJeEv_nv3jF3zVI-gs61M1yCO5Ckp_oYtX1_Ukuttc8BWNPPdqMMb6f7y7zGJAL0dgfKOePtGeElOSiWCLNrwsVTmBoH4Z2cw7n7w8O77SoW8v-znHf3LdRpAxxZl0WGMyRMPXWQT8aH6Zw-F1Ky0v7KacXMga4sYVvQfrBYRQ", "link": "#" } },
-        "brand-6": { "type": "logo", "settings": { "brand_name": "Brand 6", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCh82id_xRp5f31PEvv06Xzvh510FDQzZqV-22YlulDwtMNS6K1pf69jb89MsSXLH6kVzVSh8gm4YAWxDerJ9tkZ0JW8oBROYrxlpY6Ka2PKjSb0Lot7E7wrfJ0WoInP4IzPoA_75KU9frsxnsE3C-N5IeuNWhfsEhOxpd7a89OQuz98wFuEA5z4K6ysrwTmMdU3LL96KJsW7M_WvsfirrT0-xUhkOpJui0lyzyElNFM-aZ9VlPvVcqp7Y7LAgvS2eHC5SajfRVWsA", "link": "#" } },
-        "brand-7": { "type": "logo", "settings": { "brand_name": "Brand 7", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC_NlE_CNIsUrFTJXANzvHwJw8gXBywNR4Hj1x-OlvxJZLWxEKl51TL07isP7zAm57F5aLkkvBTOnvAnoOblcW1If978UoeOiCkGGPKURURkEVPElZc34yQDO6UmP471m8-FKo0O_4UTlvAbhfTZGXtZUmlbMiHSCABv4mcj4QBsiwRpHUi00P329YQBcPRrjPe0voyFw7puOhjvlMjC3iVdU8J031PW-djmj9np6kLWMuqX5iKZToKA6VO5daOZzF8xCmsutvQXyE", "link": "#" } },
-        "brand-8": { "type": "logo", "settings": { "brand_name": "Brand 8", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAI9J9sqZttxOp-jTELyuuKWmvMu8A-OOpaAJNrRG3uLutli01ypAlJgfvjfpj6oxQnROoHsO5UhGYz6olAbSvfvrj5OYdPTr7eWpJaVvqTiHIh045y0kSHE5O1MbRCxmK9tMpKtcgUANHfQGc_CZrP_kdbSo38TqjQ3goCRsy0r-Mw0KRLk2iioC6KQvVla3qaCG-7nKZl2eXvttb8OtJb4AAKJ8BKEK5Hsd07lTBeVpWujiD3O4SkbNHeXGXEnLuzB_moRhta1mY", "link": "#" } },
-        "brand-9": { "type": "logo", "settings": { "brand_name": "Brand 9", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBu8UvM1mjqmFRzol_cJ02BDAshxfopPYvLTJC2WbA6f2jfIaRIv9JcPpZ16vsqw7jdWFuNIX3E7ijuhqFBtaQcg9jHA_mfhR23GZFYdIQJ0t86DMGJaIGQML6UF9BbPPIuJ6xVrsuVhQbzjm9hJkbS8pEY5G2-xLCSSX4RE2Yc8qX6195WO5ZmSg_Iz7D-s06qP5z8ByXYeahKrYdEZchF8oCSde4_BvMPcmrAjDEtt28XtZAPQW7hLYSqsNxTwsFFUcHn5Zc9Wco", "link": "#" } },
-        "brand-10": { "type": "logo", "settings": { "brand_name": "Brand 10", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAxCxqL3UId9kd1zB4u_qs61h6JpzxGRazVKOFCkEWbjEoLyCEodmqcEv5bphfVfGJwv-q7nDR-K9kkcqr1SSAfCbX65p8CLc1FYtGiDvsZdMRK_PnR9NCQi6cvs8zSOFpUsOCMB-nU6eyvDzmKqA1g59IAzGt-AQHdJZfnIhYiZR__0hFpzNxkpvfeNUnnzxqphmyEIS7tPOQYfdaiQebItdAfarjmH8iBJL9XxBqHQItSOFVmSPb4JdtBaOcMWCfFS2WLRIvKeI0", "link": "#" } },
-        "brand-11": { "type": "logo", "settings": { "brand_name": "Brand 11", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDH20VQP7ZSd-s4fyVi9HakElRi6QbY5NDJkCasZ3Wcfx4iu_kG8NmQI9jzkz5GbLfXCA7EEen6KiFLEE9GNZvRVCQ9K_4rV6oClWH2ejNvTku3f0D_niOfpdIDPtNRoXxJQpnPMS9BNjwMRWtMUBb_1IwN-cdW5GLqwwmMez-pMxy8IoFhkHNfBXbgYHvi2ACnsGjaxjq5B9XgL4UpKNnRFtZxDiPe6GXGITqGQuLGwEqyrYHW3HUmRcD8tCwJT8AJPdAjwrhO5CA", "link": "#" } },
-        "brand-12": { "type": "logo", "settings": { "brand_name": "Brand 12", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAhRXZh5QXSq9w_lNJhc7NlF14Nsv7reKtP4fd2ueOHrPzox4JmpkKCtyUwHuBgPiy6A4ZAsaRx-GgUkFcDjMTjEIAFKNQy8kLfC6LvfN6-O9UIOO_LfVEwZGGIQI67X2EG1lN4vwFG_LERDxMdLSqRMpZzqRrf9BecNNcX9mxzMwotCczoc-7OpE1LtMJD6qs8vdeN7pWLQ-gEzt3PuZ2j5_X4rCajX_5RrX4EO-CWv_tmuaCge8G5vhWkvjklcr_HhmPLyOSa5ZU", "link": "#" } },
-        "brand-13": { "type": "logo", "settings": { "brand_name": "Brand 13", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAiKVq31qcJ3Hx2BLqW6sOrcQ_0j0LOYcxLnMtmnPNqLzWo0Ftyfdog02ssEjLSTRLAk4RCMDfMvRD7nrn6D4ONIyo1-ANvsp2PfdY22p4z59IFqXeX-uFoDKW9wKMv4lscOCsXUwEF56bNFxw4CxCfaoDB0YhH776zqIrGQHgIjSDBaRon6Bc1BLvDpOPOL9nFC1lt5I-80AB7vD7iZHl8k1WCigGYciN-Nh7YY5DE7BTrNcysXQmAflYPX8tuaRtQAE3i-rITaFo", "link": "#" } },
-        "brand-14": { "type": "logo", "settings": { "brand_name": "Brand 14", "logo_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuD5Aha-t3HhZuz6W7nMEy6QwAx3O9hMfcjetC9A9Qib7m-3DqXLvT2xe_l_73RBXq0fqv-HibRldH9uDAk38GUlrI7nEcLjCa_59t0ZkoavW2cPeVxKULA2KRiMgKvEV5GhnJdXkCsXSmQiNLNbGRvS8JcxKzUYmpbfht1MazKdCC-3308cHrdHKVAl7W31f9R1hiTc2JaKQXkLoWvMe2LE9JssznGqfaCaal5zL8ttBFEGKqAaDtIbgZvfgyP-YQyS2EdZhNejFnk", "link": "#" } }
+        "brand-1": { "type": "logo", "settings": { "brand_name": "Dkhoon", "logo_file": "brand-logo-dkhoon.jpg" } },
+        "brand-2": { "type": "logo", "settings": { "brand_name": "Afnan", "logo_file": "brand-logo-afnan.jpg" } },
+        "brand-3": { "type": "logo", "settings": { "brand_name": "Assaf", "logo_file": "brand-logo-assaf.png" } },
+        "brand-4": { "type": "logo", "settings": { "brand_name": "Lattafa", "logo_file": "brand-logo-lattafa.png" } },
+        "brand-5": { "type": "logo", "settings": { "brand_name": "French Avenue", "logo_file": "brand-logo-french-avenue.jpg" } },
+        "brand-6": { "type": "logo", "settings": { "brand_name": "IBRAQ", "logo_file": "brand-logo-ibraq.jpg" } },
+        "brand-7": { "type": "logo", "settings": { "brand_name": "Rasasi", "logo_file": "brand-logo-rasasi.webp" } },
+        "brand-8": { "type": "logo", "settings": { "brand_name": "Qurashi", "logo_file": "brand-logo-qurashi.png" } }
       },
       "block_order": [
         "brand-1",
@@ -48,14 +42,18 @@
         "brand-5",
         "brand-6",
         "brand-7",
-        "brand-8",
-        "brand-9",
-        "brand-10",
-        "brand-11",
-        "brand-12",
-        "brand-13",
-        "brand-14"
+        "brand-8"
       ]
+    },
+    "featured-products": {
+      "type": "featured-collection",
+      "settings": {
+        "accent_text": "Top Picks",
+        "title": "Treasured Finds",
+        "collection": "all",
+        "products_to_show": 4,
+        "show_view_all": false
+      }
     },
     "shop-by-occasion": {
       "type": "shop-by-occasion",
@@ -67,7 +65,6 @@
           "type": "occasion",
           "settings": {
             "title": "Unisex",
-            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAT5M49nQ17tgv_EyEhC4D5vd7BVX9Gf_J_Bs11df6XvrzwrqrYaA1dp7iqHTSvYlHnaYL1cre-ES3hCZderyq_-uMMA2BjuqmAdZ5JTDZSXSH27JEuZUkhB7t4TRNkjpADhsJ993zfl0_i-dC2NqKGk79mDtlR2xFTfgvocvwhVh7MiGGk42_y4VPx2ULbsUN5gkDloKGjyBgTC-TI6wbRE5AMR99XvAFmTFRR9BoFiJFcoCPbnn86vkSvgA9yPX1R7klSpJT4qSA",
             "collection": "unisex",
             "link": "/collections/unisex"
           }
@@ -76,7 +73,6 @@
           "type": "occasion",
           "settings": {
             "title": "Men",
-            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCNcq-qc2yVcZrDW8278xJbZH1com9h1dEaQc-3UhfQfqXJy6Pp8rflGfpRwQpCFQPowVFK3_OWn0HwNOkur_VFXUkhQV6-AQxlViM9PlzSv-qOKFcttL8HlFJx6_QBCfgfUrecg2OsxbAd3TvDxvnCzBAwvVicflUu-kRZUVrT4I0pVTH4hkp16yBlEgdI7Ru863SCA6Z6BsLhxLWY3A6Jf2DFqGo8e0DkjaEvTSCb6qnrLbadlizgYdk2VHpCpyyl0E0Gzv0Rlb8",
             "collection": "men",
             "link": "/collections/men"
           }
@@ -85,70 +81,12 @@
           "type": "occasion",
           "settings": {
             "title": "Women",
-            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuB-D5wW6SQte2RkHyhVfEe20Q6locIhX4ZLVh2FVBkIsRc69jkAPnQv9bRZxOBvHlMQyVAuwVryY6yn0bdaFz_r76qfYGV5Wd_ThOZC--eh5AeaGcT7Dn-nyrbVSwNIo33L5JglUBP333zSkGkZmnrHw7-Pdkakf8LiDY6epUDYOlKcCXcosJaPO8Y0e_Zm1IbdWClNi3mhmsBKRmMAQxg2WRT-k-o6ZF8fHHL7BQJJ1rGLczlNdj3rdWvIfFOusssfqhBAosluODE",
             "collection": "women",
             "link": "/collections/women"
           }
         }
       },
-      "block_order": ["occ-1","occ-2","occ-3"]
-    },
-    "featured-products": {
-      "type": "featured-collection",
-      "settings": {
-        "accent_text": "Top Picks",
-        "title": "Treasured Finds",
-        "collection": "",
-        "products_to_show": 4,
-        "show_view_all": false
-      },
-      "blocks": {
-        "prod-1": {
-          "type": "product",
-          "settings": {
-            "brand": "Byredo",
-            "title": "The Essence",
-            "price": "$145",
-            "compare_price": "$196",
-            "badge": "95% Full",
-            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAKuuBItBe64Nsw1IwXOHp8mu2_cebm8SAtYTRzDpHdPJYUJBjThOV15_1hF-hj1z57U6lVKPcQegL9uKXYPkrt7NK7PQ1dp8EbU8U9KZHZ5tggEBaPamU6w-Cs7qIwYrm4JeSN3cc5g0z_fH7Oln-h94xKnLNxhV8c3BlqXBZy1MseeLNOuX1ItfcAI8zUABbFj5amLSf_LCcgEjMFq0r2E2peS719QXNqNjD9Nh4WZtDwj0A6rnjhnvBzt8YqH6doM7P5fL0--kE"
-          }
-        },
-        "prod-2": {
-          "type": "product",
-          "settings": {
-            "brand": "Aesop",
-            "title": "Midnight Jasmine",
-            "price": "$110",
-            "compare_price": "$140",
-            "badge": "New",
-            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBGRec0RkBAqG9u8-han8XUJvQqrzVTq_-D78rSpB_khHujsIRXWwZGDlbJ8b4ZrTHpQyQyR4KjyqevFXZCSr_LvyhnByOreHUrG2USmdTbO053yPG0Jna1QS6NhzKoMvqHUDz8qVvPG8ZnDY7mUl7zmYCAey3qWaSJC6M4jGebqhqIGXV1evuSj02ni_7rQ796RzG89mDXkaTlkAdA5_u8zEHO7WDJJr5J45mct1CQmegmNqF91unxgQmxmlkEPROiICFy6YXi-e4"
-          }
-        },
-        "prod-3": {
-          "type": "product",
-          "settings": {
-            "brand": "Diptyque",
-            "title": "Velvet Oak",
-            "price": "$95",
-            "compare_price": "$175",
-            "badge": "80% Full",
-            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBwxSO4NIhz1gWudTejn7KFklVQ5Rf25HyOa_QNW8mnNdXTlZ6cNE2rmM2i_smWdZ3oQZ5C9ip4iy1LE60fi4A-HDPdGTrCt-1oulvN78bMPK7aCvCWk4_aQzeaQfZwaRwwxTbrKDANw5wYUCXbgZd9-IHdkIG_UIWqKPfFFsXzAjvzb93NVpDq02wPFHA96GOEcPzWR1Gok67gXqZ4RZ7R75b2Ya_CEm1OVf-Dj3EHhRRDBYgGsDPetvApxaRBbZMRVSnA6EmWzjo"
-          }
-        },
-        "prod-4": {
-          "type": "product",
-          "settings": {
-            "brand": "Le Labo",
-            "title": "Lunar Petals",
-            "price": "$180",
-            "compare_price": "$230",
-            "badge": "Vintage",
-            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCAIIq9qLxlX8mIpQEoBynlps5kPqP4gZVW5HsxIv6_JNJ-YPPUpJBF5cN3of4sPcp858NYP7cJDawjKbljzYwgNxHvxWLQTAKtljKHsAuk-wV0qLiULhP3JPR4kBIcjA_yp0VigPwKDOdi4J-6I0wKrwmxh7j_YjsuqOBUuPbaxjeNH0Cc1aJwgwksGaLIJ3UFlBR74cBN1mzT_Q1jj4qHZJZbo5uVwbtdwcW3w_YtEsen2dpGSluSA5zI4O8Ob2luMNHFwUV8T8w"
-          }
-        }
-      },
-      "block_order": ["prod-1", "prod-2", "prod-3", "prod-4"]
+      "block_order": ["occ-1", "occ-2", "occ-3"]
     },
     "testimonials": {
       "type": "testimonials",

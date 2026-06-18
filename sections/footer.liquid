@@ -20,42 +20,42 @@
       <div class="site-footer__links-grid">
         <!-- Explore -->
         <div>
-          <h6 class="site-footer__heading">Explore</h6>
+          <h6 class="site-footer__heading">{{ 'footer.explore' | t }}</h6>
           <ul class="site-footer__list">
-            <li><a href="{{ url_archive }}">The Archive</a></li>
-            <li><a href="/pages/sell-your-scent">Sell Your Scent</a></li>
+            <li><a href="{{ url_archive }}">{{ 'footer.the_archive' | t }}</a></li>
+            <li><a href="/pages/sell-your-scent">{{ 'footer.sell_your_scent' | t }}</a></li>
             {%- if section.settings.link_authentication != blank -%}
-              <li><a href="{{ section.settings.link_authentication }}">Authentication</a></li>
+              <li><a href="{{ section.settings.link_authentication }}">{{ 'footer.authentication' | t }}</a></li>
             {%- else -%}
-              <li><span class="site-footer__static">Authentication</span></li>
+              <li><span class="site-footer__static">{{ 'footer.authentication' | t }}</span></li>
             {%- endif -%}
             {%- if section.settings.link_story != blank -%}
-              <li><a href="{{ section.settings.link_story }}">Our Story</a></li>
+              <li><a href="{{ section.settings.link_story }}">{{ 'footer.our_story' | t }}</a></li>
             {%- else -%}
-              <li><span class="site-footer__static">Our Story</span></li>
+              <li><span class="site-footer__static">{{ 'footer.our_story' | t }}</span></li>
             {%- endif -%}
           </ul>
         </div>
         <!-- Support -->
         <div>
-          <h6 class="site-footer__heading">Support</h6>
+          <h6 class="site-footer__heading">{{ 'footer.support' | t }}</h6>
           <ul class="site-footer__list">
             {%- if url_shipping != blank -%}
-              <li><a href="{{ url_shipping }}">Shipping</a></li>
+              <li><a href="{{ url_shipping }}">{{ 'footer.shipping' | t }}</a></li>
             {%- else -%}
-              <li><span class="site-footer__static">Shipping</span></li>
+              <li><span class="site-footer__static">{{ 'footer.shipping' | t }}</span></li>
             {%- endif -%}
             {%- if url_returns != blank -%}
-              <li><a href="{{ url_returns }}">Returns</a></li>
+              <li><a href="{{ url_returns }}">{{ 'footer.returns' | t }}</a></li>
             {%- else -%}
-              <li><span class="site-footer__static">Returns</span></li>
+              <li><span class="site-footer__static">{{ 'footer.returns' | t }}</span></li>
             {%- endif -%}
             {%- if section.settings.link_care != blank -%}
-              <li><a href="{{ section.settings.link_care }}">Care Guide</a></li>
+              <li><a href="{{ section.settings.link_care }}">{{ 'footer.care_guide' | t }}</a></li>
             {%- else -%}
-              <li><span class="site-footer__static">Care Guide</span></li>
+              <li><span class="site-footer__static">{{ 'footer.care_guide' | t }}</span></li>
             {%- endif -%}
-            <li><a href="{{ section.settings.link_contact | default: '/pages/contact' }}">Contact</a></li>
+            <li><a href="{{ section.settings.link_contact | default: '/pages/contact' }}">{{ 'footer.contact' | t }}</a></li>
           </ul>
         </div>
       </div>

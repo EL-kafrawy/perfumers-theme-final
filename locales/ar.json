@@ -82,7 +82,11 @@
         "out_of_stock": "غير متوفر",
         "sku": "رمز المنتج",
         "vendor": "العلامة التجارية",
-        "type": "النوع"
+        "type": "النوع",
+        "trust_authentic": "أصلي ومضمون",
+        "trust_delivery": "توصيل سريع بالقاهرة",
+        "trust_returns": "إرجاع سهل",
+        "trust_cod": "الدفع عند الاستلام"
     },
     "collection": {
         "title": "المجموعة",
@@ -164,7 +168,17 @@
         "customer_service": "خدمة العملاء",
         "follow_us": "تابعنا",
         "newsletter": "النشرة البريدية",
-        "copyright": "© 2026 PERFUMERS. جميع الحقوق محفوظة."
+        "copyright": "© 2026 PERFUMERS. جميع الحقوق محفوظة.",
+        "explore": "استكشف",
+        "support": "الدعم",
+        "the_archive": "الأرشيف",
+        "sell_your_scent": "بِع عطرك",
+        "authentication": "التحقق من الأصالة",
+        "our_story": "قصتنا",
+        "shipping": "الشحن",
+        "returns": "الإرجاع",
+        "care_guide": "دليل العناية",
+        "contact": "اتصل بنا"
     },
     "search": {
         "title": "بحث",

@@ -83,7 +83,11 @@
         "out_of_stock": "Out of Stock",
         "sku": "SKU",
         "vendor": "Brand",
-        "type": "Type"
+        "type": "Type",
+        "trust_authentic": "Authentic Guaranteed",
+        "trust_delivery": "Fast Cairo Delivery",
+        "trust_returns": "Easy Returns",
+        "trust_cod": "Cash on Delivery"
     },
     "collection": {
         "title": "Collection",
@@ -165,7 +169,17 @@
         "customer_service": "Customer Service",
         "follow_us": "Follow Us",
         "newsletter": "Newsletter",
-        "copyright": "© 2026 PERFUMERS. All rights reserved."
+        "copyright": "© 2026 PERFUMERS. All rights reserved.",
+        "explore": "Explore",
+        "support": "Support",
+        "the_archive": "The Archive",
+        "sell_your_scent": "Sell Your Scent",
+        "authentication": "Authentication",
+        "our_story": "Our Story",
+        "shipping": "Shipping",
+        "returns": "Returns",
+        "care_guide": "Care Guide",
+        "contact": "Contact"
     },
     "search": {
         "title": "Search",
