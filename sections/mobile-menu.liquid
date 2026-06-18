@@ -24,10 +24,12 @@
             </li>
           {%- endfor -%}
         {%- else -%}
-          {%- assign fallback_links = "Shop All,Brands,Occasions,New Arrivals,Best Sellers,Gift Sets" | split: "," -%}
-          {%- for fallback_title in fallback_links -%}
+          {%- comment -%} No Shopify menu assigned: show real fallback destinations, never "#". {%- endcomment -%}
+          {%- assign fallback_titles = "Shop All,New Arrivals,Best Sellers,Gift Sets" | split: "," -%}
+          {%- assign fallback_urls = "/collections/all,/collections/new-arrivals,/collections/best-sellers,/collections/gift-sets" | split: "," -%}
+          {%- for fallback_title in fallback_titles -%}
             <li class="mobile-menu__link-item">
-              <a class="mobile-menu__link group" href="#">
+              <a class="mobile-menu__link group" href="{{ fallback_urls[forloop.index0] }}">
                 <span class="mobile-menu__link-text">{{ fallback_title }}</span>
                 <span class="material-symbols-outlined mobile-menu__link-arrow">arrow_forward_ios</span>
               </a>
@@ -61,7 +63,7 @@
       {%- assign featured_url = section.settings.featured_product.url -%}
     {%- endif -%}
 
-    <a href="{{ featured_url | default: '#' }}" class="mobile-menu__featured">
+    <a href="{{ featured_url | default: routes.all_products_collection_url }}" class="mobile-menu__featured">
       <div class="mobile-menu__featured-img" style="background-image: url('{{ featured_img_url }}');" aria-label="{{ featured_title | default: 'Featured highlight' }}"></div>
       <div class="mobile-menu__featured-content">
         <h4 class="mobile-menu__featured-tagline">{{ section.settings.featured_tagline | default: "Featured Set" }}</h4>

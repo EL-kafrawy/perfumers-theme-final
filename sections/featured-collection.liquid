@@ -44,7 +44,7 @@
         {%- else -%}
           {%- if section.blocks.size > 0 -%}
             {%- for block in section.blocks -%}
-              {%- assign block_url = '#' -%}
+              {%- assign block_url = routes.all_products_collection_url -%}
               {%- if block.settings.product != blank -%}
                 {%- assign block_url = block.settings.product.url -%}
               {%- elsif block.settings.url != blank -%}

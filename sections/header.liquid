@@ -177,7 +177,7 @@
       <!-- A11y: cart button -->
       <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart-wrapper" data-drawer-open="cart" aria-label="Open cart drawer">
         <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
-        <span class="site-header__cart-badge cart-count" id="cart-count" data-cart-count data-count="0" aria-label="Cart items">0</span>
+        <span class="site-header__cart-badge cart-count" id="cart-count" data-cart-count data-count="{{ cart.item_count }}" aria-label="Cart items"{% if cart.item_count == 0 %} style="display:none;"{% endif %}>{{ cart.item_count }}</span>
       </a>
     </div>
   </div>

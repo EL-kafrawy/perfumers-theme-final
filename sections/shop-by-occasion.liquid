@@ -3,7 +3,7 @@
   <div class="flex flex-col gap-4 px-4">
     {%- assign first_block = section.blocks | first -%}
     {%- if first_block -%}
-      {%- assign target_url = "#" -%}
+      {%- assign target_url = routes.all_products_collection_url -%}
       {%- if first_block.settings.collection != blank -%}
         {%- assign target_collection = first_block.settings.collection -%}
         {%- if target_collection.url != blank -%}
@@ -55,7 +55,7 @@
     {%- if section.blocks.size > 1 -%}
       <div class="grid grid-cols-2 gap-4">
         {%- for block in section.blocks offset: 1 -%}
-          {%- assign target_url = "#" -%}
+          {%- assign target_url = routes.all_products_collection_url -%}
           {%- if block.settings.collection != blank -%}
             {%- assign target_collection = block.settings.collection -%}
             {%- if target_collection.url != blank -%}

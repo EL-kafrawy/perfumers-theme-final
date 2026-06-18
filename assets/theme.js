@@ -55,13 +55,26 @@
     }
   }
 
-  /* ---- Smooth Scroll for Anchor Links ---- */
+  /* ---- Smooth Scroll for Anchor Links ----
+     Only intercepts links that point to a REAL in-page element.
+     Anything else (bare "#", placeholder, or non-existent target) is
+     left to the browser so navigation/links are never silently killed. */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
         var targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        var target = document.querySelector(targetId);
+        /* Bare "#" or empty fragment: prevent the jump-to-top, do nothing else */
+        if (!targetId || targetId === '#') {
+          e.preventDefault();
+          return;
+        }
+        var target = null;
+        try {
+          target = document.querySelector(targetId);
+        } catch (err) {
+          /* Invalid selector (e.g. href="#section 1") — let the browser handle it */
+          return;
+        }
         if (target) {
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });

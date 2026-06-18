@@ -112,7 +112,7 @@
             });
         }
 
-        /* Buy Now — add to cart then redirect to checkout */
+        /* Buy Now — add to cart then redirect to checkout (only on success) */
         var buyNowBtn = this.form.querySelector('[data-buy-now]');
         if (buyNowBtn) {
             buyNowBtn.addEventListener('click', function (e) {
@@ -122,16 +122,32 @@
                 if (!variantInput) return;
                 var variantId = parseInt(variantInput.value, 10);
                 var quantity = qtyInput ? parseInt(qtyInput.value, 10) : 1;
+
+                var originalBuyText = buyNowBtn.textContent;
+                buyNowBtn.disabled = true;
+                buyNowBtn.innerHTML = '<span class="spinner"></span>';
+
                 fetch('/cart/add.js', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ items: [{ id: variantId, quantity: quantity }] })
+                })
+                .then(function (response) {
+                    return response.json().then(function (data) {
+                        if (!response.ok) {
+                            throw new Error(data.description || data.message || 'Could not add to cart');
+                        }
+                        return data;
+                    });
                 })
                 .then(function () {
                     window.location.href = '/checkout';
                 })
                 .catch(function (err) {
                     console.error('Buy now error:', err);
+                    buyNowBtn.disabled = false;
+                    buyNowBtn.textContent = err.message || originalBuyText;
+                    setTimeout(function () { buyNowBtn.textContent = originalBuyText; }, 2000);
                 });
             });
         }
@@ -240,8 +256,11 @@
                 })
                 .catch(function (err) {
                     console.error('Add to cart error:', err);
-                    if (addBtn) addBtn.disabled = false;
-                    if (addBtnText) addBtnText.textContent = originalText;
+                    if (addBtnText) addBtnText.textContent = err.message || 'Unavailable';
+                    setTimeout(function () {
+                        if (addBtn) addBtn.disabled = false;
+                        if (addBtnText) addBtnText.textContent = originalText;
+                    }, 2000);
                 });
         }
     };

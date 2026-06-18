@@ -10,25 +10,52 @@
       </div>
 
       <!-- Links Grid -->
+      {%- comment -%}
+        Resolve each link to an explicit setting, then a real always-valid route.
+        If still blank, render a non-clickable span (never a dead "#" / empty href).
+      {%- endcomment -%}
+      {%- assign url_archive = section.settings.link_archive | default: routes.all_products_collection_url -%}
+      {%- assign url_shipping = section.settings.link_shipping | default: shop.shipping_policy.url -%}
+      {%- assign url_returns = section.settings.link_returns | default: shop.refund_policy.url -%}
       <div class="site-footer__links-grid">
         <!-- Explore -->
         <div>
           <h6 class="site-footer__heading">Explore</h6>
           <ul class="site-footer__list">
-            <li><a href="{{ section.settings.link_archive | default: '#' }}">The Archive</a></li>
+            <li><a href="{{ url_archive }}">The Archive</a></li>
             <li><a href="/pages/sell-your-scent">Sell Your Scent</a></li>
-            <li><a href="{{ section.settings.link_authentication | default: '#' }}">Authentication</a></li>
-            <li><a href="{{ section.settings.link_story | default: '#' }}">Our Story</a></li>
+            {%- if section.settings.link_authentication != blank -%}
+              <li><a href="{{ section.settings.link_authentication }}">Authentication</a></li>
+            {%- else -%}
+              <li><span class="site-footer__static">Authentication</span></li>
+            {%- endif -%}
+            {%- if section.settings.link_story != blank -%}
+              <li><a href="{{ section.settings.link_story }}">Our Story</a></li>
+            {%- else -%}
+              <li><span class="site-footer__static">Our Story</span></li>
+            {%- endif -%}
           </ul>
         </div>
         <!-- Support -->
         <div>
           <h6 class="site-footer__heading">Support</h6>
           <ul class="site-footer__list">
-            <li><a href="{{ section.settings.link_shipping | default: '#' }}">Shipping</a></li>
-            <li><a href="{{ section.settings.link_returns | default: '#' }}">Returns</a></li>
-            <li><a href="{{ section.settings.link_care | default: '#' }}">Care Guide</a></li>
-            <li><a href="{{ section.settings.link_contact | default: '#' }}">Contact</a></li>
+            {%- if url_shipping != blank -%}
+              <li><a href="{{ url_shipping }}">Shipping</a></li>
+            {%- else -%}
+              <li><span class="site-footer__static">Shipping</span></li>
+            {%- endif -%}
+            {%- if url_returns != blank -%}
+              <li><a href="{{ url_returns }}">Returns</a></li>
+            {%- else -%}
+              <li><span class="site-footer__static">Returns</span></li>
+            {%- endif -%}
+            {%- if section.settings.link_care != blank -%}
+              <li><a href="{{ section.settings.link_care }}">Care Guide</a></li>
+            {%- else -%}
+              <li><span class="site-footer__static">Care Guide</span></li>
+            {%- endif -%}
+            <li><a href="{{ section.settings.link_contact | default: '/pages/contact' }}">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -152,6 +179,14 @@
 
   .site-footer__list a:hover {
     opacity: 1;
+  }
+
+  .site-footer__static {
+    color: #2E2A33;
+    font-size: 0.75rem; /* text-xs */
+    opacity: 0.45;
+    font-weight: 300; /* font-light */
+    cursor: default;
   }
 
   .site-footer__bottom {

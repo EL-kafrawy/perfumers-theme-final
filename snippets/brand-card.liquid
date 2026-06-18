@@ -48,7 +48,7 @@
   endif
 -%}
 
-<a href="{{ link | default: '#' }}" 
+<a href="{% if link != blank and link != '#' %}{{ link }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"
    class="brand-circle"
    {% if aria_hidden %}aria-hidden="true" tabindex="-1"{% else %}aria-label="Shop {{ brand_name | escape }}"{% endif %}
 >

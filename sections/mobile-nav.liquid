@@ -7,11 +7,11 @@
     <span class="material-symbols-outlined scale-90">grid_view</span>
     <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.browse_label | default: "Browse" }}</span>
   </a>
-  <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.wishlist_link | default: '#' }}">
+  <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.wishlist_link | default: routes.all_products_collection_url }}">
     <span class="material-symbols-outlined scale-90">favorite</span>
     <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.wishlist_label | default: "Wishlist" }}</span>
   </a>
-  <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.profile_link | default: '/account' }}">
+  <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.profile_link | default: routes.account_url }}">
     <span class="material-symbols-outlined scale-90">person</span>
     <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.profile_label | default: "Profile" }}</span>
   </a>

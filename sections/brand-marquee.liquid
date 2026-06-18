@@ -93,8 +93,12 @@
         {%- if i == 2 -%}{%- assign is_clone = true -%}{%- endif -%}
         <div class="brand-slider-col">
           {%- for block in section.blocks -%}
-            <a href="{{ block.settings.link | default: '/collections/all' }}" 
-               class="brand-logo-card" 
+            {%- assign brand_link = block.settings.link -%}
+            {%- if brand_link == blank or brand_link == '#' -%}
+              {%- assign brand_link = routes.all_products_collection_url -%}
+            {%- endif -%}
+            <a href="{{ brand_link }}"
+               class="brand-logo-card"
                {% if is_clone %}aria-hidden="true" tabindex="-1"{% endif %}
                {{ block.shopify_attributes }}>
               {%- if block.settings.logo != blank -%}

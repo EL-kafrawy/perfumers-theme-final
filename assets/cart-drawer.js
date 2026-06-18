@@ -91,6 +91,15 @@
                 self.updateItem(removeBtn.dataset.lineKey, 0);
             }
         });
+
+        /* Direct quantity edit (typing a number) */
+        this.drawer.addEventListener('change', function (e) {
+            var qtyInput = e.target.closest(selectors.itemQtyInput);
+            if (qtyInput) {
+                var newQty = Math.max(0, parseInt(qtyInput.value, 10) || 0);
+                self.updateItem(qtyInput.dataset.lineKey, newQty);
+            }
+        });
     };
 
     CartDrawer.prototype.open = function () {
@@ -211,7 +220,19 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ items: [{ id: variantId, quantity: quantity }] })
         })
-            .then(function (response) { return response.json(); })
+            .then(function (response) {
+                /* Shopify returns 422 (with a description) when an item can't be
+                   added (sold out / exceeds available stock). Surface it instead
+                   of falsely opening the drawer as a success. */
+                return response.json().then(function (data) {
+                    if (!response.ok) {
+                        var err = new Error(data.description || data.message || 'Could not add to cart');
+                        err.cartError = data;
+                        throw err;
+                    }
+                    return data;
+                });
+            })
             .then(function (data) {
                 var cartDrawerInstance = document.querySelector(selectors.drawer);
                 if (cartDrawerInstance && cartDrawerInstance.__cartDrawer) {
@@ -237,6 +258,11 @@
         if (drawer) {
             drawer.__cartDrawer = cd;
         }
+        /* Sync every cart-count badge from the server-rendered value on load,
+           so the header (and empty mobile-menu) badge is correct immediately. */
+        var initialCountEl = document.querySelector('[data-cart-count][data-count]');
+        var initialCount = initialCountEl ? (parseInt(initialCountEl.dataset.count, 10) || 0) : 0;
+        cd.updateCartCount(initialCount);
     }
 
     if (document.readyState !== 'loading') {

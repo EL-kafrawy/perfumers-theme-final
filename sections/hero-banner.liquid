@@ -13,7 +13,7 @@
     {%- endif -%}
     <h2 class="mb-6 leading-[1.2] tracking-tight" style="font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: #2E2A33; font-style: normal;">{{ section.settings.heading }}</h2>
     <p class="mb-8 leading-relaxed max-w-[400px] mx-auto" style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 400; color: #9B8778;">{{ section.settings.subheading }}</p>
-    <a class="inline-block uppercase tracking-[0.2em] transition-all hover:bg-charcoal/90" href="{{ section.settings.button_link }}" style="background-color: #C8A46A; color: #F5F1EB; font-family: 'Montserrat', sans-serif; font-weight: 600; border-radius: 2px; padding: 16px 32px; font-size: 12px;">{{ section.settings.button_text }}</a>
+    <a class="inline-block uppercase tracking-[0.2em] transition-all hover:bg-charcoal/90" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" style="background-color: #C8A46A; color: #F5F1EB; font-family: 'Montserrat', sans-serif; font-weight: 600; border-radius: 2px; padding: 16px 32px; font-size: 12px;">{{ section.settings.button_text }}</a>
   </div>
 </section>
 
