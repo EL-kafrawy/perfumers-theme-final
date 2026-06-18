@@ -28,7 +28,7 @@
       {%- assign upsell_product = section.settings.upsell_product -%}
       {%- if upsell_product != blank -%}
         <div class='cart-upsell'>
-          <img src='{{ upsell_product.featured_image | image_url: width: 120 }}' alt='{{ upsell_product.title | escape }}' loading="lazy" />
+          <img src='{{ upsell_product.featured_image | image_url: width: 120 }}' alt='{{ upsell_product.title | escape }}' width="120" height="120" loading="lazy" />
           <div class='upsell-info'>
             <p class='upsell-name'>{{ upsell_product.title }}</p>
             <p class='upsell-desc'>{{ section.settings.upsell_desc }}</p>

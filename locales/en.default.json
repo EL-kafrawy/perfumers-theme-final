@@ -199,5 +199,17 @@
         "title": "Page Not Found",
         "subtext": "The page you're looking for doesn't exist.",
         "button": "Return Home"
+    },
+    "gift_cards": {
+        "issued": {
+            "title": "Here's your {{ value }} gift card!",
+            "subtext": "Your gift card",
+            "gift_card_code": "Gift card code",
+            "qr_image_alt": "QR code — scan to redeem this gift card",
+            "remaining_html": "Remaining balance: {{ balance }}",
+            "expired": "This gift card has expired.",
+            "shop_link": "Start shopping",
+            "print": "Print"
+        }
     }
 }

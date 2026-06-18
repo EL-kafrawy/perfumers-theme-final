@@ -5,7 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#C8A46A">
-  <title>{{ 'gift_cards.issued.title' | t: value: gift_card.balance | money }} | {{ shop.name }}</title>
+  {%- assign gc_balance = gift_card.balance | money -%}
+  <title>{{ 'gift_cards.issued.title' | t: value: gc_balance }} | {{ shop.name }}</title>
   <link rel="canonical" href="{{ canonical_url }}">
   {%- if settings.favicon != blank -%}
     <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -112,17 +113,9 @@
         {{ gift_card.balance | money }}
       </div>
 
-      {%- if gift_card.enabled and gift_card.balance > 0 -%}
-        <div class="giftcard-qr">
-          <img src="/barcode?type=qr_code&data={{ gift_card.qr_identifier }}&size=200x200"
-               alt="{{ 'gift_cards.issued.qr_image_alt' | t | default: 'QR code' }}"
-               width="200" height="200" loading="lazy">
-        </div>
-      {%- endif -%}
-
       <div class="giftcard-code-wrap">
-        <p class="giftcard-code-label">{{ 'gift_cards.issued.gift_card_code' | t | default: 'Gift card code' }}</p>
-        <span class="giftcard-code">{{ gift_card.code | format_code }}</span>
+        <p class="giftcard-code-label">{{ 'gift_cards.issued.gift_card_code' | t }}</p>
+        <span class="giftcard-code">{{ gift_card.code }}</span>
       </div>
 
       {%- unless gift_card.enabled -%}
@@ -131,7 +124,7 @@
 
       {%- if gift_card.balance != gift_card.initial_value -%}
         <p class="giftcard-status">
-          {{ 'gift_cards.issued.remaining_html' | t: balance: gift_card.balance | money | default: gift_card.balance | money }}
+          {{ 'gift_cards.issued.remaining_html' | t: balance: gc_balance }}
         </p>
       {%- endif -%}
 

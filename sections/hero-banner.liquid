@@ -2,8 +2,6 @@
   <div class="absolute inset-0 z-0">
     {%- if section.settings.image != blank -%}
       <img class="w-full h-full object-cover opacity-70 mix-blend-multiply" src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.image_alt | escape }}" width="2000" height="1400">
-    {%- else -%}
-      <img class="w-full h-full object-cover opacity-70 mix-blend-multiply" src="{{ 'hero-banner-default.jpg' | asset_url }}" alt="Luxury perfume bottle detail" width="2000" height="1400">
     {%- endif -%}
     <div class="absolute inset-0 bg-gradient-to-b from-soft-ivory/20 via-soft-ivory/40 to-soft-ivory"></div>
   </div>
