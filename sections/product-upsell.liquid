@@ -1,0 +1,74 @@
+<section class="product-upsell section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section__header" data-animate>
+      <span class="section__accent">{{ section.settings.accent_text }}</span>
+      <h2 class="section__title">{{ 'product.upsell_title' | t }}</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="scroll-row product-upsell__row">
+      {%- if section.settings.collection != blank -%}
+        {%- for product in section.settings.collection.products limit: 6 -%}
+          <div class="product-upsell__item">
+            {% render 'product-card', product: product %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- if product.collections.first != blank -%}
+          {%- for rec_product in product.collections.first.products limit: 6 -%}
+            {%- if rec_product.id != product.id -%}
+              <div class="product-upsell__item">
+                {% render 'product-card', product: rec_product %}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-upsell__item {
+    flex: 0 0 200px;
+    max-width: 200px;
+  }
+  @media (min-width: 768px) {
+    .product-upsell__row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      overflow: visible;
+    }
+    .product-upsell__item { flex: none; max-width: none; }
+  }
+  @media (min-width: 1024px) {
+    .product-upsell__row {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Upsell",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent text",
+      "default": "Complete"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Upsell collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Upsell"
+    }
+  ]
+}
+{% endschema %}

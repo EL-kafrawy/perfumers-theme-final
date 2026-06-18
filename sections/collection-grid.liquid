@@ -1,0 +1,291 @@
+{%- liquid
+  assign current_gender = '' 
+  assign gender_tags = 'men,women,unisex' | split: ','
+  for tag in current_tags
+    assign tag_lower = tag | downcase
+    if gender_tags contains tag_lower
+      assign current_gender = tag_lower
+    endif
+  endfor
+-%}
+
+<section class="collection-grid section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <!-- Gender Filter Bar -->
+    {%- if section.settings.show_gender_filter -%}
+      <div class="gender-filter-bar" data-gender-filter>
+        <span class="gender-filter-bar__label">
+          <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 18px;">tune</span>
+          Shop for:
+        </span>
+        <div class="gender-filter-bar__pills">
+          <a href="{{ collection.url }}"
+             class="gender-pill{% if current_gender == '' %} gender-pill--active{% endif %}"
+             id="gender-filter-all"
+             aria-label="Show all products">
+            All
+          </a>
+          <a href="{{ collection.url }}/men"
+             class="gender-pill{% if current_gender == 'men' %} gender-pill--active{% endif %}"
+             id="gender-filter-men"
+             aria-label="Show men's fragrances">
+            <span class="material-symbols-outlined gender-pill__icon" aria-hidden="true">male</span>
+            Men
+          </a>
+          <a href="{{ collection.url }}/women"
+             class="gender-pill{% if current_gender == 'women' %} gender-pill--active{% endif %}"
+             id="gender-filter-women"
+             aria-label="Show women's fragrances">
+            <span class="material-symbols-outlined gender-pill__icon" aria-hidden="true">female</span>
+            Women
+          </a>
+          <a href="{{ collection.url }}/unisex"
+             class="gender-pill{% if current_gender == 'unisex' %} gender-pill--active{% endif %}"
+             id="gender-filter-unisex"
+             aria-label="Show unisex fragrances">
+            <span class="material-symbols-outlined gender-pill__icon" aria-hidden="true">diversity_1</span>
+            Unisex
+          </a>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- Toolbar -->
+    <div class="collection-grid__toolbar">
+      <button class="collection-grid__filter-btn" data-filter-open>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+        {{ 'actions.filter' | t }}
+        <span class="collection-grid__filter-count" data-filter-count style="display:none;">0</span>
+      </button>
+
+      <div class="collection-grid__sort">
+        <label for="sort-select" class="visually-hidden">{{ 'collection.sort_by' | t }}</label>
+        <select id="sort-select" class="collection-grid__sort-select" data-sort-select>
+          <option value="best-selling"{% if collection.sort_by == 'best-selling' %} selected{% endif %}>{{ 'collection.sort_best_selling' | t }}</option>
+          <option value="title-ascending"{% if collection.sort_by == 'title-ascending' %} selected{% endif %}>{{ 'collection.sort_alphabetically_az' | t }}</option>
+          <option value="title-descending"{% if collection.sort_by == 'title-descending' %} selected{% endif %}>{{ 'collection.sort_alphabetically_za' | t }}</option>
+          <option value="price-ascending"{% if collection.sort_by == 'price-ascending' %} selected{% endif %}>{{ 'collection.sort_price_low' | t }}</option>
+          <option value="price-descending"{% if collection.sort_by == 'price-descending' %} selected{% endif %}>{{ 'collection.sort_price_high' | t }}</option>
+          <option value="created-descending"{% if collection.sort_by == 'created-descending' %} selected{% endif %}>{{ 'collection.sort_date_new' | t }}</option>
+          <option value="created-ascending"{% if collection.sort_by == 'created-ascending' %} selected{% endif %}>{{ 'collection.sort_date_old' | t }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    {%- if collection.products.size > 0 -%}
+      <div class="collection-grid__products grid grid--{{ section.settings.columns }}" data-collection-grid>
+        {%- paginate collection.products by section.settings.products_per_page -%}
+          {%- for product in collection.products -%}
+            <div class="product-card-wrapper">
+              {% render 'product-card', product: product %}
+            </div>
+          {%- endfor -%}
+
+          {%- if paginate.next -%}
+            <div class="collection-grid__load-more text-center" style="grid-column: 1 / -1;">
+              <button
+                class="btn btn-secondary btn-small"
+                data-load-more
+                data-next-url="{{ paginate.next.url }}"
+                data-text="{{ 'actions.load_more' | t }}"
+              >
+                {{ 'actions.load_more' | t }}
+              </button>
+            </div>
+          {%- endif -%}
+
+          {% render 'pagination', paginate: paginate %}
+        {%- endpaginate -%}
+      </div>
+    {%- else -%}
+      <div class="collection-grid__empty text-center py-3xl">
+        <p>{{ 'collection.no_products' | t }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script src="{{ 'collection-filter.js' | asset_url }}" defer></script>
+
+<style>
+  .collection-grid__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-pearl);
+  }
+  .collection-grid__filter-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: none;
+    border: 1px solid var(--color-pearl);
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-charcoal);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+  }
+  .collection-grid__filter-btn:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+  .collection-grid__filter-count {
+    background: var(--color-gold);
+    color: var(--color-ivory);
+    font-size: 10px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-bold);
+  }
+  .collection-grid__sort-select {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-charcoal);
+    border: 1px solid var(--color-pearl);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-ivory);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+
+  /* --- Gender Filter Bar ------------------------------------------- */
+  .gender-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0 0.75rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .gender-filter-bar__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-charcoal, #2E2A33);
+    white-space: nowrap;
+  }
+
+  .gender-filter-bar__pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .gender-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 1.1rem;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-charcoal, #2E2A33);
+    background: rgba(250, 248, 245, 0.8);
+    border: 1px solid rgba(200, 164, 106, 0.2);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .gender-pill:hover {
+    border-color: rgba(200, 164, 106, 0.5);
+    background: rgba(200, 164, 106, 0.08);
+    color: var(--color-gold, #93733B);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(200, 164, 106, 0.12);
+  }
+
+  .gender-pill--active {
+    background: linear-gradient(135deg, #93733B, #C8A46A);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 3px 14px rgba(147, 115, 59, 0.25);
+  }
+
+  .gender-pill--active:hover {
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 18px rgba(147, 115, 59, 0.3);
+  }
+
+  .gender-pill__icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .gender-pill--active .gender-pill__icon {
+    color: #fff;
+  }
+
+  @media (max-width: 540px) {
+    .gender-filter-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .gender-pill {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.7rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns",
+      "options": [
+        { "value": "2", "label": "2 columns" },
+        { "value": "3", "label": "3 columns" },
+        { "value": "4", "label": "4 columns" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gender_filter",
+      "label": "Show gender filter bar",
+      "default": true,
+      "info": "Display Men / Women / Unisex filter pills above the product grid"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Grid"
+    }
+  ]
+}
+{% endschema %}

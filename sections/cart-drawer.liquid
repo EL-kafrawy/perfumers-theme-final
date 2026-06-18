@@ -1,0 +1,242 @@
+<!-- A11y: role=dialog + aria-label + aria-modal for screen readers -->
+<div class="cart-drawer drawer" data-cart-drawer role="dialog" aria-label="Shopping cart" aria-modal="true">
+  <div class="drawer__header">
+    <h3 class="drawer__title">{{ 'cart.title' | t }}</h3>
+    <!-- A11y: descriptive aria-label for close button -->
+    <button class="drawer__close" data-cart-close aria-label="Close cart drawer">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+
+  <div class="drawer__body">
+    <!-- Empty State -->
+    <div class="cart-drawer__empty" data-cart-empty>
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-mauve)" stroke-width="1"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+      <p class="cart-drawer__empty-text">{{ 'cart.empty' | t }}</p>
+      <a href="/collections" class="btn btn-secondary btn-small">{{ 'cart.continue_shopping' | t }}</a>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="cart-drawer__items" data-cart-items></div>
+  </div>
+
+  <div class="cart-drawer__footer" data-cart-footer style="display:none;">
+    <div class="cart-upsell-container">
+      {%- if section.settings.upsell_heading != blank -%}
+        <p class="cart-upsell__heading">{{ section.settings.upsell_heading }}</p>
+      {%- endif -%}
+      {%- assign upsell_product = section.settings.upsell_product -%}
+      {%- if upsell_product != blank -%}
+        <div class='cart-upsell'>
+          <img src='{{ upsell_product.featured_image | image_url: width: 120 }}' alt='{{ upsell_product.title | escape }}' loading="lazy" />
+          <div class='upsell-info'>
+            <p class='upsell-name'>{{ upsell_product.title }}</p>
+            <p class='upsell-desc'>{{ section.settings.upsell_desc }}</p>
+          </div>
+          <button class='upsell-add-btn' data-add-to-cart="{{ upsell_product.first_available_variant.id }}">+ ADD {{ upsell_product.price | money }}</button>
+        </div>
+      {%- endif -%}
+    </div>
+    
+    <div class="cart-drawer__subtotal">
+      <span>{{ 'cart.subtotal' | t }}</span>
+      <span data-cart-total>{{ cart.total_price | money }}</span>
+    </div>
+    <p class="cart-drawer__shipping-note">{{ 'cart.shipping_note' | t }}</p>
+    <a href="/checkout" class="btn btn-primary">{{ 'cart.checkout' | t }}</a>
+    <a href="/cart" class="cart-drawer__view-cart">{{ 'cart.update' | t }}</a>
+  </div>
+</div>
+<div class="overlay" data-cart-overlay></div>
+
+<style>
+  .cart-drawer__empty {
+    text-align: center;
+    padding: var(--space-3xl) var(--space-xl);
+  }
+  .cart-drawer__empty svg {
+    margin-bottom: var(--space-lg);
+  }
+  .cart-drawer__empty-text {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-xl);
+  }
+  .cart-drawer__item {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-pearl);
+    position: relative;
+  }
+  .cart-drawer__item-image {
+    width: 80px;
+    flex-shrink: 0;
+  }
+  .cart-drawer__item-image img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+  .cart-drawer__item-details {
+    flex: 1;
+  }
+  .cart-drawer__item-title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-xs);
+  }
+  .cart-drawer__item-variant {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+  }
+  .cart-drawer__item-price {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-sm);
+  }
+  .cart-drawer__item-qty {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  .qty-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border: 1px solid #e8ddd2;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    color: var(--color-charcoal);
+  }
+  .cart-drawer__item-qty input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-charcoal);
+  }
+  .cart-drawer__item-remove {
+    position: absolute;
+    top: var(--space-md);
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: var(--space-xs);
+  }
+  .cart-drawer__item-remove:hover {
+    color: var(--color-charcoal);
+  }
+  .cart-drawer__footer {
+    padding: var(--space-xl);
+    border-top: 1px solid var(--color-pearl);
+  }
+  .cart-drawer__subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-sm);
+  }
+  .cart-drawer__shipping-note {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+  .cart-drawer__view-cart {
+    display: block;
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-top: var(--space-md);
+  }
+  .cart-upsell-container {
+    margin-bottom: var(--space-xl);
+  }
+  .cart-upsell__heading {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    margin-bottom: var(--space-md);
+    color: var(--color-charcoal-80);
+  }
+  .cart-upsell {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: #f5f0eb;
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .cart-upsell img {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+  }
+  .upsell-info {
+    flex: 1;
+  }
+  .upsell-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-charcoal);
+  }
+  .upsell-desc {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+  }
+  .upsell-add-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-charcoal);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Upsell Section"
+    },
+    {
+      "type": "text",
+      "id": "upsell_heading",
+      "label": "Upsell Heading",
+      "default": "Complete the ritual..."
+    },
+    {
+      "type": "product",
+      "id": "upsell_product",
+      "label": "Upsell Product"
+    },
+    {
+      "type": "text",
+      "id": "upsell_desc",
+      "label": "Upsell Description",
+      "default": "12 curated samples, 2ml each"
+    }
+  ]
+}
+{% endschema %}

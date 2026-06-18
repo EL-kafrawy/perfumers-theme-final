@@ -1,0 +1,161 @@
+<div class="search-overlay" data-search-overlay>
+  <div class="search-overlay__inner">
+    <div class="search-overlay__header">
+      <h3 class="search-overlay__title">{{ 'search.title' | t }}</h3>
+      <button class="search-overlay__close" data-search-close aria-label="{{ 'actions.close' | t }}">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+
+    <div class="search-overlay__form">
+      <div class="search-overlay__input-wrapper">
+        {% render 'icon-search' %}
+        <input
+          type="search"
+          class="search-overlay__input"
+          data-search-input
+          placeholder="{{ 'search.placeholder' | t }}"
+          autocomplete="off"
+          aria-label="{{ 'search.title' | t }}"
+        >
+      </div>
+    </div>
+
+    <div class="search-overlay__loading" data-search-loading style="display:none;">
+      <span class="spinner"></span>
+    </div>
+
+    <div class="search-overlay__results" data-search-results style="display:none;">
+      <div class="search-overlay__results-list" data-search-results-list></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    background: var(--color-ivory);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    overflow-y: auto;
+  }
+  .search-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .search-overlay__inner {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--space-xl);
+  }
+  .search-overlay__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-xl);
+  }
+  .search-overlay__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--color-charcoal);
+  }
+  .search-overlay__close {
+    background: none;
+    border: none;
+    padding: var(--space-sm);
+    color: var(--color-charcoal);
+    cursor: pointer;
+  }
+  .search-overlay__input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border: 1.5px solid var(--color-pearl);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-fast);
+  }
+  .search-overlay__input-wrapper:focus-within {
+    border-color: var(--color-gold);
+  }
+  .search-overlay__input-wrapper svg {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+  }
+  .search-overlay__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-charcoal);
+    background: transparent;
+  }
+  .search-overlay__input::placeholder {
+    color: var(--color-text-secondary);
+  }
+  .search-overlay__loading {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+  }
+  .search-overlay__results {
+    margin-top: var(--space-xl);
+  }
+  .search-result {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-pearl);
+    align-items: center;
+    color: var(--color-charcoal);
+    transition: background var(--transition-fast);
+  }
+  .search-result:hover {
+    background: var(--color-gold-10);
+  }
+  .search-result__image {
+    width: 60px;
+    height: 75px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+  }
+  .search-result__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .search-result__title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-xs);
+  }
+  .search-result__price {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-gold);
+  }
+  .search-result__view-all {
+    display: block;
+    margin-top: var(--space-xl);
+    text-align: center;
+  }
+  .search-result__none {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    color: var(--color-text-secondary);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Search Overlay",
+  "settings": []
+}
+{% endschema %}

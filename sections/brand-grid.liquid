@@ -1,0 +1,158 @@
+<section class="brand-grid section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section__header" data-animate>
+      <h2 class="section__title">{{ section.settings.title | default: 'Shop by Brand' }}</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="brand-logo-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.link != blank -%}
+          <a href="{{ block.settings.link }}" class="brand-logo-placeholder" data-animate {{ block.shopify_attributes }}>
+        {%- else -%}
+          <div class="brand-logo-placeholder" data-animate {{ block.shopify_attributes }}>
+        {%- endif -%}
+          {%- liquid
+            assign logo_image = block.settings.logo
+            assign brand_handle = block.settings.brand_name | handleize
+            
+            # Determine extension based on brand
+            assign extension = '.png'
+            if brand_handle == 'afnan' or brand_handle == 'french-avenue'
+              assign extension = '.jpg'
+            endif
+            
+            assign asset_logo = 'brand-logo-' | append: brand_handle | append: extension
+            
+            # Special cases for naming mismatches
+            if brand_handle contains 'dkhoon'
+              assign asset_logo = 'brand-logo-dkhoon.png'
+            elsif brand_handle contains 'qurashi'
+              assign asset_logo = 'brand-logo-qurashi.png'
+            endif
+
+            # Prioritize our specific asset logos
+            assign prioritize_asset = false
+            if brand_handle == 'afnan' or brand_handle == 'assaf' or brand_handle == 'french-avenue'
+              assign prioritize_asset = true
+            endif
+          -%}
+
+          {%- if logo_image != blank or asset_logo != blank -%}
+            <img
+              {% if prioritize_asset or logo_image == blank %}
+                src="{{ asset_logo | asset_url }}"
+              {% else %}
+                src="{{ logo_image | image_url: width: 200 }}"
+              {% endif %}
+              alt="{{ block.settings.brand_name | escape }}"
+              loading="lazy"
+            >
+          {%- endif -%}
+        {%- if block.settings.link != blank -%}
+          </a>
+        {%- else -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .brand-grid .brand-logo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 2.5rem 0 1rem;
+    align-items: center;
+    justify-items: center;
+  }
+  @media (min-width: 540px) {
+    .brand-grid .brand-logo-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+  }
+  @media (min-width: 768px) {
+    .brand-grid .brand-logo-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  }
+  @media (min-width: 1024px) {
+    .brand-grid .brand-logo-grid { grid-template-columns: repeat(6, 1fr); gap: 2.5rem; }
+  }
+  .brand-grid .brand-logo-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Force square for perfect circle */
+    max-width: 140px;
+    background: var(--color-surface, #faf8f5);
+    border: 1px solid rgba(200, 164, 106, 0.2);
+    border-radius: 50%; /* Perfect circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  }
+  .brand-grid .brand-logo-placeholder:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 24px rgba(200, 164, 106, 0.15);
+    transform: translateY(-5px) scale(1.02);
+  }
+  .brand-grid .brand-logo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fill the circle since source logos are circular tokens */
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Brand Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by Brand"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand name (for alt text)"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Grid",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" }
+      ]
+    }
+  ]
+}
+{% endschema %}

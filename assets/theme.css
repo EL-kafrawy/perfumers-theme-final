@@ -1,0 +1,404 @@
+/* ==========================================================================
+   #PERFUMERS THEME - CORE DESIGN TOKENS
+   Extracted from ALL 6 Stitch Design Screens
+   ========================================================================== */
+
+:root {
+  /* --- Colors --- */
+  /* Brand Constants extracted from Tailwind config & User Corrections */
+  --color-primary: #93733B;           /* Golden Bronze (Accessible 4.5:1) */
+  --color-soft-ivory: #F5F1EB;        /* Background Light / Ivory */
+  --color-pearl-beige: #E7DDD4;       /* Secondary Background / Beige */
+  --color-charcoal: #2E2A33;          /* Deep Charcoal / Text */
+  
+  /* Additional Brand Colors (Adjusted for Contrast) */
+  --color-mauve: #8C6E7B;             /* Antique Mauve (Accessible 4.5:1) */
+  --color-taupe: #7E6C5F;             /* Deep Taupe (Accessible 4.5:1) */
+
+  /* Opacity Variations */
+  --color-gold-10: rgba(200, 164, 106, 0.1);
+  --color-gold-20: rgba(200, 164, 106, 0.2);
+  --color-charcoal-80: rgba(46, 42, 51, 0.8);
+
+  /* Semantic Color Mappings (Fix 1: Exact Semantic Aliases) */
+  --color-ivory: #F5F1EB;
+  --color-gold: #93733B;
+  --color-pearl: #E7DDD4;
+  
+  --color-background: var(--color-ivory);
+  --color-text-primary: var(--color-charcoal);
+  --color-text-secondary: var(--color-taupe);
+  --color-accent: var(--color-gold);
+  --color-surface: var(--color-pearl);
+
+  /* Legacy Semantic Color Mappings (Retained for compatibility) */
+  --color-body-bg: var(--color-soft-ivory);
+  --color-body-text: var(--color-charcoal);
+  --color-heading: var(--color-charcoal);
+  --color-border: rgba(46, 42, 51, 0.1); /* --color-charcoal at 10% */
+  --color-border-light: rgba(200, 164, 106, 0.2); /* --color-primary at 20% */
+
+  /* --- Typography --- */
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-accent: 'Allura', 'Sacramento', cursive;
+  
+  /* Semantic Font Mappings */
+  --font-heading: var(--font-serif);
+  --font-body: var(--font-sans);
+  --font-display: var(--font-serif);
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-widest: 0.1em;
+  --tracking-luxury: 0.15em;
+  --tracking-extreme: 0.2em;
+
+  /* --- Spacing --- */
+  /* Brand Spacing System */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 48px;
+  --space-4xl: 72px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 2px 0 rgba(46, 42, 51, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(46, 42, 51, 0.1), 0 2px 4px -1px rgba(46, 42, 51, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(46, 42, 51, 0.1), 0 4px 6px -2px rgba(46, 42, 51, 0.05);
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* --- Border Radius --- */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* --- Layout & Container --- */
+  /* Mobile first at 375px base */
+  --page-width: 1280px; 
+  --header-height: 100px;
+}
+
+/* ==========================================================================
+   #GLOBAL RESET & BASE STYLES (Fix 2)
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   #TYPOGRAPHY UTILITIES
+   ========================================================================== */
+
+.font-serif, .serif-font, .serif-title {
+  font-family: var(--font-serif);
+}
+
+.font-sans, .font-commerce, .font-ui {
+  font-family: var(--font-sans);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+/* ==========================================================================
+   #GLOBAL HTML & BODY
+   ========================================================================== */
+   
+html {
+  font-family: var(--font-body);
+  color: var(--color-body-text);
+  background-color: var(--color-body-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: max(884px, 100dvh);
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar,
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   #BASE COMPONENT STYLES (Fix 2 Cont.)
+   ========================================================================== */
+
+/* Headings */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  color: var(--color-charcoal);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-weight: 300;
+  word-break: break-word;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 8vw, 3.5rem);
+  font-weight: 400;
+  overflow: hidden;
+  padding-right: 15px;
+}
+
+h3 {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+
+/* Links */
+a {
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+/* Brand & Tagline classes */
+.brand-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-charcoal);
+}
+
+.tagline {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  color: var(--color-taupe);
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 32px;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+  transition: var(--transition-base);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-gold);
+  color: var(--color-ivory);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-charcoal);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-charcoal);
+  border: 1.5px solid var(--color-charcoal);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-ivory);
+}
+
+/* Product Card */
+.product-card {
+  background-color: var(--color-surface);
+  padding: 32px;
+  border: 1px solid rgba(46, 42, 51, 0.1);
+  transition: var(--transition-base);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   #MOBILE LAYOUT FIXES (Phase 1)
+   ========================================================================== */
+
+/* (Header styles are scoped within sections/header.liquid) */
+
+/* Fix Section Heading Text Clipping */
+h2.section-title, .treasured-finds h2 {
+  font-size: clamp(1.8rem, 8vw, 3.5rem);
+  padding-right: 15px;
+  overflow: hidden;
+}
+
+/* Fix Announcement Bar Text Clipping */
+.announcement-bar {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+.announcement-bar span {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+
+/* ==========================================================================
+   #LANGUAGE TOGGLE & RTL SUPPORT
+   ========================================================================== */
+
+.site-header__lang-toggle {
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.8rem;
+  color: var(--color-charcoal);
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 12px;
+  letter-spacing: 0.05em;
+  transition: var(--transition-base);
+}
+
+.site-header__lang-toggle:hover {
+  color: var(--color-gold);
+}
+
+/* RTL Global Adjustments */
+html[dir="rtl"] body {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] .site-header__left {
+  padding-right: 0;
+  padding-left: 16px;
+}
+
+html[dir="rtl"] .site-header__right {
+  padding-left: 0;
+  padding-right: 16px;
+}
+
+html[dir="rtl"] .site-header__lang-toggle {
+  margin-left: 0;
+  margin-right: 12px;
+}
+
+html[dir="rtl"] .hero-content {
+  text-align: right;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+@media (min-width: 1280px) {
+  html[dir="rtl"] .hero {
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+}
+
+html[dir="rtl"] h2 {
+  padding-right: 0;
+  padding-left: 15px;
+}
+
+
+/* --- Site Header --- */
+.site-header {
+  padding: 0;
+}
+
+/* ==========================================================================
+   #PRODUCT PAGE — TWO-COLUMN LAYOUT
+   Scoped to .template-product so it only applies on product pages.
+   The first two .shopify-section children (gallery + info) are placed
+   side-by-side on desktop. All other sections (fragrance notes, related
+   products, sticky bar) stack below at full width as normal.
+   This is the correct Shopify OS 2.0 approach — no nested section tags.
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  /* Turn the first two sections into a two-column grid */
+  .template-product #MainContent {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    grid-template-rows: auto;
+    align-items: start;
+  }
+
+  /* Gallery (col 1) — sticky while info scrolls */
+  .template-product #MainContent > .shopify-section:first-child {
+    grid-column: 1;
+    grid-row: 1;
+    position: sticky;
+    top: 80px;
+    align-self: start;
+  }
+
+  /* Info (col 2) */
+  .template-product #MainContent > .shopify-section:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    padding: var(--space-3xl) var(--space-2xl) var(--space-3xl) var(--space-3xl);
+  }
+
+  /* Remove the container's inner padding in the info column — grid handles width */
+  .template-product #MainContent > .shopify-section:nth-child(2) .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  /* All other sections (3rd+) span both columns */
+  .template-product #MainContent > .shopify-section:nth-child(n+3) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* RTL: flip the column order for Arabic */
+html[dir="rtl"] .template-product #MainContent > .shopify-section:first-child {
+  order: 2;
+}
+html[dir="rtl"] .template-product #MainContent > .shopify-section:nth-child(2) {
+  order: 1;
+}

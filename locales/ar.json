@@ -1,0 +1,188 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "general": {
+        "accessibility": {
+            "skip_to_content": "تخطي إلى المحتوى"
+        }
+    },
+    "accessibility": {
+        "skip_to_text": "تخطي إلى المحتوى",
+        "refresh_page": "تحديث الصفحة",
+        "link_messages": {
+            "new_window": "يفتح في نافذة جديدة"
+        }
+    },
+    "contact": {
+        "form": {
+            "name": "الاسم",
+            "email": "البريد الإلكتروني",
+            "message": "الرسالة",
+            "post_success": "شكراً لتواصلك معنا. سنرد عليك قريباً."
+        }
+    },
+    "actions": {
+        "add_to_cart": "أضف إلى السلة",
+        "buy_now": "اشترِ الآن",
+        "search": "بحث",
+        "filter": "تصفية",
+        "sort": "ترتيب",
+        "load_more": "تحميل المزيد",
+        "subscribe": "اشترك",
+        "view_all": "عرض الكل",
+        "shop_now": "تسوق الآن",
+        "view_details": "عرض التفاصيل",
+        "apply": "تطبيق",
+        "clear": "مسح الكل",
+        "close": "إغلاق",
+        "remove": "إزالة",
+        "sold_out": "نفذت الكمية"
+    },
+    "navigation": {
+        "home": "الرئيسية",
+        "browse": "تصفح",
+        "wishlist": "المفضلة",
+        "profile": "حسابي",
+        "cart": "السلة",
+        "menu": "القائمة",
+        "collections": "المجموعات",
+        "brands": "العلامات التجارية",
+        "new_in": "وصل حديثاً",
+        "sale": "تخفيضات",
+        "about": "من نحن",
+        "contact": "اتصل بنا"
+    },
+    "product": {
+        "fragrance_notes": "مكونات العطر",
+        "top_notes": "المقدمة",
+        "heart_notes": "القلب",
+        "base_notes": "القاعدة",
+        "delivery": "التوصيل",
+        "returns": "الإرجاع",
+        "select_volume": "اختر الحجم",
+        "quantity": "الكمية",
+        "sale": "تخفيض",
+        "new": "جديد",
+        "best_seller": "الأكثر مبيعاً",
+        "description": "الوصف",
+        "details": "التفاصيل",
+        "reviews": "التقييمات",
+        "related_products": "قد يعجبك أيضاً",
+        "upsell_title": "أكمل مجموعتك",
+        "size": "الحجم",
+        "availability": "التوفر",
+        "in_stock": "متوفر",
+        "out_of_stock": "غير متوفر",
+        "sku": "رمز المنتج",
+        "vendor": "العلامة التجارية",
+        "type": "النوع"
+    },
+    "collection": {
+        "title": "المجموعة",
+        "products_count": "{{ count }} منتج",
+        "sort_by": "ترتيب حسب",
+        "sort_best_selling": "الأكثر مبيعاً",
+        "sort_alphabetically_az": "أ-ي",
+        "sort_alphabetically_za": "ي-أ",
+        "sort_price_low": "السعر: من الأقل للأعلى",
+        "sort_price_high": "السعر: من الأعلى للأقل",
+        "sort_date_new": "الأحدث أولاً",
+        "sort_date_old": "الأقدم أولاً",
+        "filter_by": "تصفية حسب",
+        "no_products": "لا توجد منتجات",
+        "clear_filters": "مسح كل الفلاتر",
+        "apply_filters": "تطبيق الفلاتر"
+    },
+    "cart": {
+        "title": "سلة التسوق",
+        "empty": "سلة التسوق فارغة",
+        "continue_shopping": "متابعة التسوق",
+        "subtotal": "المجموع الفرعي",
+        "checkout": "إتمام الشراء",
+        "note": "ملاحظة الطلب",
+        "shipping_note": "الشحن والضرائب تُحسب عند إتمام الشراء",
+        "update": "تحديث السلة"
+    },
+    "sections": {
+        "hero": {
+            "default_heading": "فن العطور",
+            "default_subheading": "مجموعة مختارة من أفخم العطور"
+        },
+        "featured_collections": {
+            "title": "تسوق حسب الفئة"
+        },
+        "shop_by_brand": {
+            "title": "تسوق حسب العلامة التجارية",
+            "subtitle": "اكتشف عطرك المميز"
+        },
+        "shop_by_occasion": {
+            "title": "تسوق حسب المناسبة",
+            "subtitle": "اعثر على العطر المثالي"
+        },
+        "best_sellers": {
+            "title": "الأكثر مبيعاً",
+            "subtitle": "العطور الأكثر حباً"
+        },
+        "new_arrivals": {
+            "title": "وصل حديثاً",
+            "subtitle": "أحدث الإصدارات"
+        },
+        "trust_benefits": {
+            "title": "لماذا PERFUMERS",
+            "authentic": "أصلي 100%",
+            "authentic_desc": "كل منتج مضمون الأصالة",
+            "shipping": "توصيل سريع",
+            "shipping_desc": "في جميع أنحاء مصر",
+            "returns": "إرجاع سهل",
+            "returns_desc": "سياسة إرجاع 14 يوم",
+            "support": "دعم متخصص",
+            "support_desc": "خبراء عطور متاحون لمساعدتك"
+        },
+        "testimonials": {
+            "title": "ماذا يقول عملاؤنا"
+        },
+        "email_signup": {
+            "title": "انضم لعائلة PERFUMERS",
+            "subtitle": "كن أول من يعرف عن الوصولات الجديدة والعروض الحصرية",
+            "placeholder": "أدخل بريدك الإلكتروني",
+            "button": "اشترك",
+            "success": "شكراً لاشتراكك!"
+        },
+        "announcement_bar": {
+            "default_text": "شحن مجاني للطلبات فوق 1000 جنيه"
+        }
+    },
+    "footer": {
+        "quick_links": "روابط سريعة",
+        "customer_service": "خدمة العملاء",
+        "follow_us": "تابعنا",
+        "newsletter": "النشرة البريدية",
+        "copyright": "© 2026 PERFUMERS. جميع الحقوق محفوظة."
+    },
+    "search": {
+        "title": "بحث",
+        "placeholder": "ابحث عن عطور، علامات تجارية...",
+        "no_results": "لا توجد نتائج لـ",
+        "view_all": "عرض كل النتائج"
+    },
+    "pagination": {
+        "previous": "السابق",
+        "next": "التالي",
+        "page": "صفحة {{ current }} من {{ total }}"
+    },
+    "breadcrumb": {
+        "home": "الرئيسية"
+    },
+    "404": {
+        "title": "الصفحة غير موجودة",
+        "subtext": "الصفحة التي تبحث عنها غير موجودة.",
+        "button": "العودة للرئيسية"
+    }
+}

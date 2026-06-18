@@ -1,0 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "faq-accordion",
+      "blocks": {
+        "item_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the source of your fragrances?",
+            "answer": "<p>Our fragrances are ethically sourced and authenticated, focusing on heritage and sustainable luxury.</p>"
+          }
+        },
+        "item_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer international shipping?",
+            "answer": "<p>Yes, we ship our exclusive collections worldwide with tracked shipping providers.</p>"
+          }
+        }
+      },
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

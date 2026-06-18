@@ -1,0 +1,207 @@
+{% comment %}
+  #PERFUMERS HEADER SECTION
+  Extracted from Stitch Designs - Mobile First Luxury
+{% endcomment %}
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(245, 241, 235, 0.9); /* soft-ivory/90 */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 164, 106, 0.2); /* primary/20 */
+    height: 70px;
+    padding: 0 24px; /* px-6 */
+    overflow: hidden;
+  }
+
+  .site-header__container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    max-width: var(--page-width, 1200px);
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  .site-header__left {
+    display: flex;
+    align-items: center;
+    gap: 24px; /* gap-6 */
+    justify-content: flex-start;
+  }
+
+  .site-header__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px; /* gap-6 */
+  }
+
+  .site-header__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    z-index: 10;
+  }
+
+  .site-header__logo-link {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 300;
+    letter-spacing: 0.2em; /* tracking-[0.2em] */
+    text-transform: uppercase;
+    color: var(--color-charcoal, #2E2A33) !important;
+    text-decoration: none;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    transition: var(--transition-base);
+  }
+
+  .site-header__logo-link:hover {
+    color: var(--color-primary, #C8A46A);
+  }
+
+  .site-header__logo-img {
+    max-width: {{ section.settings.logo_width | default: 150 | at_most: 150 }}px;
+    max-height: 55px;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .site-header__icon {
+    background: none;
+    border: none;
+    padding: 4px; /* p-1 */
+    cursor: pointer;
+    color: var(--color-charcoal, #2D2926);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    transition: var(--transition-base);
+    text-decoration: none;
+  }
+
+  .site-header__icon:hover {
+    color: var(--color-primary, #C8A46A);
+  }
+
+  .site-header__icon span {
+    font-size: 22px; /* text-[22px] */
+  }
+
+  .site-header__cart-wrapper {
+    position: relative;
+  }
+
+  .site-header__cart-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-primary, #C8A46A);
+    color: #ffffff;
+    font-size: 8px; /* text-[8px] */
+    width: 16px; /* size-4 */
+    height: 16px;
+    border-radius: 9999px; /* rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-weight: 700;
+  }
+
+  /* Desktop Adjustments */
+  @media screen and (min-width: 769px) {
+    .site-header {
+      padding: 0 var(--space-xl, 40px);
+    }
+  }
+</style>
+
+<header class="site-header" data-section-id="{{ section.id }}" data-section-type="header">
+  <div class="site-header__container">
+    <!-- Left: Hamburger Menu and Search overlay trigger -->
+    <div class="site-header__left">
+      <!-- A11y: menu button -->
+      <button type="button" class="site-header__icon" data-drawer-open="mobile-menu" aria-label="Open mobile menu">
+        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+      </button>
+
+      <!-- A11y: search button -->
+      <button type="button" class="site-header__icon" data-search-open aria-label="Open search">
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+      </button>
+      
+      {%- if localization.available_languages.size > 1 -%}
+        {%- form 'localization', id: 'HeaderLanguageForm' -%}
+          {%- for language in localization.available_languages -%}
+            {%- if language.iso_code != localization.language.iso_code -%}
+              <button type="submit" name="locale_code" value="{{ language.iso_code }}" class="site-header__lang-toggle" aria-label="Switch language to {{ language.endonym_name }}">
+                {{ language.iso_code | upcase }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endform -%}
+      {%- endif -%}
+    </div>
+
+    <!-- Center: Logo Wordmark -->
+    <div class="site-header__logo">
+      <a href="{{ routes.root_url }}" class="site-header__logo-link">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | image_url: width: 400 }}"
+               alt="{{ shop.name }}"
+               class="site-header__logo-img"
+               width="{{ section.settings.logo_width | default: 150 | at_most: 150 }}"
+               height="55"
+               style="max-height: 55px; width: auto; max-width: 150px; object-fit: contain; display: block;"
+               loading="eager">
+        {% else %}
+          <span class="font-serif tracking-[0.2em] text-charcoal leading-none">PERFUMERS</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Right: Cart only -->
+    <div class="site-header__right">
+      <!-- A11y: cart button -->
+      <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart-wrapper" data-drawer-open="cart" aria-label="Open cart drawer">
+        <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
+        <span class="site-header__cart-badge cart-count" id="cart-count" data-cart-count data-count="0" aria-label="Cart items">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 280,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 180
+    }
+  ]
+}
+{% endschema %}

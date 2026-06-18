@@ -1,0 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "story-content",
+      "settings": {
+        "title": "Our Story",
+        "content": "<p>Perfumers was born from a passion for timeless elegance and the art of fine scent. Our journey began in the vibrant heart of Cairo, where secrets of the past meet the dreams of tomorrow.</p><p>We believe that luxury should be sustainable and soulful. Each bottle in our collection is curated with the utmost care, ensuring that your fragrance of dreams is both authentic and extraordinary.</p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

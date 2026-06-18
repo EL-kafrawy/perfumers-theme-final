@@ -1,0 +1,256 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c6a36c", // Champagne Gold
+                        "background-light": "#f8f7f6", // Soft Ivory
+                        "background-dark": "#1e1a15",
+                        "charcoal": "#2d2926",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Cormorant Garamond", "serif"],
+                        "ui": ["Montserrat", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-ui { font-family: 'Montserrat', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-charcoal dark:text-slate-100 font-ui antialiased">
+<!-- Header / Navigation Component -->
+<nav class="sticky top-0 z-50 bg-background-light/95 backdrop-blur-sm border-b border-primary/10">
+<div class="flex items-center justify-between px-4 h-16"><button class="flex items-center justify-center p-2">
+<span class="material-symbols-outlined text-charcoal">menu</span>
+</button>
+<div class="flex-1 flex justify-center">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPvG-29uaCHvOqHH3JOeJTvNlB_SHw0CFNlsO7U8T4UZfXlZzwd_FQjcrDcrVzGsgbaNQ73bt9zfpM8WegqndvThbdbyvo0b-PoxQ-nkFW63TQrlF1_DlMnFI0HR6jSJ6OjdE3ff_cIF5Rapywb7pc7sI84Mjnjk-tPZBFTRYNwIp7Y4knx91vlmVzRhTo5X9qozllhmKv-dGAi1XLEnEOdDBmyAFcvJ8KDq8FnuIOoB8NsL0OrRmjS9SzJTDuezbzeZyYFFin8u8" alt="Perfumer Logo" class="w-auto object-contain h-14">
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2"><span class="material-symbols-outlined text-charcoal">search</span></button>
+<button class="p-2"><span class="material-symbols-outlined text-charcoal">shopping_bag</span></button>
+</div></div>
+</nav>
+<!-- Hero / Collection Intro -->
+<header class="px-6 py-12 text-center max-w-2xl mx-auto">
+<span class="font-ui text-[10px] uppercase tracking-[0.3em] text-primary mb-4 block">The Niche Collection</span>
+<h2 class="font-serif text-4xl italic mb-4 leading-tight">Olfactory Poems</h2>
+<p class="font-ui text-xs leading-relaxed text-charcoal/70 tracking-wide">
+            A curated selection of scents crafted for the sophisticated soul. Explore fragrances that linger like a whispered memory.
+        </p>
+</header>
+<!-- Sticky Sort & Filter Bar -->
+<div class="sticky top-16 z-40 bg-background-light border-y border-primary/10 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">tune</span>
+                Filter
+            </button>
+<button class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest border-l border-primary/20 pl-4">
+                Sort
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<span class="text-[10px] font-medium text-charcoal/50 uppercase tracking-tighter">24 Creations</span>
+</div>
+<!-- Collection Grid -->
+<main class="p-4">
+<div class="grid grid-cols-2 gap-x-4 gap-y-8">
+<!-- Product Card 1 -->
+<div class="flex flex-col">
+<div class="relative aspect-[3/4] bg-white border border-primary/10 overflow-hidden group">
+<img alt="Minimalist glass perfume bottle with gold cap" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist glass perfume bottle with gold cap on ivory background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Yu1oQVc1NQrSBe58Ft3hu4dWe-uYBXw--QACs_jaUCZknhklWQ5JxV4Cvwv44gRk3hRXk3aDIoJSv-qK1YZxrXp8Z9qSO3e3CCINxGqNO0zuWuHHNQ-EkTJosapV64Brp7zP-X6CwkcldDZI1-0DaCMPHjrRRwJ2sY2fzDCwFIxJv4rCes8OirWKxlJz7JRkAb3lUBTB1LOI3xi8wuzu1GRDg6zPZYCJ_IqBsshC64hsjmuxSsErp3JHKO0uyLZC9YDwZLfKddY">
+<button class="absolute top-3 right-3 p-1.5 bg-white/80 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<div class="mt-4 space-y-1">
+<p class="text-[9px] uppercase tracking-[0.2em] text-primary font-bold">Maison de L'Aube</p>
+<h3 class="font-serif text-lg leading-tight">Santal Nuit</h3>
+<p class="text-xs font-light text-charcoal/80">$185.00</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="flex flex-col">
+<div class="relative aspect-[3/4] bg-white border border-primary/10 overflow-hidden group">
+<img alt="Elegant clear perfume bottle with amber liquid" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Elegant clear perfume bottle with amber liquid on marble surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArheVLnSV0xQHAmL6Q1069AEK5uCs-bX2CXwAlkgWl4vCtNlSo9BUPl-XVpb6fr_YyLcmnce-reuYPoCWtzEfVVCA1JJ9B-_8dLEUducqdzsuTgzHovdbyTzLEHEbCAi1tl2ylYpCzQ9YgKJreRBY_LVcTYcizAqCr4HpOtZTNXQtgthF9iJt95xhoyChaq0Ey5RivCHuYnBJYpiiQI__1Ws4Zq1zD4acWEkfb_ZVRc6U2o3Pf33WwOIlURK8_TzqtGLwtStls94E">
+<button class="absolute top-3 right-3 p-1.5 bg-white/80 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm text-primary fill-1">favorite</span>
+</button>
+</div>
+<div class="mt-4 space-y-1">
+<p class="text-[9px] uppercase tracking-[0.2em] text-primary font-bold">Atelier V</p>
+<h3 class="font-serif text-lg leading-tight">Velvet Moss</h3>
+<p class="text-xs font-light text-charcoal/80">$210.00</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="flex flex-col">
+<div class="relative aspect-[3/4] bg-white border border-primary/10 overflow-hidden group">
+<img alt="Architectural black perfume bottle" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Modern architectural black perfume bottle in soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoZlChPhsBJd5sElIqyvaauiEwPPL6mFgJ4iPFI2RdEXcAQCm98KrsLrl9PDuDp90Ogucbskg6R8PV9LZJTw_2X42GurHNfOjTWWuaUD3uAXLzM0zzYKNIsK4qCVzr-3efK4h6uWRjTZ5Pd2-wXlfThOx9gZ6qLXkTZ_D38st9sQiJ0OZVIBHGqpIU-TvkEjlvvKQr39E2q8xml2RSrBokOllraXnDUXy9rDWfNO2A8-jNF818vEhJ6NOqQaUMTOZfnFWRYQb9ot0">
+<button class="absolute top-3 right-3 p-1.5 bg-white/80 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<div class="mt-4 space-y-1">
+<p class="text-[9px] uppercase tracking-[0.2em] text-primary font-bold">Noire</p>
+<h3 class="font-serif text-lg leading-tight">Eclipse Eau</h3>
+<p class="text-xs font-light text-charcoal/80">$245.00</p>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="flex flex-col">
+<div class="relative aspect-[3/4] bg-white border border-primary/10 overflow-hidden group">
+<img alt="Frosted glass bottle with silver accents" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Frosted glass bottle with silver accents on linen cloth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX3_Ke4lPCcfmBdIEeIRFsGX2Xz5TJ3jwggVj0_GmKgEjiy310eT_cs2vlrdPAHDBwvIndYdBcUnVD6KpjJB9j7nWZ8p2NMkxsEDyfDAfOsv6qTTApa9QdChpNM4aCIE1AxTtVTeRKMiVRGThyZh0OtrgtlRxLZ9fpueo08cIVN_9cR4r8lSX6Mm3zZUFRdN13bcB6hqebjRZn0i16y9ILZmAqJlDGLaQ2FrHjYcqwwdiyk2E91v7fs7ngn7_pDi0Lj7_jMl3gc5c">
+<button class="absolute top-3 right-3 p-1.5 bg-white/80 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<div class="mt-4 space-y-1">
+<p class="text-[9px] uppercase tracking-[0.2em] text-primary font-bold">L'Essence</p>
+<h3 class="font-serif text-lg leading-tight">Morning Mist</h3>
+<p class="text-xs font-light text-charcoal/80">$160.00</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Space -->
+<div class="py-12 flex flex-col items-center justify-center">
+<button class="px-8 py-3 border border-primary text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-primary hover:text-white transition-colors duration-300">
+            Load More
+        </button>
+</div>
+<!-- Bottom Navigation Component (From list) -->
+<div class="fixed bottom-0 left-0 right-0 z-50">
+<div class="flex gap-2 border-t border-primary/10 bg-background-light/95 backdrop-blur-md px-4 pb-6 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">home</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-widest">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-charcoal/40" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-widest">Shop</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-charcoal/40" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-widest">Wishlist</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-charcoal/40" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-widest">Account</p>
+</a>
+</div>
+</div>
+<!-- Filter Drawer (Mock Overlay) -->
+<!-- This would normally be toggled via JS, shown here as a static element for design reference -->
+<div class="hidden fixed inset-0 z-[60] bg-charcoal/20 backdrop-blur-sm">
+<div class="absolute right-0 top-0 h-full w-[85%] bg-background-light shadow-2xl flex flex-col animate-slide-in">
+<div class="p-6 border-b border-primary/10 flex items-center justify-between">
+<h3 class="font-serif text-2xl italic">Refine</h3>
+<button class="p-2"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Brand -->
+<section>
+<h4 class="text-[11px] font-bold uppercase tracking-[0.2em] mb-4 text-primary">Brand</h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 text-xs tracking-wide">
+<input class="rounded-none border-primary/40 text-primary focus:ring-primary h-4 w-4" type="checkbox">
+                            Maison de L'Aube
+                        </label>
+<label class="flex items-center gap-3 text-xs tracking-wide">
+<input class="rounded-none border-primary/40 text-primary focus:ring-primary h-4 w-4" type="checkbox">
+                            Atelier V
+                        </label>
+<label class="flex items-center gap-3 text-xs tracking-wide">
+<input class="rounded-none border-primary/40 text-primary focus:ring-primary h-4 w-4" type="checkbox">
+                            Noire
+                        </label>
+</div>
+</section>
+<!-- Occasion -->
+<section>
+<h4 class="text-[11px] font-bold uppercase tracking-[0.2em] mb-4 text-primary">Occasion</h4>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 border border-primary/20 text-[10px] uppercase tracking-wider bg-primary/5">Evening</button>
+<button class="px-4 py-2 border border-primary/20 text-[10px] uppercase tracking-wider">Daylight</button>
+<button class="px-4 py-2 border border-primary/20 text-[10px] uppercase tracking-wider">Noir</button>
+</div>
+</section>
+<!-- Price -->
+<section>
+<h4 class="text-[11px] font-bold uppercase tracking-[0.2em] mb-4 text-primary">Price Range</h4>
+<div class="h-1 bg-primary/10 relative mt-6">
+<div class="absolute inset-y-0 left-1/4 right-1/4 bg-primary"></div>
+<div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-4 h-4 bg-white border border-primary rounded-full"></div>
+<div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-4 h-4 bg-white border border-primary rounded-full"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-charcoal/60 uppercase">
+<span class="">$100</span>
+<span class="">$500+</span>
+</div>
+</section>
+<!-- Gender -->
+<section>
+<h4 class="text-[11px] font-bold uppercase tracking-[0.2em] mb-4 text-primary">Olfactory Profile</h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 text-xs tracking-wide">
+<input class="border-primary/40 text-primary focus:ring-primary h-4 w-4" name="gender" type="radio">
+                            Masculine
+                        </label>
+<label class="flex items-center gap-3 text-xs tracking-wide">
+<input class="border-primary/40 text-primary focus:ring-primary h-4 w-4" name="gender" type="radio">
+                            Feminine
+                        </label>
+<label class="flex items-center gap-3 text-xs tracking-wide">
+<input class="border-primary/40 text-primary focus:ring-primary h-4 w-4" name="gender" type="radio">
+                            Universal
+                        </label>
+</div>
+</section>
+</div>
+<div class="p-6 border-t border-primary/10 grid grid-cols-2 gap-4">
+<button class="py-4 text-[11px] uppercase tracking-[0.2em] font-bold text-charcoal/60">Reset</button>
+<button class="py-4 bg-charcoal text-white text-[11px] uppercase tracking-[0.2em] font-bold">Apply</button>
+</div>
+</div>
+</div>
+<!-- Padding for bottom nav -->
+<div class="h-24"></div>
+
+
+
+
+</body></html>

@@ -1,0 +1,180 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "PERFUMERS",
+    "theme_version": "1.0.0",
+    "theme_author": "PERFUMERS",
+    "theme_documentation_url": "https://github.com/EL-kafrawy/perfumers-theme",
+    "theme_support_url": "https://github.com/EL-kafrawy/perfumers-theme"
+  },
+  {
+    "name": "General",
+    "settings": [
+      {
+        "type": "text",
+        "id": "store_name",
+        "label": "Store name",
+        "default": "PERFUMERS"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": "Logo max width (px)",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "default": 150,
+        "unit": "px"
+      },
+      {
+        "type": "text",
+        "id": "favicon_url",
+        "label": "Favicon URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "whatsapp_float_enabled",
+        "label": "Enable WhatsApp Floating Button",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color (Gold)",
+        "default": "#C8A46A"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary color (Charcoal)",
+        "default": "#2E2A33"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background color (Ivory)",
+        "default": "#F5F1EB"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Surface color (Pearl)",
+        "default": "#E7DDD4"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color (Mauve)",
+        "default": "#B8A3AD"
+      },
+      {
+        "type": "color",
+        "id": "color_text_secondary",
+        "label": "Secondary text color (Taupe)",
+        "default": "#9B8778"
+      }
+    ]
+  },
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_bar_text",
+        "label": "Announcement text",
+        "default": "Free shipping on orders over 1000 EGP 🌸"
+      },
+      {
+        "type": "url",
+        "id": "announcement_bar_link",
+        "label": "Announcement link"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bar_bg",
+        "label": "Announcement bar background",
+        "default": "#2E2A33"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bar_text_color",
+        "label": "Announcement bar text color",
+        "default": "#F5F1EB"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter",
+        "label": "X (Twitter) URL"
+      },
+      {
+        "type": "text",
+        "id": "social_whatsapp",
+        "label": "WhatsApp number"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat",
+        "label": "Snapchat URL"
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Copyright text",
+        "default": "© 2026 PERFUMERS. All rights reserved."
+      },
+      {
+        "type": "richtext",
+        "id": "footer_about",
+        "label": "Footer about text",
+        "default": "<p>Your trusted destination for authentic perfumes in Egypt.</p>"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_show_payment_icons",
+        "label": "Show payment icons",
+        "default": true
+      }
+    ]
+  }
+]

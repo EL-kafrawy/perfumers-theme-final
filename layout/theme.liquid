@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}" dir="{% if request.locale.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#C8A46A">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- comment -%}
+    =============================================
+    1. PRECONNECT + DNS-PREFETCH
+    Establish early connections to third-party origins.
+    dns-prefetch is the fallback for browsers that don't support preconnect.
+    =============================================
+  {%- endcomment -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.shopify.com">
+
+  {%- comment -%}
+    =============================================
+    2. PRELOAD — Critical CSS
+    Preload the main stylesheet so the browser starts
+    fetching it before it encounters the <link rel=stylesheet>.
+    =============================================
+  {%- endcomment -%}
+  <link rel="preload" href="{{ 'base.css' | asset_url }}" as="style">
+
+
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- else -%}
+    <meta name="description" content="Shop luxury perfumes at PERFUMERS Egypt. Discover authentic designer scents and niche fragrances with complimentary shipping over 1500 EGP. Elevate your essence.">
+  {%- endif -%}
+
+  {% render 'meta-tags' %}
+
+  {%- comment -%}
+    =============================================
+    4. GOOGLE FONTS — Non-render-blocking load
+    Uses media="print" trick: the browser downloads the
+    stylesheet without blocking render, then swaps to
+    media="all" once loaded. <noscript> fallback ensures
+    fonts still load if JS is disabled.
+    =============================================
+  {%- endcomment -%}
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@400;500;600&family=Allura&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@400;500;600&family=Allura&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@400;500;600&family=Allura&display=swap" rel="stylesheet"></noscript>
+
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
+
+  {%- comment -%}
+    =============================================
+    5. CORE THEME CSS — Render-blocking (required)
+    base.css is preloaded above so it arrives early.
+    theme.css loads normally after base.css.
+    =============================================
+  {%- endcomment -%}
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+</head>
+
+<body class="gradient template-{{ template.name }}">
+  <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+    {{ "accessibility.skip_to_text" | t }}
+  </a>
+
+  <!-- Global Theme Sections -->
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
+  {% section 'cart-drawer' %}
+  {% section 'mobile-menu' %}
+  {% section 'search-overlay' %}
+
+  <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <ul hidden>
+    <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+    <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
+  </ul>
+
+  <!-- Core Theme Scripts -->
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'mobile-menu.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'search-overlay.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-page.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'collection-filter.js' | asset_url }}" defer="defer"></script>
+
+
+
+  {%- if settings.whatsapp_float_enabled -%}
+    {% render 'whatsapp-btn' %}
+  {%- endif -%}
+</body>
+</html>

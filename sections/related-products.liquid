@@ -1,0 +1,55 @@
+<section class="related-products section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section__header" data-animate>
+      <span class="section__accent">{{ section.settings.accent_text }}</span>
+      <h2 class="section__title">{{ 'product.related_products' | t }}</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="scroll-row related-products__row">
+      {%- assign related = product.collections.first.products -%}
+      {%- for rel_product in related limit: 8 -%}
+        {%- if rel_product.id != product.id -%}
+          <div class="related-products__item">
+            {% render 'product-card', product: rel_product %}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .related-products__item {
+    flex: 0 0 220px;
+    max-width: 220px;
+  }
+  @media (min-width: 768px) {
+    .related-products__row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+      overflow: visible;
+    }
+    .related-products__item { flex: none; max-width: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Related Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent text",
+      "default": "Discover"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related Products"
+    }
+  ]
+}
+{% endschema %}

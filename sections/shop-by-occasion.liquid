@@ -1,0 +1,208 @@
+<section class="py-24 bg-pearl-beige">
+  <h3 class="font-serif text-3xl text-center mb-10 italic tracking-tight text-4xl">{{ section.settings.title }}</h3>
+  <div class="flex flex-col gap-4 px-4">
+    {%- assign first_block = section.blocks | first -%}
+    {%- if first_block -%}
+      {%- assign target_url = "#" -%}
+      {%- if first_block.settings.collection != blank -%}
+        {%- assign target_collection = first_block.settings.collection -%}
+        {%- if target_collection.url != blank -%}
+          {%- assign target_url = target_collection.url -%}
+        {%- else -%}
+          {%- assign target_url = collections[target_collection].url -%}
+        {%- endif -%}
+      {%- elsif first_block.settings.link != blank and first_block.settings.link != "#" -%}
+        {%- assign target_url = first_block.settings.link -%}
+      {%- else -%}
+        {%- if first_block.settings.title != blank -%}
+          {%- assign handle = first_block.settings.title | handleize -%}
+          {%- assign target_url = '/collections/' | append: handle -%}
+        {%- endif -%}
+      {%- endif -%}
+      {%- assign img_src = "" -%}
+      {%- if first_block.settings.image != blank -%}
+        {%- assign img_src = first_block.settings.image | image_url: width: 1400 -%}
+      {%- elsif first_block.settings.image_url != blank and first_block.settings.image_url contains 'https' -%}
+        {%- assign img_src = first_block.settings.image_url -%}
+      {%- endif -%}
+
+      {%- assign is_secure_google = false -%}
+      {%- if img_src contains 'googleusercontent.com' -%}
+        {%- unless img_src contains 'aida-public' -%}
+          {%- assign is_secure_google = true -%}
+        {%- endunless -%}
+      {%- endif -%}
+
+      {%- if img_src == "" or img_src contains "ADBb0" or is_secure_google -%}
+        {%- assign title_lower = first_block.settings.title | downcase -%}
+        {%- if title_lower contains 'women' -%}
+          {%- assign img_src = 'women.jpg' | asset_url -%}
+        {%- elsif title_lower contains 'men' -%}
+          {%- assign img_src = 'men.jpg' | asset_url -%}
+        {%- else -%}
+          {%- assign img_src = 'unisex.webp' | asset_url -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      <a href="{{ target_url }}" class="sbo-card relative h-48 w-full overflow-hidden group" {{ first_block.shopify_attributes }}>
+        <img class="w-full h-full object-cover grayscale-[0.4] group-hover:scale-105 transition-transform duration-1000" src="{{ img_src }}" alt="{{ first_block.settings.title | escape }}" width="1400" height="560" loading="lazy">
+        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <h4 class="text-white font-serif text-3xl italic">{{ first_block.settings.title }}</h4>
+        </div>
+      </a>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 1 -%}
+      <div class="grid grid-cols-2 gap-4">
+        {%- for block in section.blocks offset: 1 -%}
+          {%- assign target_url = "#" -%}
+          {%- if block.settings.collection != blank -%}
+            {%- assign target_collection = block.settings.collection -%}
+            {%- if target_collection.url != blank -%}
+              {%- assign target_url = target_collection.url -%}
+            {%- else -%}
+              {%- assign target_url = collections[target_collection].url -%}
+            {%- endif -%}
+          {%- elsif block.settings.link != blank and block.settings.link != "#" -%}
+            {%- assign target_url = block.settings.link -%}
+          {%- else -%}
+            {%- if block.settings.title != blank -%}
+              {%- assign handle = block.settings.title | handleize -%}
+              {%- assign target_url = '/collections/' | append: handle -%}
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- assign img_src = "" -%}
+          {%- if block.settings.image != blank -%}
+            {%- assign img_src = block.settings.image | image_url: width: 800 -%}
+          {%- elsif block.settings.image_url != blank and block.settings.image_url contains 'https' -%}
+            {%- assign img_src = block.settings.image_url -%}
+          {%- endif -%}
+
+          {%- assign is_secure_google = false -%}
+          {%- if img_src contains 'googleusercontent.com' -%}
+            {%- unless img_src contains 'aida-public' -%}
+              {%- assign is_secure_google = true -%}
+            {%- endunless -%}
+          {%- endif -%}
+
+          {%- if img_src == "" or img_src contains "ADBb0" or is_secure_google -%}
+            {%- assign title_lower = block.settings.title | downcase -%}
+            {%- if title_lower contains 'women' -%}
+              {%- assign img_src = 'women.jpg' | asset_url -%}
+            {%- elsif title_lower contains 'men' -%}
+              {%- assign img_src = 'men.jpg' | asset_url -%}
+            {%- else -%}
+              {%- assign img_src = 'unisex.webp' | asset_url -%}
+            {%- endif -%}
+          {%- endif -%}
+
+          <a href="{{ target_url }}" class="sbo-card relative h-48 overflow-hidden group" {{ block.shopify_attributes }}>
+            <img class="w-full h-full object-cover grayscale-[0.4] group-hover:scale-105 transition-transform duration-1000" src="{{ img_src }}" alt="{{ block.settings.title | escape }}" width="800" height="560" loading="lazy">
+            <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center px-4">
+              <h4 class="text-white font-serif text-2xl italic">{{ block.settings.title }}</h4>
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .py-24 { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .bg-pearl-beige { background-color: #E7DDD4; }
+  .font-serif { font-family: 'Cormorant Garamond', serif; }
+  .text-3xl { font-size: 1.875rem; }
+  .text-center { text-align: center; }
+  .mb-10 { margin-bottom: 2.5rem; }
+  .italic { font-style: italic; }
+  .tracking-tight { letter-spacing: -0.025em; }
+  .text-4xl { font-size: 2.25rem; }
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .gap-4 { gap: 1rem; }
+  .px-4 { padding-left: 1rem; padding-right: 1rem; }
+  .relative { position: relative; }
+  .sbo-card { display: block; text-decoration: none; color: inherit; }
+  .h-48 { height: 12rem; }
+  .w-full { width: 100%; }
+  .overflow-hidden { overflow: hidden; }
+  .group { }
+  .w-full { width: 100%; }
+  .h-full { height: 100%; }
+  .object-cover { object-fit: cover; }
+  .grayscale-\[0\.4\] { filter: grayscale(0.4); }
+  .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
+  .transition-transform { transition-property: transform; }
+  .duration-1000 { transition-duration: 1000ms; }
+  .absolute { position: absolute; }
+  .inset-0 { inset: 0; }
+  .bg-black\/30 { background-color: rgba(0,0,0,0.3); }
+  .bg-black\/20 { background-color: rgba(0,0,0,0.2); }
+  .items-center { align-items: center; }
+  .justify-center { justify-content: center; }
+  .text-white { color: #fff; }
+  .text-2xl { font-size: 1.5rem; }
+  .text-center { text-align: center; }
+  .px-4 { padding-left: 1rem; padding-right: 1rem; }
+  .grid { display: grid; }
+  .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+</style>
+
+{% schema %}
+{
+  "name": "Shop by Occasion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Shop by Gender"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "occasion",
+      "name": "Occasion",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Background image URL (Stitch mockups)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Occasion title"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Occasion",
+      "blocks": [
+        { "type": "occasion", "settings": { "title": "Nocturnal Elegance" } },
+        { "type": "occasion", "settings": { "title": "Morning Dew" } },
+        { "type": "occasion", "settings": { "title": "Stately Library" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

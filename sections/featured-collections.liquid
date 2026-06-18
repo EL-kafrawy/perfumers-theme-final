@@ -1,0 +1,134 @@
+<section class="featured-collections section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section__header" data-animate>
+      <span class="section__accent">{{ section.settings.accent_text }}</span>
+      <h2 class="section__title">{%- if section.settings.title != blank -%}{{ section.settings.title }}{%- else -%}{{ 'sections.featured_collections.title' | t }}{%- endif -%}</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="featured-collections__grid">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.collection.url | default: '#' }}" class="featured-collections__card" data-animate {{ block.shopify_attributes }}>
+          <div class="featured-collections__image-wrapper">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 600 }}"
+                alt="{{ block.settings.title | escape }}"
+                class="featured-collections__image"
+                loading="lazy"
+              >
+            {%- elsif block.settings.collection.image -%}
+              <img
+                src="{{ block.settings.collection.image | image_url: width: 600 }}"
+                alt="{{ block.settings.title | escape }}"
+                class="featured-collections__image"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div class="featured-collections__image placeholder-image" style="aspect-ratio:3/4;"></div>
+            {%- endif -%}
+          </div>
+          <h3 class="featured-collections__name">{{ block.settings.title | default: block.settings.collection.title }}</h3>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-collections__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+  .featured-collections__card {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .featured-collections__image-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+  .featured-collections__image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+  .featured-collections__card:hover .featured-collections__image {
+    transform: scale(1.05);
+  }
+  .featured-collections__name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+    color: var(--color-charcoal);
+    margin-top: var(--space-md);
+  }
+  @media (min-width: 768px) {
+    .featured-collections__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+  }
+  @media (min-width: 1024px) {
+    .featured-collections__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent text",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collections",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,11 @@
+# Nested legacy theme copy (has its own git remote)
+perfumers-theme/
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Shopify CLI
+.shopify/
+*.log

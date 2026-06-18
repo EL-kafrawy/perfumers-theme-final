@@ -1,0 +1,289 @@
+<footer class="site-footer" data-section-id="{{ section.id }}">
+  <div class="site-footer__container">
+    <div class="site-footer__grid">
+      <!-- Brand Block -->
+      <div class="site-footer__brand">
+        <h5 class="site-footer__logo">PERFUMERS</h5>
+        <p class="site-footer__description">
+          {{ section.settings.about_text | default: "Redefining luxury through circularity. We believe every scent is a memory waiting to be shared. Authenticated, sustainable, and soulful." }}
+        </p>
+      </div>
+
+      <!-- Links Grid -->
+      <div class="site-footer__links-grid">
+        <!-- Explore -->
+        <div>
+          <h6 class="site-footer__heading">Explore</h6>
+          <ul class="site-footer__list">
+            <li><a href="{{ section.settings.link_archive | default: '#' }}">The Archive</a></li>
+            <li><a href="/pages/sell-your-scent">Sell Your Scent</a></li>
+            <li><a href="{{ section.settings.link_authentication | default: '#' }}">Authentication</a></li>
+            <li><a href="{{ section.settings.link_story | default: '#' }}">Our Story</a></li>
+          </ul>
+        </div>
+        <!-- Support -->
+        <div>
+          <h6 class="site-footer__heading">Support</h6>
+          <ul class="site-footer__list">
+            <li><a href="{{ section.settings.link_shipping | default: '#' }}">Shipping</a></li>
+            <li><a href="{{ section.settings.link_returns | default: '#' }}">Returns</a></li>
+            <li><a href="{{ section.settings.link_care | default: '#' }}">Care Guide</a></li>
+            <li><a href="{{ section.settings.link_contact | default: '#' }}">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="site-footer__bottom">
+      <div class="site-footer__socials">
+        {% if section.settings.social_facebook != blank %}
+          <a href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <span class="material-symbols-outlined">share</span>
+          </a>
+        {% else %}
+          <span class="material-symbols-outlined">share</span>
+        {% endif %}
+        
+        {% if section.settings.social_instagram != blank %}
+          <a href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <span class="material-symbols-outlined">camera_alt</span>
+          </a>
+        {% else %}
+          <span class="material-symbols-outlined">camera_alt</span>
+        {% endif %}
+        
+        <span class="material-symbols-outlined">mail</span>
+      </div>
+      <p class="site-footer__copyright">
+        {{ section.settings.copyright | default: "© 2024 Perfumers Resale. All Rights Reserved." }}
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: #E7DDD4; /* bg-pearl-beige */
+    color: #2E2A33; /* dark text */
+    padding-top: 6rem; /* pt-24 */
+    padding-bottom: 3rem; /* pb-12 */
+    padding-left: 2rem; /* px-8 */
+    padding-right: 2rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .site-footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem; /* gap-12 */
+    margin-bottom: 4rem; /* mb-16 */
+  }
+
+  @media (min-width: 768px) {
+    .site-footer__grid {
+      grid-template-columns: 1.5fr 2fr;
+    }
+  }
+
+  .site-footer__brand {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-footer__logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 400;
+    letter-spacing: 0.1em; /* tracking-[0.1em] */
+    margin: 0 0 1.5rem 0; /* mb-6 */
+    text-transform: uppercase;
+    color: #2E2A33;
+    line-height: 1.2;
+  }
+
+  .site-footer__description {
+    font-size: 0.75rem; /* text-xs */
+    line-height: 2; /* leading-loose */
+    opacity: 0.6;
+    font-weight: 300; /* font-light */
+    max-width: 20rem; /* max-w-xs */
+    margin: 0;
+  }
+
+  .site-footer__links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; /* gap-8 */
+  }
+
+  .site-footer__heading {
+    font-size: 10px; /* text-[10px] */
+    text-transform: uppercase;
+    letter-spacing: 0.1em; /* tracking-widest */
+    color: #C8A46A; /* text-primary */
+    font-weight: 700;
+    margin: 0 0 1rem 0; /* mb-4 */
+  }
+
+  .site-footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* gap-3 */
+  }
+
+  .site-footer__list a {
+    color: #2E2A33;
+    text-decoration: none;
+    font-size: 0.75rem; /* text-xs */
+    opacity: 0.6;
+    font-weight: 300; /* font-light */
+    transition: opacity 0.3s ease;
+  }
+
+  .site-footer__list a:hover {
+    opacity: 1;
+  }
+
+  .site-footer__bottom {
+    padding-top: 2rem; /* pt-8 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* gap-6 */
+    align-items: center;
+  }
+
+  .site-footer__socials {
+    display: flex;
+    gap: 1.5rem; /* gap-6 */
+    align-items: center;
+  }
+
+  .site-footer__socials a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .site-footer__socials span {
+    font-size: 1.25rem; /* text-sm */
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+
+  .site-footer__socials a:hover span {
+    opacity: 1;
+  }
+
+  .site-footer__copyright {
+    font-size: 9px; /* text-[9px] */
+    opacity: 0.4;
+    letter-spacing: 0.1em; /* tracking-widest */
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "about_text",
+      "label": "About text",
+      "default": "Premium fragrances, authentically sourced. Every scent delivered across Egypt."
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number",
+      "default": "+201065833338"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email address",
+      "default": "hello@perfumers.eg"
+    },
+    {
+      "type": "text",
+      "id": "location",
+      "label": "Location",
+      "default": "Cairo, Egypt"
+    },
+    {
+      "type": "url",
+      "id": "link_archive",
+      "label": "The Archive link"
+    },
+    {
+      "type": "url",
+      "id": "link_authentication",
+      "label": "Authentication link"
+    },
+    {
+      "type": "url",
+      "id": "link_story",
+      "label": "Our Story link"
+    },
+    {
+      "type": "url",
+      "id": "link_shipping",
+      "label": "Shipping link"
+    },
+    {
+      "type": "url",
+      "id": "link_returns",
+      "label": "Returns link"
+    },
+    {
+      "type": "url",
+      "id": "link_care",
+      "label": "Care Guide link"
+    },
+    {
+      "type": "url",
+      "id": "link_contact",
+      "label": "Contact link"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright text",
+      "default": "© 2026 PERFUMERS. All rights reserved."
+    }
+  ],
+  "presets": [
+    { "name": "Footer" }
+  ]
+}
+{% endschema %}

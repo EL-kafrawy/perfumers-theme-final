@@ -1,0 +1,95 @@
+{%- comment -%}
+  Renders a product card.
+  Accepts:
+  - product: {Product} Product Liquid object
+  - badge: {String} 'sale', 'new', 'best_seller' (optional)
+{%- endcomment -%}
+
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-card__link" aria-label="{{ product.title }}">
+    <div class="product-card__image-wrapper">
+      {%- if product.featured_image -%}
+        <img 
+          src="{{ product.featured_image | image_url: width: 400, format: 'webp' }}"
+          srcset="{{ product.featured_image | image_url: width: 400, format: 'webp' }} 1x, {{ product.featured_image | image_url: width: 600, format: 'webp' }} 1.5x"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          class="product-card__image"
+          width="400"
+          height="533"
+          loading="lazy">
+        {%- if product.images[1] -%}
+          <img 
+            src="{{ product.images[1] | image_url: width: 400, format: 'webp' }}"
+            srcset="{{ product.images[1] | image_url: width: 400, format: 'webp' }} 1x, {{ product.images[1] | image_url: width: 600, format: 'webp' }} 1.5x"
+            alt="{{ product.images[1].alt | escape }}"
+            class="product-card__image product-card__image--hover"
+            width="400"
+            height="533"
+            loading="lazy">
+        {%- endif -%}
+      {%- else -%}
+        <div class="product-card__image placeholder-image" style="aspect-ratio:3/4;">
+          {{ 'product-1' | placeholder_svg_tag }}
+        </div>
+      {%- endif -%}
+
+      {%- if badge == 'sale' or product.compare_at_price > product.price -%}
+        <span class="product-card__badge product-card__badge--sale">{{ 'product.sale' | t }}</span>
+      {%- elsif badge == 'new' -%}
+        <span class="product-card__badge product-card__badge--new">{{ 'product.new' | t }}</span>
+      {%- elsif badge == 'best_seller' -%}
+        <span class="product-card__badge product-card__badge--new">{{ 'product.best_seller' | t }}</span>
+      {%- endif -%}
+
+    </div>
+
+    <div class="product-card__info">
+      <p class="product-card__brand">{{ product.vendor }}</p>
+      <h3 class="product-card__title">{{ product.title }}</h3>
+      <div class="product-card__price-wrapper">
+        {%- if product.compare_at_price > product.price -%}
+          <span class="product-card__price--compare">
+            {% render 'price', price: product.compare_at_price %}
+          </span>
+        {%- endif -%}
+        <span class="product-card__price">
+          {% render 'price', price: product.price %}
+        </span>
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+  .product-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card__image--hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+  .product-card:hover .product-card__image--hover {
+    opacity: 1;
+  }
+
+  .product-card__link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .product-card__info {
+    padding-top: var(--space-md);
+  }
+  .product-card__price-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+  .product-card__image-wrapper {
+    position: relative;
+  }
+
+</style>

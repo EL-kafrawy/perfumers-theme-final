@@ -1,0 +1,6 @@
+{%- comment -%}
+  Renders a formatted price in EGP.
+  Accepts:
+  - price: {Number} Price in cents or money format
+{%- endcomment -%}
+<span class="price">{{ price | money }}</span>

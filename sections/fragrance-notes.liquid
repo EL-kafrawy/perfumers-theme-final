@@ -1,0 +1,164 @@
+<section class="fragrance-notes section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section__header" data-animate>
+      <span class="section__accent">{{ section.settings.accent_text }}</span>
+      <h2 class="section__title">{{ 'product.fragrance_notes' | t }}</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="fragrance-notes__pyramid">
+      {%- for block in section.blocks -%}
+        <div class="fragrance-notes__level fragrance-notes__level--{{ block.type }}" data-animate {{ block.shopify_attributes }}>
+          <div class="fragrance-notes__level-header">
+            <span class="fragrance-notes__level-icon">
+              {%- case block.type -%}
+                {%- when 'top' -%}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 22h20L12 2z"/></svg>
+                {%- when 'heart' -%}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                {%- when 'base' -%}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              {%- endcase -%}
+            </span>
+            <h3 class="fragrance-notes__level-title">
+              {%- case block.type -%}
+                {%- when 'top' -%}{{ 'product.top_notes' | t }}
+                {%- when 'heart' -%}{{ 'product.heart_notes' | t }}
+                {%- when 'base' -%}{{ 'product.base_notes' | t }}
+              {%- endcase -%}
+            </h3>
+          </div>
+          <div class="fragrance-notes__notes">
+            {%- assign notes = block.settings.notes | split: ',' -%}
+            {%- for note in notes -%}
+              <span class="fragrance-notes__note tag">{{ note | strip }}</span>
+            {%- endfor -%}
+          </div>
+          {%- if block.settings.description != blank -%}
+            <p class="fragrance-notes__desc">{{ block.settings.description }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .fragrance-notes__pyramid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .fragrance-notes__level {
+    padding: var(--space-xl);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-gold);
+  }
+  .fragrance-notes__level-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+  .fragrance-notes__level-icon {
+    color: var(--color-gold);
+  }
+  .fragrance-notes__level-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+    color: var(--color-charcoal);
+  }
+  .fragrance-notes__notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+  .fragrance-notes__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-top: var(--space-sm);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Fragrance Notes",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent text",
+      "default": "Notes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "top",
+      "name": "Top Notes",
+      "settings": [
+        {
+          "type": "text",
+          "id": "notes",
+          "label": "Notes (comma separated)",
+          "default": "Bergamot, Lemon, Pink Pepper"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "heart",
+      "name": "Heart Notes",
+      "settings": [
+        {
+          "type": "text",
+          "id": "notes",
+          "label": "Notes (comma separated)",
+          "default": "Rose, Jasmine, Iris"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "base",
+      "name": "Base Notes",
+      "settings": [
+        {
+          "type": "text",
+          "id": "notes",
+          "label": "Notes (comma separated)",
+          "default": "Sandalwood, Musk, Amber"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance Notes",
+      "blocks": [
+        { "type": "top" },
+        { "type": "heart" },
+        { "type": "base" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,49 @@
+<section class="py-32 px-10 text-center bg-soft-ivory">
+  <span class="material-symbols-outlined text-primary mb-6 scale-150">format_quote</span>
+  <p class="font-serif text-xl italic leading-relaxed mb-6">
+    "{{ section.settings.quote }}"
+  </p>
+  <p class="text-[10px] uppercase tracking-[0.2em] font-bold">— {{ section.settings.attribution }}</p>
+</section>
+
+<style>
+  .py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+  .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+  .text-center { text-align: center; }
+  .bg-soft-ivory { background-color: #F5F1EB; }
+  .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; display: inline-block; vertical-align: middle; }
+  .text-primary { color: #C8A46A; }
+  .mb-6 { margin-bottom: 1.5rem; }
+  .scale-150 { transform: scale(1.5); }
+  .font-serif { font-family: 'Cormorant Garamond', serif; }
+  .text-xl { font-size: 1.25rem; }
+  .italic { font-style: italic; }
+  .leading-relaxed { line-height: 1.625; }
+  .text-\[10px\] { font-size: 10px; }
+  .uppercase { text-transform: uppercase; }
+  .tracking-\[0\.2em\] { letter-spacing: 0.2em; }
+  .font-bold { font-weight: 700; }
+</style>
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote text",
+      "default": "Finding my signature Byredo scent at half the retail price felt like discovering a secret garden. The authentication process gave me peace of mind."
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "Attribution (name, location)",
+      "default": "Elena V., Paris"
+    }
+  ],
+  "presets": [
+    { "name": "Testimonial" }
+  ]
+}
+{% endschema %}

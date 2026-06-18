@@ -1,0 +1,63 @@
+{%- comment -%}
+  Renders breadcrumb navigation.
+{%- endcomment -%}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb__list">
+    <li class="breadcrumb__item">
+      <a href="/" class="breadcrumb__link">{{ 'breadcrumb.home' | t }}</a>
+    </li>
+    {%- if collection -%}
+      <li class="breadcrumb__item">
+        <span class="breadcrumb__separator" aria-hidden="true">/</span>
+        {%- if product -%}
+          <a href="{{ collection.url }}" class="breadcrumb__link">{{ collection.title }}</a>
+        {%- else -%}
+          <span class="breadcrumb__current" aria-current="page">{{ collection.title }}</span>
+        {%- endif -%}
+      </li>
+    {%- endif -%}
+    {%- if product -%}
+      <li class="breadcrumb__item">
+        <span class="breadcrumb__separator" aria-hidden="true">/</span>
+        <span class="breadcrumb__current" aria-current="page">{{ product.title }}</span>
+      </li>
+    {%- endif -%}
+    {%- if page -%}
+      <li class="breadcrumb__item">
+        <span class="breadcrumb__separator" aria-hidden="true">/</span>
+        <span class="breadcrumb__current" aria-current="page">{{ page.title }}</span>
+      </li>
+    {%- endif -%}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+  }
+  .breadcrumb__link {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .breadcrumb__link:hover {
+    color: var(--color-gold);
+  }
+  .breadcrumb__separator {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+  }
+  .breadcrumb__current {
+    font-size: var(--text-xs);
+    color: var(--color-charcoal);
+    font-weight: var(--font-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>

@@ -1,0 +1,81 @@
+{%- comment -%}
+  Renders a quantity selector with plus/minus buttons.
+  Accepts:
+  - value: {Number} Initial quantity value (default: 1)
+{%- endcomment -%}
+
+{%- assign qty_value = value | default: 1 -%}
+
+<div class="quantity-selector">
+  <button
+    type="button"
+    class="quantity-selector__btn"
+    data-product-qty-minus
+    aria-label="Decrease quantity"
+  >
+    {% render 'icon-minus' %}
+  </button>
+  <input
+    type="number"
+    class="quantity-selector__input"
+    data-product-qty
+    name="quantity"
+    value="{{ qty_value }}"
+    min="1"
+    max="99"
+    aria-label="{{ 'product.quantity' | t }}"
+  >
+  <button
+    type="button"
+    class="quantity-selector__btn"
+    data-product-qty-plus
+    aria-label="Increase quantity"
+  >
+    {% render 'icon-plus' %}
+  </button>
+</div>
+
+<style>
+  .quantity-selector {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid var(--color-pearl);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .quantity-selector__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    color: var(--color-charcoal);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  .quantity-selector__btn:hover {
+    background: var(--color-gold-10);
+    color: var(--color-gold);
+  }
+  .quantity-selector__input {
+    width: 50px;
+    height: 44px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid var(--color-pearl);
+    border-right: 1px solid var(--color-pearl);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: var(--color-charcoal);
+    background: transparent;
+    -moz-appearance: textfield;
+  }
+  .quantity-selector__input::-webkit-inner-spin-button,
+  .quantity-selector__input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,94 @@
+<div class="announcement-bar" data-section-id="{{ section.id }}">
+  <div class="announcement-bar__slider">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__slide is-active">{{ section.settings.message_1 }}</div>
+      {%- if section.settings.message_2 != blank -%}
+        <div class="announcement-bar__slide">{{ section.settings.message_2 }}</div>
+      {%- endif -%}
+      {%- if section.settings.message_3 != blank -%}
+        <div class="announcement-bar__slide">{{ section.settings.message_3 }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .announcement-bar {
+    background-color: #C8A46A;
+    color: #F5F1EB;
+    padding: 6px 16px;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+  .announcement-bar__slider {
+    position: relative;
+    height: 1.6em;
+  }
+  .announcement-bar__track {
+    position: relative;
+    height: 100%;
+  }
+  .announcement-bar__slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    white-space: nowrap;
+  }
+  .announcement-bar__slide.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  (function(){
+    var slides = document.querySelectorAll('.announcement-bar__slide');
+    if (slides.length < 2) return;
+    var current = 0;
+    setInterval(function(){
+      slides[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-active');
+    }, 4000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "message_1",
+      "label": "Message 1",
+      "default": "🚚 Delivery in 1–3 Days Across Cairo | Free Shipping Over 500 EGP"
+    },
+    {
+      "type": "text",
+      "id": "message_2",
+      "label": "Message 2",
+      "default": "✅ Cash on Delivery Available Storewide"
+    },
+    {
+      "type": "text",
+      "id": "message_3",
+      "label": "Message 3",
+      "default": "💯 100% Authentic Fragrances — Guaranteed"
+    }
+  ],
+  "presets": [
+    { "name": "Announcement Bar" }
+  ]
+}
+{% endschema %}

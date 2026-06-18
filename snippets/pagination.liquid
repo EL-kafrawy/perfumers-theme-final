@@ -1,0 +1,79 @@
+{%- comment -%}
+  Renders pagination for collection pages.
+  Accepts:
+  - paginate: {Paginate} Shopify paginate object
+{%- endcomment -%}
+{%- if paginate.pages > 1 -%}
+  <nav class="pagination" role="navigation" aria-label="{{ 'pagination.page' | t: current: paginate.current_page, total: paginate.pages }}">
+    <ul class="pagination__list">
+      {%- if paginate.previous -%}
+        <li class="pagination__item">
+          <a href="{{ paginate.previous.url }}" class="pagination__link pagination__link--prev" aria-label="{{ 'pagination.previous' | t }}">
+            {% render 'icon-arrow' %}
+            <span class="hide-mobile">{{ 'pagination.previous' | t }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+
+      {%- for part in paginate.parts -%}
+        <li class="pagination__item">
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" class="pagination__link">{{ part.title }}</a>
+          {%- else -%}
+            <span class="pagination__link pagination__link--current" aria-current="page">{{ part.title }}</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+
+      {%- if paginate.next -%}
+        <li class="pagination__item">
+          <a href="{{ paginate.next.url }}" class="pagination__link pagination__link--next" aria-label="{{ 'pagination.next' | t }}">
+            <span class="hide-mobile">{{ 'pagination.next' | t }}</span>
+            {% render 'icon-arrow' %}
+          </a>
+        </li>
+      {%- endif -%}
+    </ul>
+  </nav>
+{%- endif -%}
+
+<style>
+  .pagination {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-pearl);
+  }
+  .pagination__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    list-style: none;
+  }
+  .pagination__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--color-charcoal);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+  }
+  .pagination__link:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+  .pagination__link--current {
+    background: var(--color-gold);
+    color: var(--color-ivory);
+    font-weight: var(--font-semibold);
+  }
+  .pagination__link--prev svg {
+    transform: rotate(90deg);
+  }
+  .pagination__link--next svg {
+    transform: rotate(-90deg);
+  }
+</style>

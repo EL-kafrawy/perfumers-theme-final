@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "product-gallery": {
+            "type": "product-gallery",
+            "settings": {}
+        },
+        "product-info": {
+            "type": "product-info",
+            "settings": {
+                "show_buy_now": true,
+                "delivery_text": "2-5 business days across Egypt",
+                "returns_text": "14-day hassle-free returns"
+            }
+        },
+        "fragrance-notes": {
+            "type": "fragrance-notes",
+            "settings": {
+                "accent_text": "Notes"
+            },
+            "blocks": {
+                "top-notes": {
+                    "type": "top",
+                    "settings": {
+                        "notes": "Bergamot, Lemon, Pink Pepper"
+                    }
+                },
+                "heart-notes": {
+                    "type": "heart",
+                    "settings": {
+                        "notes": "Rose, Jasmine, Iris"
+                    }
+                },
+                "base-notes": {
+                    "type": "base",
+                    "settings": {
+                        "notes": "Sandalwood, Musk, Amber"
+                    }
+                }
+            },
+            "block_order": [
+                "top-notes",
+                "heart-notes",
+                "base-notes"
+            ]
+        },
+        "related-products": {
+            "type": "related-products",
+            "settings": {
+                "accent_text": "Discover"
+            }
+        },
+        "product-sticky-bar": {
+            "type": "product-sticky-bar",
+            "settings": {}
+        }
+    },
+    "order": [
+        "product-gallery",
+        "product-info",
+        "fragrance-notes",
+        "related-products",
+        "product-sticky-bar"
+    ]
+}

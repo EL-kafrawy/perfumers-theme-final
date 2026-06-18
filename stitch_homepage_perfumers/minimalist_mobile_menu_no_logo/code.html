@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#c6a36c", // Champagne Gold
+              "background-light": "#f8f7f6", // Soft Ivory
+              "background-dark": "#1e1a15", // Deep Charcoal
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"],
+              "serif": ["Cormorant Garamond", "serif"],
+              "sans": ["Montserrat", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-sans { font-family: 'Montserrat', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-40 p-4 justify-between border-b border-primary/10">
+<div class="flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100 text-2xl">menu</span>
+</div>
+<div class="flex-1 flex justify-center">
+  <img src="https://lh3.googleusercontent.com/aida/ADBb0ugbcgl-tH8zmhgBtXoY8vLidTRRJVVmTTJry0YVH6YV6Dls6xFOeczyVD2npuThgTbQStjx5A-QwQt5SkAE1IIGrDnEK2s-C1gV1F0rJ6C0MjwiQ3xCihYqyDcmUADI28xSw1rXrc3DWjJGO6c0QaWfVwoMCS9F-qZjpBu_z-0TD9-j7G3tnrz7TDkeMRxEPey0SPdASjjrTypm4IhZjFdQ0FKq7aywPPbHkWEfK8N6e3bab8VV5WO9s9ygNRcN1y3TV6U1uyRc" alt="Perfumer Logo" class="h-14 w-auto object-contain">
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded-full h-12 w-12 bg-transparent text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area (Background) -->
+<main class="flex-1 p-4 space-y-6">
+<div class="aspect-[4/5] w-full rounded-xl bg-primary/5 flex flex-col items-center justify-center p-8 text-center" data-alt="Soft focused artistic photograph of a glass perfume bottle on a marble surface">
+<h3 class="font-serif italic text-3xl text-primary mb-4">The Essence of Being</h3>
+<p class="font-sans text-sm tracking-wide text-slate-600 dark:text-slate-400">Discover scents that linger like memories.</p>
+</div>
+</main>
+<!-- Luxury Mobile Menu Overlay -->
+<div class="fixed inset-0 z-50 flex flex-col bg-background-light dark:bg-background-dark overflow-y-auto">
+<!-- Menu Header -->
+<div class="flex items-center justify-end p-6 border-b border-primary/10">
+<button class="size-10 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">close</span>
+</button>
+</div>
+<!-- Menu Body -->
+<div class="flex flex-col px-6 py-8 space-y-8">
+<nav class="flex flex-col space-y-6">
+<ul class="flex flex-col space-y-1">
+<li class="">
+<a class="flex items-center justify-between py-4 group" href="#">
+<span class="font-serif text-3xl text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Shop All</span>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary">arrow_forward_ios</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between py-4 group" href="#">
+<span class="font-serif text-3xl text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Brands</span>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary">arrow_forward_ios</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between py-4 group" href="#">
+<span class="font-serif text-3xl text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Occasions</span>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary">arrow_forward_ios</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between py-4 group" href="#">
+<span class="font-serif text-3xl text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">New Arrivals</span>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary">arrow_forward_ios</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between py-4 group" href="#">
+<span class="font-serif text-3xl text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Best Sellers</span>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary">arrow_forward_ios</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between py-4 group" href="#">
+<span class="font-serif text-3xl text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Gift Sets</span>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary">arrow_forward_ios</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Divider with Accent -->
+<div class="relative py-4">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-primary/20"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-background-light dark:bg-background-dark px-3 font-serif italic text-primary text-lg">Curated Selection</span>
+</div>
+</div>
+<!-- Featured Highlight Section -->
+<div class="bg-primary/5 rounded-xl p-4 flex items-center gap-4 border border-primary/10">
+<div class="size-20 rounded-lg bg-center bg-cover border border-primary/20" data-alt="Elegant rectangular perfume bottle with gold cap" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCztQeoZsPIq-p3nQZzr6g_Zpdoz1OoIf46ybtd1YLEq-N7Fpr7r_0rMHoMDYV7gDjXOs7WGdcRgV_h5DDEHcMtTVV6QokyFmReQu_p5IgkFWdvFZ43mzk-rqDiyU4OmwH29O0w0Ez7FCkKorvxU0RwIiUJICmVtqLMvPPq9vzeeAV88xHdEaxgzXczV0H79KILUs35zjPsLrCkhBn0OFGb5X16BXyc7WbE8Fw2rC2wLiBL_g8f4b5NuMtjwxV45LOCbbIrmFLTP58')"></div>
+<div class="flex-1">
+<h4 class="font-sans font-semibold text-xs uppercase tracking-widest text-primary mb-1">Featured Set</h4>
+<p class="font-serif text-xl text-slate-900 dark:text-slate-100">The Discovery Kit</p>
+<p class="font-sans text-xs text-slate-500 mt-1">Twelve poetic journeys in glass.</p>
+</div>
+<span class="material-symbols-outlined text-primary">chevron_right</span>
+</div>
+<!-- Footer Links -->
+<div class="grid grid-cols-2 gap-4">
+<a class="flex items-center gap-3 p-4 bg-slate-100 dark:bg-background-dark border border-slate-200 dark:border-primary/10 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+<span class="font-sans font-medium text-sm">Account</span>
+</a>
+<a class="flex items-center gap-3 p-4 bg-slate-100 dark:bg-background-dark border border-slate-200 dark:border-primary/10 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-primary">help_outline</span>
+<span class="font-sans font-medium text-sm">Support</span>
+</a>
+</div>
+</div>
+<!-- Bottom Brand Mark -->
+<div class="mt-auto p-8 text-center opacity-40">
+<span class="font-serif italic text-sm tracking-widest">Est. 1924 • Paris • Grasse</span>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<footer class="mt-auto border-t border-primary/10 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-4 pb-6 pt-3">
+<div class="flex gap-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">home</span>
+<p class="font-sans text-[10px] font-semibold uppercase tracking-wider">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<p class="font-sans text-[10px] font-semibold uppercase tracking-wider">Shop</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">search</span>
+<p class="font-sans text-[10px] font-semibold uppercase tracking-wider">Search</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="font-sans text-[10px] font-semibold uppercase tracking-wider">Profile</p>
+</a>
+</div>
+</footer>
+</div>
+
+
+
+
+</body></html>

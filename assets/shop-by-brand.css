@@ -1,0 +1,161 @@
+/* ===================================================================
+   Shop by Brand – Horizontal Logo Carousel
+   =================================================================== */
+
+/* --- Section header row ------------------------------------------- */
+.shop-by-brand .section__header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.shop-by-brand .section__header-row .section__header {
+  margin-bottom: 0;
+}
+
+.shop-by-brand__view-all {
+  flex-shrink: 0;
+}
+
+.shop-by-brand__view-all .btn {
+  white-space: nowrap;
+}
+
+/* --- Carousel wrapper --------------------------------------------- */
+.brand-carousel {
+  position: relative;
+  padding: 2rem 0 0.5rem;
+}
+
+.brand-carousel__viewport {
+  overflow: hidden;
+}
+
+.brand-carousel__track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  cursor: grab;
+}
+
+.brand-carousel__track.is-dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+/* --- Cards (mobile-first: 2 per view) ----------------------------- */
+.brand-carousel__card {
+  flex: 0 0 50%;
+  min-width: 0;
+  padding: 0 0.625rem;
+  box-sizing: border-box;
+}
+
+.brand-carousel__card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 10px;
+}
+
+.brand-carousel__card-inner:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+
+.brand-carousel__card-inner img {
+  display: block;
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  max-height: 80px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* --- Arrow controls ----------------------------------------------- */
+.brand-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(200, 164, 106, 0.35);
+  border-radius: 50%;
+  background: rgba(250, 248, 245, 0.92);
+  color: var(--color-text, #2e2a26);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.3s ease,
+              background 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.brand-carousel__arrow:hover {
+  background: rgba(250, 248, 245, 1);
+  border-color: rgba(200, 164, 106, 0.6);
+  box-shadow: 0 2px 12px rgba(200, 164, 106, 0.15);
+}
+
+.brand-carousel__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+.brand-carousel__arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.brand-carousel__arrow--prev {
+  left: -8px;
+}
+
+.brand-carousel__arrow--next {
+  right: -8px;
+}
+
+/* --- Responsive: tablet (3 per view) ------------------------------ */
+@media (min-width: 540px) {
+  .brand-carousel__card {
+    flex-basis: 33.3333%;
+  }
+}
+
+/* --- Responsive: desktop (4 per view) ----------------------------- */
+@media (min-width: 768px) {
+  .brand-carousel__card {
+    flex-basis: 25%;
+    padding: 0 0.75rem;
+  }
+
+  .brand-carousel__arrow {
+    width: 46px;
+    height: 46px;
+  }
+
+  .brand-carousel__arrow--prev {
+    left: -14px;
+  }
+
+  .brand-carousel__arrow--next {
+    right: -14px;
+  }
+}

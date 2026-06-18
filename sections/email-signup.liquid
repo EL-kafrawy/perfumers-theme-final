@@ -1,0 +1,86 @@
+<section class="py-32 px-6 border-t border-primary/20 bg-pearl-beige/20">
+  <div class="max-w-md mx-auto text-center">
+    <h3 class="font-serif text-3xl mb-4 italic">{{ section.settings.title }}</h3>
+    <p class="text-sm text-charcoal/60 mb-8 font-light">{{ section.settings.subtitle }}</p>
+    {% form 'customer', id: 'email-signup-form' %}
+      <div class="flex flex-col gap-4">
+        <input class="bg-transparent border-b border-charcoal/20 focus:border-primary focus:ring-0 px-0 py-3 text-sm placeholder:text-charcoal/30" name="contact[email]" placeholder="{{ section.settings.placeholder }}" type="email" required>
+        <button class="bg-primary text-soft-ivory py-4 text-[10px] uppercase tracking-[0.2em] font-bold" type="submit">{{ section.settings.button_text }}</button>
+      </div>
+    {% endform %}
+  </div>
+</section>
+
+<style>
+  .py-32 { padding-top: 6rem; padding-bottom: 6rem; }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .border-t { border-top-width: 1px; border-top-style: solid; }
+  .border-primary\/20 { border-color: rgba(200, 164, 106, 0.2); }
+  .bg-pearl-beige\/20 { background-color: rgba(231, 221, 212, 0.2); }
+  .max-w-md { max-width: 28rem; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .text-center { text-align: center; }
+  .font-serif { font-family: 'Cormorant Garamond', serif; }
+  .text-3xl { font-size: 1.875rem; }
+  .mb-4 { margin-bottom: 1rem; }
+  .italic { font-style: italic; }
+  .text-sm { font-size: 0.875rem; }
+  .text-charcoal\/60 { color: rgba(45, 41, 38, 0.6); }
+  .mb-8 { margin-bottom: 2rem; }
+  .font-light { font-weight: 300; }
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .gap-4 { gap: 1rem; }
+  .bg-transparent { background-color: transparent; }
+  .border-b { border-bottom-width: 1px; border-bottom-style: solid; }
+  .border-charcoal\/20 { border-color: rgba(45, 41, 38, 0.2); }
+  .focus\:border-primary:focus { border-color: #C8A46A; }
+  .focus\:ring-0:focus { box-shadow: none; outline: none; }
+  .px-0 { padding-left: 0; padding-right: 0; }
+  .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+  .placeholder\:text-charcoal\/30::placeholder { color: rgba(45, 41, 38, 0.3); }
+  .bg-primary { background-color: #C8A46A; }
+  .text-soft-ivory { color: #F5F1EB; }
+  .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+  .text-\[10px\] { font-size: 10px; }
+  .uppercase { text-transform: uppercase; }
+  .tracking-\[0\.2em\] { letter-spacing: 0.2em; }
+  .font-bold { font-weight: 700; }
+  .w-full { width: 100%; }
+  input, button { width: 100%; }
+</style>
+
+{% schema %}
+{
+  "name": "Email Signup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Join the Inner Circle"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Be the first to hear about new archival drops and limited vintages."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    { "name": "Email Signup" }
+  ]
+}
+{% endschema %}

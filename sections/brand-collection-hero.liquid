@@ -1,0 +1,182 @@
+<section class="brand-hero-section brand-hero-section-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="brand-hero-container">
+    {% render 'breadcrumb' %}
+    
+    {%- if section.settings.show_subtitle -%}
+      <span class="brand-hero-subtitle">{{ section.settings.subtitle_text | default: 'Brand Collection' }}</span>
+    {%- endif -%}
+    
+    <h1 class="brand-hero-title">{{ collection.title | escape }}</h1>
+    
+    {%- if section.settings.show_description -%}
+      {%- if collection.description != blank -%}
+        <div class="brand-hero-description">
+          {{ collection.description }}
+        </div>
+      {%- else -%}
+        {%- if section.settings.fallback_description != blank -%}
+          <div class="brand-hero-description">
+            <p>{{ section.settings.fallback_description | escape }}</p>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="brand-hero-divider"></div>
+  </div>
+</section>
+
+<style>
+  .brand-hero-section-{{ section.id }} {
+    background-color: var(--color-soft-ivory, #F5F1EB);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .brand-hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .brand-hero-section-{{ section.id }} .brand-hero-subtitle {
+    display: block;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-primary, #93733B);
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+
+  .brand-hero-section-{{ section.id }} .brand-hero-title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: clamp(2.25rem, 6vw, 3.25rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-charcoal, #2D2926);
+    line-height: 1.2;
+    margin: 0 0 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .brand-hero-section-{{ section.id }} .brand-hero-description {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: clamp(0.8rem, 2vw, 0.875rem);
+    line-height: 1.6;
+    color: var(--color-text-secondary, #7E6C5F);
+    margin: 0 auto 24px;
+    max-width: 650px;
+    {% if section.settings.text_alignment == 'left' %}
+      margin-left: 0;
+    {% elsif section.settings.text_alignment == 'right' %}
+      margin-right: 0;
+    {% endif %}
+  }
+
+  .brand-hero-section-{{ section.id }} .brand-hero-description p {
+    margin: 0 0 1em;
+  }
+  .brand-hero-section-{{ section.id }} .brand-hero-description p:last-child {
+    margin: 0;
+  }
+
+  .brand-hero-section-{{ section.id }} .brand-hero-divider {
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-primary, #93733B);
+    margin-top: 30px;
+    margin-bottom: 0;
+    {% if section.settings.text_alignment == 'left' %}
+      margin-left: 0;
+      margin-right: auto;
+    {% elsif section.settings.text_alignment == 'right' %}
+      margin-left: auto;
+      margin-right: 0;
+    {% else %}
+      margin-left: auto;
+      margin-right: auto;
+    {% endif %}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Brand Collection Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_subtitle",
+      "label": "Show category subtitle",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtitle_text",
+      "label": "Subtitle default text",
+      "default": "Brand Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 30
+    },
+    {
+      "type": "textarea",
+      "id": "fallback_description",
+      "label": "Fallback description",
+      "default": "Explore our curated fragrance selection from this renowned luxury house."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Collection Header"
+    }
+  ]
+}
+{% endschema %}

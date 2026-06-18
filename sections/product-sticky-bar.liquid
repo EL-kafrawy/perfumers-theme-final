@@ -1,0 +1,115 @@
+<div class="product-sticky-bar" id="sticky-atc" data-sticky-bar data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="product-sticky-bar__inner">
+      <div class="product-sticky-bar__info">
+        <p class="product-sticky-bar__title">{{ product.title }}</p>
+        <span class="product-sticky-bar__price" data-product-price>
+          {% render 'price', price: product.price %}
+        </span>
+      </div>
+      <button
+        class="btn btn-primary product-sticky-bar__btn"
+        onclick="document.querySelector('[name=add]') ? document.querySelector('[name=add]').click() : document.querySelector('.product-form__submit').click()"
+        {% unless product.available %}disabled{% endunless %}
+      >
+        {%- if product.available -%}
+          {{ 'actions.add_to_cart' | t }}
+        {%- else -%}
+          {{ 'actions.sold_out' | t }}
+        {%- endif -%}
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .product-sticky-bar {
+    position: fixed;
+    bottom: -80px;
+    left: 0;
+    right: 0;
+    z-index: 8888;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    padding: 12px 20px;
+    transition: bottom 0.3s ease;
+    font-family: inherit;
+  }
+  .product-sticky-bar.visible {
+    bottom: 0;
+  }
+  /* Keep legacy class for backward compatibility */
+  .product-sticky-bar.is-visible {
+    bottom: 0;
+  }
+  .product-sticky-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .product-sticky-bar__info {
+    flex: 1;
+    min-width: 0;
+  }
+  .product-sticky-bar__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+  .product-sticky-bar__price {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--color-gold, #C8A46A);
+  }
+  .product-sticky-bar__btn {
+    width: auto;
+    flex-shrink: 0;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .product-sticky-bar__btn:hover { background: #333; }
+  @media (max-width: 767px) {
+    .product-sticky-bar { padding: 10px 16px; }
+  }
+</style>
+
+<script>
+  (function(){
+    var mainBtn = document.querySelector('[data-add-to-cart], [name=add], .product-form__submit, .btn-addtocart');
+    var stickyBar = document.getElementById('sticky-atc');
+    if (!mainBtn || !stickyBar) return;
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        stickyBar.classList.toggle('visible', !entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+    observer.observe(mainBtn);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product Sticky Bar",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Sticky Bar"
+    }
+  ]
+}
+{% endschema %}

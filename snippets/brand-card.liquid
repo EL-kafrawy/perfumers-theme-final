@@ -1,0 +1,73 @@
+{% comment %}
+  Renders a brand logo circular tile.
+  Accepts:
+  - logo: {Object} Shopify Image object (optional)
+  - logo_file: {String} Local filename in theme assets (optional fallback)
+  - brand_name: {String} Brand name
+  - link: {String} URL to the brand collection
+  - is_clone: {Boolean} Whether this is a cloned tile for infinite scrolling (optional)
+{% endcomment %}
+
+{%- liquid
+  assign aria_hidden = false
+  assign tab_index = 0
+  if is_clone
+    assign aria_hidden = true
+    assign tab_index = -1
+  endif
+
+  # Fallback asset mapping logic if logo is empty but brand name matches known local logos
+  assign asset_logo = ''
+  if logo == blank and logo_file == blank
+    assign brand_handle = brand_name | handleize
+    if brand_handle == 'afnan'
+      assign asset_logo = 'brand-logo-afnan.jpg'
+    elsif brand_handle == 'assaf'
+      assign asset_logo = 'brand-logo-assaf.png'
+    elsif brand_handle == 'lattafa'
+      assign asset_logo = 'brand-logo-lattafa.png'
+    elsif brand_handle == 'french-avenue'
+      assign asset_logo = 'brand-logo-french-avenue.jpg'
+    elsif brand_handle contains 'dkhoon'
+      assign asset_logo = 'brand-logo-dkhoon.jpg'
+    elsif brand_handle contains 'qurashi'
+      assign asset_logo = 'brand-logo-qurashi.png'
+    elsif brand_handle == 'ibraq'
+      assign asset_logo = 'brand-logo-ibraq.jpg'
+    elsif brand_handle == 'rasasi'
+      assign asset_logo = 'brand-logo-rasasi.webp'
+    elsif brand_handle == 'zimaya'
+      assign asset_logo = 'Logo_zimaya.webp'
+    elsif brand_handle == 'khadlaj'
+      assign asset_logo = 'KHADLAJ-1728143202371.webp'
+    else
+      assign asset_logo = 'brand-logo-' | append: brand_handle | append: '.png'
+    endif
+  elsif logo_file != blank
+    assign asset_logo = logo_file
+  endif
+-%}
+
+<a href="{{ link | default: '#' }}" 
+   class="brand-circle"
+   {% if aria_hidden %}aria-hidden="true" tabindex="-1"{% else %}aria-label="Shop {{ brand_name | escape }}"{% endif %}
+>
+  {%- if logo != blank -%}
+    <img src="{{ logo | image_url: width: 200 }}" 
+         alt="{{ brand_name | escape }} logo" 
+         loading="lazy" 
+         width="100" 
+         height="100" 
+         draggable="false">
+  {%- elsif asset_logo != blank -%}
+    <img src="{{ asset_logo | asset_url }}" 
+         alt="{{ brand_name | escape }} logo" 
+         loading="lazy" 
+         width="100" 
+         height="100" 
+         draggable="false"
+         onerror="this.parentNode.innerHTML='<span class=\"brand-circle__text\">{{ brand_name | escape }}</span>';">
+  {%- else -%}
+    <span class="brand-circle__text">{{ brand_name | escape }}</span>
+  {%- endif -%}
+</a>

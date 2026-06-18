@@ -1,0 +1,304 @@
+<style>
+  .sbg-section { padding: 4.5rem 0; background: #F5F1EB; }
+  .sbg-header { text-align: center; margin-bottom: 2.5rem; }
+  .sbg-accent { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #C8A46A; margin-bottom: 0.5rem; }
+  .sbg-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 400; color: #2E2A33; letter-spacing: 0.03em; margin: 0 0 0.5rem; }
+  .sbg-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: #9B8778; margin: 0; }
+  .sbg-divider { width: 48px; height: 1px; background: #C8A46A; margin: 1rem auto 0; }
+  
+  .sbg-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .sbg-card {
+    position: relative;
+    text-decoration: none;
+    color: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+    height: 220px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .sbg-card-bg-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .sbg-card-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.2) contrast(1.05) brightness(0.95);
+    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 1.2s ease;
+  }
+  
+  .sbg-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(46, 42, 51, 0.15) 0%, rgba(46, 42, 51, 0.5) 100%);
+    z-index: 2;
+    transition: background-color 0.5s ease;
+  }
+  
+  .sbg-card-inner {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+  
+  .sbg-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem;
+    font-style: italic;
+    line-height: 1.2;
+  }
+  
+  .sbg-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #C8A46A;
+    border-bottom: 1px solid rgba(200, 164, 106, 0.3);
+    padding-bottom: 2px;
+    transition: all 0.4s ease;
+  }
+  
+  .sbg-cta svg {
+    transition: transform 0.4s ease;
+  }
+  
+  .sbg-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .sbg-card:hover .sbg-card-bg {
+    transform: scale(1.06);
+    filter: grayscale(0) contrast(1.05) brightness(0.9);
+  }
+  
+  .sbg-card:hover .sbg-card-overlay {
+    background: linear-gradient(to bottom, rgba(46, 42, 51, 0.25) 0%, rgba(46, 42, 51, 0.65) 100%);
+  }
+  
+  .sbg-card:hover .sbg-cta {
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.7);
+    gap: 0.6rem;
+  }
+  
+  .sbg-card:hover .sbg-cta svg {
+    transform: translateX(4px);
+  }
+  
+  @media (max-width: 767px) {
+    .sbg-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+    
+    .sbg-card--unisex {
+      grid-column: span 2;
+    }
+    
+    .sbg-grid .sbg-card:last-child:nth-child(odd) {
+      grid-column: span 2;
+    }
+    
+    .sbg-card {
+      height: 180px;
+    }
+    
+    .sbg-card-title {
+      font-size: 1.8rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .sbg-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .sbg-card {
+      height: 380px;
+    }
+  }
+</style>
+
+<section class="sbg-section">
+  <div class="sbg-header">
+    <span class="sbg-accent">{{ section.settings.accent_text }}</span>
+    <h3 class="sbg-title">{{ section.settings.title }}</h3>
+    <p class="sbg-subtitle">{{ section.settings.subtitle }}</p>
+    <div class="sbg-divider"></div>
+  </div>
+
+  <div class="sbg-grid">
+    {%- for block in section.blocks -%}
+      {%- assign target_url = "#" -%}
+      {%- if block.settings.collection != blank -%}
+        {%- assign target_collection = block.settings.collection -%}
+        {%- if target_collection.url != blank -%}
+          {%- assign target_url = target_collection.url -%}
+        {%- else -%}
+          {%- assign target_url = collections[target_collection].url -%}
+        {%- endif -%}
+      {%- elsif block.settings.link != blank and block.settings.link != "#" -%}
+        {%- assign target_url = block.settings.link -%}
+      {%- else -%}
+        {%- if block.settings.title != blank -%}
+          {%- assign handle = block.settings.title | handleize -%}
+          {%- assign target_url = '/collections/' | append: handle -%}
+        {%- endif -%}
+      {%- endif -%}
+      
+      {%- assign title_lower = block.settings.title | downcase -%}
+      {%- assign is_unisex = false -%}
+      {%- if title_lower contains 'unisex' -%}
+        {%- assign is_unisex = true -%}
+      {%- endif -%}
+
+      {%- assign img_src = "" -%}
+      {%- if block.settings.image != blank -%}
+        {%- assign img_src = block.settings.image | image_url: width: 800 -%}
+      {%- elsif block.settings.image_url != blank and block.settings.image_url contains 'https' -%}
+        {%- assign img_src = block.settings.image_url -%}
+      {%- endif -%}
+
+      {%- assign is_secure_google = false -%}
+      {%- if img_src contains 'googleusercontent.com' -%}
+        {%- unless img_src contains 'aida-public' -%}
+          {%- assign is_secure_google = true -%}
+        {%- endunless -%}
+      {%- endif -%}
+
+      {%- if img_src == "" or img_src contains "ADBb0" or is_secure_google -%}
+        {%- if title_lower contains 'women' -%}
+          {%- assign img_src = 'women.jpg' | asset_url -%}
+        {%- elsif title_lower contains 'men' -%}
+          {%- assign img_src = 'men.jpg' | asset_url -%}
+        {%- else -%}
+          {%- assign img_src = 'unisex.webp' | asset_url -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      <a href="{{ target_url }}" class="sbg-card{% if is_unisex %} sbg-card--unisex{% endif %}" {{ block.shopify_attributes }}>
+        <div class="sbg-card-bg-wrap">
+          <img class="sbg-card-bg" src="{{ img_src }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+        </div>
+        <div class="sbg-card-overlay"></div>
+        <div class="sbg-card-inner">
+          <h4 class="sbg-card-title">{{ block.settings.title }}</h4>
+          <span class="sbg-cta">
+            {{ block.settings.cta_text }}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by Gender",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent text",
+      "default": "For You"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by Gender"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Find fragrances crafted for your style"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gender",
+      "name": "Gender Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Background image URL (Stitch mockups)"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA text",
+          "default": "Explore"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Gender",
+      "blocks": [
+        { "type": "gender", "settings": { "title": "Men" } },
+        { "type": "gender", "settings": { "title": "Women" } },
+        { "type": "gender", "settings": { "title": "Unisex" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

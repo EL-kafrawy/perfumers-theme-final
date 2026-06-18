@@ -1,0 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "store_name": "PERFUMERS",
+    "logo_max_width": 200,
+    "color_primary": "#C8A46A",
+    "color_secondary": "#2E2A33",
+    "color_background": "#F5F1EB",
+    "color_surface": "#E7DDD4",
+    "color_accent": "#B8A3AD",
+    "color_text_secondary": "#9B8778",
+    "announcement_bar_enabled": true,
+    "announcement_bar_text": "Free shipping on orders over 1000 EGP 🌸",
+    "announcement_bar_bg": "#2E2A33",
+    "announcement_bar_text_color": "#F5F1EB",
+    "social_instagram": "https://www.instagram.com/perfumers.eg",
+    "social_facebook": "https://www.facebook.com/perfumers.eg",
+    "social_tiktok": "https://www.tiktok.com/@perfumers.eg",
+    "social_twitter": "",
+    "social_whatsapp": "",
+    "social_snapchat": "",
+    "footer_copyright": "© 2026 PERFUMERS. All rights reserved.",
+    "footer_about": "<p>Your trusted destination for authentic perfumes in Egypt.</p>",
+    "footer_show_payment_icons": true,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": ""
+        }
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "about_text": "Premium fragrances, authentically sourced. Every scent delivered across Egypt.",
+          "phone": "+201065833338",
+          "email": "hello@perfumers.eg"
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c6a36c", // Champagne Gold
+                        "background-light": "#f8f7f6", // Soft Ivory
+                        "background-dark": "#1e1a15", // Deep Charcoal
+                        "charcoal": "#2d2d2d",
+                    },
+                    fontFamily: {
+                        "display": ["Cormorant Garamond", "serif"],
+                        "ui": ["Montserrat", "sans-serif"],
+                        "sans": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+        .font-montserrat { font-family: 'Montserrat', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-charcoal antialiased">
+<!-- Mobile Screen Wrapper -->
+<div class="relative flex h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-hidden border-x border-primary/10">
+<!-- Background Page Content (Simulated) -->
+<div class="flex-1 opacity-40 p-6">
+<header class="flex justify-between items-center mb-10">
+<span class="material-symbols-outlined">menu</span><img src="https://lh3.googleusercontent.com/aida/ADBb0ugbcgl-tH8zmhgBtXoY8vLidTRRJVVmTTJry0YVH6YV6Dls6xFOeczyVD2npuThgTbQStjx5A-QwQt5SkAE1IIGrDnEK2s-C1gV1F0rJ6C0MjwiQ3xCihYqyDcmUADI28xSw1rXrc3DWjJGO6c0QaWfVwoMCS9F-qZjpBu_z-0TD9-j7G3tnrz7TDkeMRxEPey0SPdASjjrTypm4IhZjFdQ0FKq7aywPPbHkWEfK8N6e3bab8VV5WO9s9ygNRcN1y3TV6U1uyRc" alt="Perfumer Logo" class="h-[56px] w-auto object-contain mx-auto">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</header>
+<div class="space-y-6">
+<div class="h-64 w-full bg-primary/10 rounded-lg"></div>
+<div class="h-4 w-3/4 bg-primary/20"></div>
+<div class="h-4 w-1/2 bg-primary/20"></div>
+</div>
+</div>
+<!-- Bottom Sheet Cart Drawer Overlay -->
+<div class="absolute inset-0 bg-black/40 z-10 flex flex-col justify-end">
+<!-- The Drawer Content -->
+<div class="flex flex-col bg-background-light dark:bg-background-dark max-h-[90%] rounded-t-xl shadow-2xl">
+<!-- BottomSheetHandle -->
+<button class="flex h-6 w-full items-center justify-center py-2">
+<div class="h-1 w-12 rounded-full bg-primary/30"></div>
+</button>
+<!-- Header -->
+<div class="px-6 pt-2 pb-4 flex justify-between items-center border-b border-primary/10">
+<h2 class="font-display text-2xl font-semibold text-charcoal dark:text-slate-100">Your Fragrance Wardrobe</h2>
+<span class="material-symbols-outlined text-charcoal/50 text-xl">close</span>
+</div>
+<!-- Cart Items Scroll Area -->
+<div class="flex-1 overflow-y-auto px-6 py-4 space-y-6">
+<!-- Item 1 -->
+<div class="flex gap-4">
+<div class="shrink-0">
+<img class="size-24 object-cover rounded bg-white border border-primary/10" data-alt="Minimalist glass perfume bottle with gold cap" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQVvaZQgZHvWgpxblvj7r2R9Sw01384e4jfcGZRfi8bnnKM3TJsB6V7s42wBx3zxwdho0opCePJ6pVXLeJLWRvljXhOczthwMgtWuxYeFaJFUZYPvfP6Ok39G0fR2Po8_EaPX_qAIUVjs479K37sD5v9wsKCQrF-DaX_hNTj7DmVhiri6ul6OLSNOaYubkAGrrG_MRrxFAuGtOIJKsmA6jxD4JZuquqhdCDMYVJq7Hbt3jRUnxFfar2N-3eMw5DsqKovq-O61TuJE">
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-display text-xl leading-tight font-medium italic">L'Hiver Éternel</h3>
+<button class="text-charcoal/40 hover:text-charcoal">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<p class="font-montserrat text-[11px] uppercase tracking-widest text-primary font-semibold mt-1">Eau de Parfum / 50ml</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center gap-4 bg-primary/5 px-3 py-1 rounded-full border border-primary/10">
+<button class="font-montserrat text-lg text-primary">-</button>
+<span class="font-montserrat text-xs font-medium w-4 text-center">1</span>
+<button class="font-montserrat text-lg text-primary">+</button>
+</div>
+<p class="font-montserrat text-sm font-semibold tracking-tight text-charcoal">$185.00</p>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4">
+<div class="shrink-0">
+<img class="size-24 object-cover rounded bg-white border border-primary/10" data-alt="Amber glass fragrance bottle on stone surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7aHJwhY_Iw4726ebTVkn3C2-iWoiYRB2xYf-ifSNrN3G_DOUd7hwUJNZzfMZDrs9-UDdNkDgq3-8lYLDeZ-8yr4uGTNBs4WjmoDvzpez2pqVDR36SCwI8g1Ye1ciL5as2fZJyJYqHR7jgsUVIgb2i4TTtR7m36Qc1qtyPNzXs0BOBdawWm2eKbUVBJs4PRlWE-I-wcEX__yaQ-3mrF3EJcY2xXmULO-I5nsO6w5ZPx34MG2TymV3wYFY9NSkyO2oXflxo_kYOK7w">
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-display text-xl leading-tight font-medium italic">Nuit de Soie</h3>
+<button class="text-charcoal/40 hover:text-charcoal">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<p class="font-montserrat text-[11px] uppercase tracking-widest text-primary font-semibold mt-1">Scented Candle / 220g</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center gap-4 bg-primary/5 px-3 py-1 rounded-full border border-primary/10">
+<button class="font-montserrat text-lg text-primary">-</button>
+<span class="font-montserrat text-xs font-medium w-4 text-center">1</span>
+<button class="font-montserrat text-lg text-primary">+</button>
+</div>
+<p class="font-montserrat text-sm font-semibold tracking-tight text-charcoal">$85.00</p>
+</div>
+</div>
+</div>
+<!-- Cross Sell Area -->
+<div class="mt-8 pt-6 border-t border-primary/10">
+<p class="font-display italic text-lg mb-4 text-charcoal/70">Complete the ritual...</p>
+<div class="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+<div class="flex flex-col min-w-[140px] bg-white p-3 rounded border border-primary/5">
+<img class="w-full aspect-square object-cover mb-2 rounded-sm" data-alt="Small travel size perfume vial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQnWzsn69daYMMrLgAwejO1vD5MHiW_Bl9inzcoUCj5SdWT3u8KFyV6Bl7z5IEAwkzU0uthL-tvMvC4fZVQTib4N9puPBvA6nMncw2rDV2JAeG3CWtlIlfLwlLUuryR-8kD3iQpWl3R3gD33xYu-uHT0EOhssePPcfT_GUpqu4Z2ihHy2KhYa1Avw0quMCcbnUjF4bGn_mUqDX0DjZhFHmyRNjdqDj09L7UO_bWjHt5htTTYGZUuvAutpgi-sNXVKvBkHH8HkO_Yk">
+<p class="font-display text-sm font-medium">Discovery Set</p>
+<button class="mt-2 font-montserrat text-[10px] font-bold text-primary uppercase tracking-tighter border-b border-primary w-fit">+ Add $45</button>
+</div>
+<div class="flex flex-col min-w-[140px] bg-white p-3 rounded border border-primary/5">
+<img class="w-full aspect-square object-cover mb-2 rounded-sm" data-alt="Luxurious hand cream tube" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7X0nYo655oVAdHC_wTIIt_QMsx8tyWOpBMUQFWsZJZzV2ZSEUUtqfdr6RAXCa98qWwQ-FS74jfinR62APP8huLVgowlGsdax1sdjzeAAIOgPaMZiAK6tBi-UGceGVC8TrQFluAfCC_pVUz_4WUkpCWbK-1QU1CTdNKHk70nFmtjH7TXHb9caKAgMSUnRzKdwm7WYo8beVU3wHxaaBuvdL8SN2KFqK3uBHNRt0M1vHQta9z38RHkLTRhSPfZ28eaEbPGLF-WxuU8k">
+<p class="font-display text-sm font-medium">Velvet Balm</p>
+<button class="mt-2 font-montserrat text-[10px] font-bold text-primary uppercase tracking-tighter border-b border-primary w-fit">+ Add $38</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Checkout Section -->
+<div class="px-6 py-6 bg-white border-t border-primary/10 space-y-4">
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-montserrat text-[10px] uppercase tracking-widest text-charcoal/50">Estimated Total</span>
+<span class="font-display italic text-xs text-primary">Shipping &amp; taxes calculated at checkout</span>
+</div>
+<span class="font-montserrat text-xl font-semibold text-charcoal">$270.00</span>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-montserrat text-sm font-bold py-4 uppercase tracking-[0.2em] shadow-lg transition-colors flex items-center justify-center gap-2">
+                        Complete Purchase
+                        <span class="material-symbols-outlined text-sm">trending_flat</span>
+</button>
+<p class="text-center font-display italic text-sm text-charcoal/60 pt-2">
+                        "Fragrance is the soul of memory."
+                    </p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</body></html>

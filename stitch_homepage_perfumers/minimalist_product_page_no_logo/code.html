@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c6a36c", // Champagne Gold
+                        "background-light": "#f8f7f6", // Soft Ivory
+                        "background-dark": "#1e1a15", // Deep Charcoal
+                        "charcoal": "#181511",
+                    },
+                    fontFamily: {
+                        "display": ["Montserrat", "sans-serif"],
+                        "serif": ["Cormorant Garamond", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem", // 2px as requested
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f7f6;
+            color: #181511;
+        }
+        .serif-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-charcoal dark:text-slate-100 antialiased">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center justify-between p-4"><div class="flex justify-center w-full">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcJ49xujEQGrjwYPkWcSviEENLb5FveiWok2O323Q9nphm2t1ZgUtE2cFk-Yui-yPMcYIBcorvtnEyD6KjrqitEjOMcd4fe8SRcl-5qM0xGEfRUQ8HuzoSYO7JPwhyWnWn3zWd9RiYSZ-4DSF-1qiPKCzCh-cEilkZgcXQpdrH2W8Ncew1o2aSAOmfI5_fYtCyRJlCjXt6w7_G74QN7pMGvfN8ihJv7kcTCpySohpTVPi0qvfgbU4L7cVgzfQ287EifCcU9GB9z24" alt="Perfumer Logo" class="h-[56px] w-auto object-contain">
+</div></div>
+</header>
+<main class="pb-32">
+<!-- Swipe Gallery -->
+<div class="relative w-full aspect-[4/5] bg-neutral-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Elegant glass perfume bottle on matte stone surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgrgnJz8CWMbYJpJXrc0KTwJSZEfv-HhvWXzCOIEUNh3cUJn43bMS7leKdhFzp3Yng-MPL25YaYYHjX1Bad4ePC71V-ePm_oGHdtrRjaUM-Cwpj6D4PkDshltskUsg39B8tXSnaZyRaIU6IjAyGLxIzqJgFrD4PVrXsse9Qsx4VbFtzi3vUVu9X9WU62n4axBSgMgcOknB2Uv0StB7aWjzyk4ArDKtFkN4telaeSo5N2n6v0JMp70LOeGZRMGrLhnlBDgsMcWjEiQ">
+<div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+<div class="h-1 w-8 bg-primary"></div>
+<div class="h-1 w-8 bg-white/40"></div>
+<div class="h-1 w-8 bg-white/40"></div>
+</div>
+</div>
+<!-- Product Info Section -->
+<section class="px-5 pt-8">
+<p class="text-primary font-medium text-xs tracking-widest uppercase mb-2">Signature Collection</p>
+<h1 class="serif-title text-4xl text-charcoal dark:text-slate-100 leading-tight mb-2 italic">Cormorant Garamond</h1>
+<div class="flex items-baseline gap-3 mb-6">
+<span class="text-2xl font-semibold">4,200 EGP</span>
+<span class="text-charcoal/50 line-through text-sm">5,100 EGP</span>
+</div>
+<!-- Size Selector -->
+<div class="mb-8">
+<label class="text-[10px] uppercase tracking-widest font-bold mb-3 block text-charcoal/60 dark:text-slate-400">Select Volume</label>
+<div class="flex gap-3">
+<button class="flex-1 py-3 border-2 border-primary text-charcoal dark:text-slate-100 text-xs font-bold rounded">50ML</button>
+<button class="flex-1 py-3 border border-charcoal/10 text-charcoal/50 dark:text-slate-400 text-xs font-bold rounded">100ML</button>
+</div>
+</div>
+<!-- Quantity & Actions -->
+<div class="space-y-4">
+<div class="flex items-center border border-charcoal/10 rounded overflow-hidden w-32 h-12">
+<button class="flex-1 flex justify-center items-center h-full"><span class="material-symbols-outlined text-sm">remove</span></button>
+<span class="flex-1 text-center font-medium">1</span>
+<button class="flex-1 flex justify-center items-center h-full"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+<button class="w-full bg-primary text-white py-4 font-bold tracking-widest uppercase text-sm rounded shadow-lg shadow-primary/20">
+                    Add to Cart
+                </button>
+<button class="w-full bg-charcoal dark:bg-slate-100 text-white dark:text-charcoal py-4 font-bold tracking-widest uppercase text-sm rounded">
+                    Buy It Now
+                </button>
+</div>
+</section>
+<!-- Description & Notes -->
+<section class="px-5 mt-12 space-y-10">
+<div>
+<h3 class="serif-title text-2xl mb-4 italic">The Essence</h3>
+<p class="text-charcoal/80 dark:text-slate-300 leading-relaxed font-light italic serif-title text-lg">
+                    "A poetic whisper of old-world libraries and golden Mediterranean sunsets. This fragrance captures the soul of ink on parchment, balanced by the warmth of sun-drenched cedar."
+                </p>
+</div>
+<div class="grid grid-cols-3 gap-4 py-8 border-y border-charcoal/5 dark:border-slate-800">
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-charcoal/40 mb-1">Family</p>
+<p class="text-sm font-medium">Woody Floral</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-charcoal/40 mb-1">Occasion</p>
+<p class="text-sm font-medium">Evening</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-charcoal/40 mb-1">Sillage</p>
+<p class="text-sm font-medium">Moderate</p>
+</div>
+</div>
+<div>
+<h3 class="text-xs font-bold uppercase tracking-[0.2em] mb-6">Fragrance Notes</h3>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">eco</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold">Top</p>
+<p class="text-sm">Bergamot, Saffron, Black Pepper</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">local_florist</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold">Heart</p>
+<p class="text-sm">Damask Rose, Iris, Leather</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">forest</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold">Base</p>
+<p class="text-sm">Agarwood (Oud), Amber, Sandalwood</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Accordions -->
+<section class="mt-12 px-5">
+<div class="border-t border-charcoal/10 dark:border-slate-800">
+<div class="flex justify-between items-center py-6">
+<span class="text-xs font-bold uppercase tracking-widest">Delivery &amp; Shipping</span>
+<span class="material-symbols-outlined text-charcoal/40">expand_more</span>
+</div>
+<div class="flex justify-between items-center py-6 border-t border-charcoal/10 dark:border-slate-800">
+<span class="text-xs font-bold uppercase tracking-widest">Returns Policy</span>
+<span class="material-symbols-outlined text-charcoal/40">expand_more</span>
+</div>
+<div class="flex justify-between items-center py-6 border-t border-charcoal/10 dark:border-slate-800">
+<span class="text-xs font-bold uppercase tracking-widest">The Perfumer's Art</span>
+<span class="material-symbols-outlined text-charcoal/40">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Related Products -->
+<section class="mt-16 px-5">
+<h3 class="serif-title text-2xl italic mb-6">Completing the Ritual</h3>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+<div class="min-w-[200px] group">
+<div class="aspect-square bg-neutral-100 rounded mb-3 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Small scented candle with gold lid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfJdRI0VGWFUHjIbyW7pk009XCuwr-UaLzCIdPGSm7IvWWewfla5oHhrVf0o6cKRgE6LzBbbvwHtwgHgbEkogyUdZCbgezjFzjmM1zCu7ybRj-J_-A1dB83yRsoVPNtaPxn3TIkuju6WanJlDpFItu9a9vhHu7K1ASv4ePVosdWBEtXhe6mteTnshdjNEObDM-tOZ38DXNWAnIHIiizac5dw1LqzvVuzF9TAr1c_MGtT2QBp9V4MiQZ1fsmDj7QV546uAQnrzYn90">
+</div>
+<p class="text-[10px] uppercase tracking-widest text-charcoal/50">Cormorant Garamond</p>
+<h4 class="font-medium text-sm">Artisanal Candle</h4>
+<p class="text-sm font-semibold mt-1">1,200 EGP</p>
+</div>
+<div class="min-w-[200px] group">
+<div class="aspect-square bg-neutral-100 rounded mb-3 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Luxury body oil in amber bottle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv5iNEkYnbNmoqtT4tgZANOcxdq477W0d8PYF6NMOyeOcFkyZnmI64w1TqYX_b1IujR2jefILYLObSc3yLuxBFFOyQ8mEwSKOldQ5vSC0nCwI-YZI0HqMAzees8FItCpRGwzIl9aK-73oOTz4w9WGJgKs3uSoquihClGIWkmGxUtiERjWGYLJKD4IMHtfhiEj9jzhFLgPwSdwmFteqtWEAcyHt64esTfov7Y2cpkV2KmP-lMkCOtDYctQBEX3DlPCNoL1pY3vmjPA">
+</div>
+<p class="text-[10px] uppercase tracking-widest text-charcoal/50">Discovery Set</p>
+<h4 class="font-medium text-sm">Sample Ritual</h4>
+<p class="text-sm font-semibold mt-1">850 EGP</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Mobile Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-primary/20 p-4 z-[100] flex items-center gap-4 max-w-screen-md mx-auto shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-tighter opacity-50">Total</span>
+<span class="font-bold text-lg">4,200 <small class="font-light text-[10px]">EGP</small></span>
+</div>
+<button class="flex-1 bg-primary text-white py-4 font-bold tracking-widest uppercase text-xs rounded-sm">
+            Add To Bag
+        </button>
+</div>
+
+
+
+
+
+
+</body></html>

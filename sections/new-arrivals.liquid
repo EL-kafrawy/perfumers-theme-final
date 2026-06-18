@@ -1,0 +1,97 @@
+<section class="new-arrivals section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section__header" data-animate>
+      <span class="section__accent">{{ section.settings.accent_text }}</span>
+      <h2 class="section__title">{%- if section.settings.title != blank -%}{{ section.settings.title }}{%- else -%}{{ 'sections.new_arrivals.title' | t }}{%- endif -%}</h2>
+      <p class="section__subtitle">{%- if section.settings.subtitle != blank -%}{{ section.settings.subtitle }}{%- else -%}{{ 'sections.new_arrivals.subtitle' | t }}{%- endif -%}</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="scroll-row new-arrivals__row">
+      {%- if section.settings.collection != blank -%}
+        {%- for product in section.settings.collection.products limit: section.settings.products_limit -%}
+          <div class="new-arrivals__item">
+            {% render 'product-card', product: product, badge: 'new' %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <p class="new-arrivals__empty" style="text-align:center;color:var(--color-text-secondary);font-size:var(--text-sm);padding:var(--space-xl) 0;">Assign a collection in the theme editor to display products here.</p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.view_all_link != blank -%}
+      <div class="text-center mt-xl">
+        <a href="{{ section.settings.view_all_link }}" class="btn btn-secondary btn-small">{{ 'actions.view_all' | t }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .new-arrivals__item {
+    flex: 0 0 260px;
+    max-width: 260px;
+  }
+  @media (min-width: 768px) {
+    .new-arrivals__row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+      overflow: visible;
+    }
+    .new-arrivals__item {
+      flex: none;
+      max-width: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "New Arrivals",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent text",
+      "default": "Just In"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Just landed"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View all link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrivals"
+    }
+  ]
+}
+{% endschema %}

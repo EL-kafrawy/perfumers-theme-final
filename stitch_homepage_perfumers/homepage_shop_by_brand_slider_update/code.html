@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C8A46A", // Champagne Gold
+                        "soft-ivory": "#F5F1EB",
+                        "pearl-beige": "#E7DDD4",
+                        "background-light": "#F5F1EB",
+                        "background-dark": "#1E1A15",
+                        "charcoal": "#2D2926",
+                    },
+                    fontFamily: {
+                        "display": ["Montserrat", "sans-serif"],
+                        "serif": ["Cormorant Garamond", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "2px",
+                        "xl": "4px",
+                        "full": "9999px"
+                    },
+                    animation: {
+                        "marquee": "marquee 30s linear infinite",
+                    },
+                    keyframes: {
+                        marquee: {
+                            "0%": { transform: "translateX(0)" },
+                            "100%": { transform: "translateX(-50%)" },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-commerce { font-family: 'Montserrat', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-[#F5F1EB] text-[#2E2A33] font-display antialiased">
+<!-- Announcement Bar -->
+<div class="bg-primary text-soft-ivory py-1.5 px-4 text-center text-[9px] tracking-[0.25em] uppercase font-medium">Complimentary shipping on orders over $150</div>
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-soft-ivory/90 backdrop-blur-md border-b border-primary/20">
+<div class="flex items-center justify-between px-6 h-[70px] max-w-7xl mx-auto w-full relative"><div class="flex-1 flex items-center gap-6"><button class="p-1"><span class="material-symbols-outlined text-charcoal dark:text-slate-100 text-[22px]">menu</span></button><button class="p-1"><span class="material-symbols-outlined text-charcoal dark:text-slate-100 text-[22px]">search</span></button></div><div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"><h1 class="text-2xl font-serif tracking-[0.2em] text-charcoal leading-none" style="height: 56px; display: flex; align-items: center;">PERFUMERS</h1></div><div class="flex-1 flex items-center gap-6 justify-end"><button class="p-1 relative"><span class="material-symbols-outlined text-charcoal dark:text-slate-100 text-[22px]">shopping_bag</span><span class="absolute top-0 right-0 bg-primary text-[8px] text-white rounded-full size-4 flex items-center justify-center">0</span></button></div></div>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-[70vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden pt-4 bg-[#F5F1EB]" style="background-color: #F5F1EB;">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-70 mix-blend-multiply" data-alt="Luxury perfume bottle detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8dr8CVj7aHSW5KVE0zwDxLutynyhn8OvR1a66iPcCxDOufyXQz5X7T4A6kjyrK2js-ktmkJ_0Q8tCL_iVItDA2dG7olE9a8GWL4fg8S_j0n9jgaOB7tCNlm_vCEpS1OGfAzNrKLURZbghqPWKm6ay3r3qbywUuJVKF6gJr0GCR_SB0u5ogvWGzaYbciqWwMhH7j3KjY6DP9sluWUc5Dr1PJLzeNClsHX-Wu7ep3Ob8TGnKtClbwiZoUX7zKsYgiVrFbiVmR3zHwg"/>
+<div class="absolute inset-0 bg-gradient-to-b from-soft-ivory/20 via-soft-ivory/40 to-soft-ivory"></div>
+</div>
+<div class="relative z-10 max-w-xl flex flex-col items-center">
+<span class="text-[9px] uppercase tracking-[0.5em] text-primary mb-4 block font-semibold font-display">The Resale Collective</span>
+<h2 class="mb-6 italic leading-[1.1] tracking-tight" style="font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: #2E2A33; line-height: 1.2; font-style: normal;">Every scent has a story <br/> to tell twice.</h2>
+<p class="mb-8 leading-relaxed max-w-[400px] mx-auto" style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 400; color: #9B8778;">A curated archive of pre-loved luxury fragrances for the discerning nose.</p>
+<a class="inline-block uppercase tracking-[0.2em] transition-all hover:bg-charcoal/90" href="#" style="background-color: #C8A46A; color: #F5F1EB; font-family: 'Montserrat', sans-serif; font-weight: 600; border-radius: 2px; padding: 16px 32px; font-size: 12px;">Explore the Archive</a>
+</div>
+</section>
+<!-- Shop by Brand (Marquee) -->
+<section class="py-24 bg-soft-ivory overflow-hidden">
+<div class="px-6 mb-12 text-center">
+<h3 class="font-serif text-4xl italic tracking-tight" style="color: #2E2A33;">Shop by Brand</h3>
+</div>
+<div class="relative flex">
+<div class="flex gap-8 animate-marquee whitespace-nowrap">
+<!-- First set of logos -->
+<div class="flex items-center gap-8 px-4">
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEVWioaqmpeHIzhkFg8Akz671H0D9nl_P8PWMioLJfw2ECTvxRXTYS1k6ZOq0MFqbcD9YIfy3Vqfzi_fv4GEJgC7YKVgWSHeztxUI1PIOnagK_htlS1Z7E_n_MU4zLkSKzl87A6TGI50KxPsJ43CCTxnJlWXAgJJAG0HHmD2nhPid5bj3g16TT0pA63DoDPldbU1O2fRCHTPBr_DA9b3mDGZGn8iPYuM8XP4CXHzyEHjP2bPqprAV8G3RFedVACGUeWEF49jJzV10"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NlE_CNIsUrFTJXANzvHwJw8gXBywNR4Hj1x-OlvxJZLWxEKl51TL07isP7zAm57F5aLkkvBTOnvAnoOblcW1If978UoeOiCkGGPKURURkEVPElZc34yQDO6UmP471m8-FKo0O_4UTlvAbhfTZGXtZUmlbMiHSCABv4mcj4QBsiwRpHUi00P329YQBcPRrjPe0voyFw7puOhjvlMjC3iVdU8J031PW-djmj9np6kLWMuqX5iKZToKA6VO5daOZzF8xCmsutvQXyE"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJZFHtCewfzPGqb5KnLH0mWqkU9iZOCyOt8KwUM9NoAlR4pulvbSPRRFikuEQixYXhRorgw2ppf2SaCpfAP1kMb6eG56XDo9hsDgITjMO87U_z0arEf4ez6DyF5_YMkIc5QslT2N09Ut7TuYJZIsmJMJY7txgD6ZCr-ffezKPpB4icgu0FCqnpmObJzs3M43C1tLiN-0HVKGaklk5Mq4cAhS7QhFtQjm50BFRVXswijreVS0oQmrXAPMZ9SM0veisgw4aS8DKz48o"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz91dfLn1UEsHMfu3kCAbZmguiSAzhrRABbQva6uwnVPFvdwzJrG3TU_SzOcx2u9OpCXNHrrIlFprL8_cR5pF4CHFy9p0anIzslYmuPiTEeqkgmn0HfnxlQVXGYfrbPGaR5GFDRDzJO1WEBHkCPV32moLIOSTWvSYYe2ueiCLojSyRMrnFEiRDKuPauaELF65e-QAQLR6AtwMbSVznkthwEY4yxil1SMfMyi2PjhW8j7uoyooffBBE647E_93PcFCOXv3fRDtkq4I"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPMvV94urPUyvNLth03MA6ibNHdZycm-NI3_X-PnicFj3XgGxTYzJdlYV8jAuiPBt_FXEKoDGRJpWCUN9HWSZ8M7i5vbtyq2pirbJeEv_nv3jF3zVI-gs61M1yCO5Ckp_oYtX1_Ukuttc8BWNPPdqMMb6f7y7zGJAL0dgfKOePtGeElOSiWCLNrwsVTmBoH4Z2cw7n7w8O77SoW8v-znHf3LdRpAxxZl0WGMyRMPXWQT8aH6Zw-F1Ky0v7KacXMga4sYVvQfrBYRQ"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh82id_xRp5f31PEvv06Xzvh510FDQzZqV-22YlulDwtMNS6K1pf69jb89MsSXLH6kVzVSh8gm4YAWxDerJ9tkZ0JW8oBROYrxlpY6Ka2PKjSb0Lot7E7wrfJ0WoInP4IzPoA_75KU9frsxnsE3C-N5IeuNWhfsEhOxpd7a89OQuz98wFuEA5z4K6ysrwTmMdU3LL96KJsW7M_WvsfirrT0-xUhkOpJui0lyzyElNFM-aZ9VlPvVcqp7Y7LAgvS2eHC5SajfRVWsA"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NlE_CNIsUrFTJXANzvHwJw8gXBywNR4Hj1x-OlvxJZLWxEKl51TL07isP7zAm57F5aLkkvBTOnvAnoOblcW1If978UoeOiCkGGPKURURkEVPElZc34yQDO6UmP471m8-FKo0O_4UTlvAbhfTZGXtZUmlbMiHSCABv4mcj4QBsiwRpHUi00P329YQBcPRrjPe0voyFw7puOhjvlMjC3iVdU8J031PW-djmj9np6kLWMuqX5iKZToKA6VO5daOZzF8xCmsutvQXyE"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI9J9sqZttxOp-jTELyuuKWmvMu8A-OOpaAJNrRG3uLutli01ypAlJgfvjfpj6oxQnROoHsO5UhGYz6olAbSvfvrj5OYdPTr7eWpJaVvqTiHIh045y0kSHE5O1MbRCxmK9tMpKtcgUANHfQGc_CZrP_kdbSo38TqjQ3goCRsy0r-Mw0KRLk2iioC6KQvVla3qaCG-7nKZl2eXvttb8OtJb4AAKJ8BKEK5Hsd07lTBeVpWujiD3O4SkbNHeXGXEnLuzB_moRhta1mY"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu8UvM1mjqmFRzol_cJ02BDAshxfopPYvLTJC2WbA6f2jfIaRIv9JcPpZ16vsqw7jdWFuNIX3E7ijuhqFBtaQcg9jHA_mfhR23GZFYdIQJ0t86DMGJaIGQML6UF9BbPPIuJ6xVrsuVhQbzjm9hJkbS8pEY5G2-xLCSSX4RE2Yc8qX6195WO5ZmSg_Iz7D-s06qP5z8ByXYeahKrYdEZchF8oCSde4_BvMPcmrAjDEtt28XtZAPQW7hLYSqsNxTwsFFUcHn5Zc9Wco"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxCxqL3UId9kd1zB4u_qs61h6JpzxGRazVKOFCkEWbjEoLyCEodmqcEv5bphfVfGJwv-q7nDR-K9kkcqr1SSAfCbX65p8CLc1FYtGiDvsZdMRK_PnR9NCQi6cvs8zSOFpUsOCMB-nU6eyvDzmKqA1g59IAzGt-AQHdJZfnIhYiZR__0hFpzNxkpvfeNUnnzxqphmyEIS7tPOQYfdaiQebItdAfarjmH8iBJL9XxBqHQItSOFVmSPb4JdtBaOcMWCfFS2WLRIvKeI0"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH20VQP7ZSd-s4fyVi9HakElRi6QbY5NDJkCasZ3Wcfx4iu_kG8NmQI9jzkz5GbLfXCA7EEen6KiFLEE9GNZvRVCQ9K_4rV6oClWH2ejNvTku3f0D_niOfpdIDPtNRoXxJQpnPMS9BNjwMRWtMUBb_1IwN-cdW5GLqwwmMez-pMxy8IoFhkHNfBXbgYHvi2ACnsGjaxjq5B9XgL4UpKNnRFtZxDiPe6GXGITqGQuLGwEqyrYHW3HUmRcD8tCwJT8AJPdAjwrhO5CA"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhRXZh5QXSq9w_lNJhc7NlF14Nsv7reKtP4fd2ueOHrPzox4JmpkKCtyUwHuBgPiy6A4ZAsaRx-GgUkFcDjMTjEIAFKNQy8kLfC6LvfN6-O9UIOO_LfVEwZGGIQI67X2EG1lN4vwFG_LERDxMdLSqRMpZzqRrf9BecNNcX9mxzMwotCczoc-7OpE1LtMJD6qs8vdeN7pWLQ-gEzt3PuZ2j5_X4rCajX_5RrX4EO-CWv_tmuaCge8G5vhWkvjklcr_HhmPLyOSa5ZU"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiKVq31qcJ3Hx2BLqW6sOrcQ_0j0LOYcxLnMtmnPNqLzWo0Ftyfdog02ssEjLSTRLAk4RCMDfMvRD7nrn6D4ONIyo1-ANvsp2PfdY22p4z59IFqXeX-uFoDKW9wKMv4lscOCsXUwEF56bNFxw4CxCfaoDB0YhH776zqIrGQHgIjSDBaRon6Bc1BLvDpOPOL9nFC1lt5I-80AB7vD7iZHl8k1WCigGYciN-Nh7YY5DE7BTrNcysXQmAflYPX8tuaRtQAE3i-rITaFo"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5Aha-t3HhZuz6W7nMEy6QwAx3O9hMfcjetC9A9Qib7m-3DqXLvT2xe_l_73RBXq0fqv-HibRldH9uDAk38GUlrI7nEcLjCa_59t0ZkoavW2cPeVxKULA2KRiMgKvEV5GhnJdXkCsXSmQiNLNbGRvS8JcxKzUYmpbfht1MazKdCC-3308cHrdHKVAl7W31f9R1hiTc2JaKQXkLoWvMe2LE9JssznGqfaCaal5zL8ttBFEGKqAaDtIbgZvfgyP-YQyS2EdZhNejFnk"/>
+</div>
+</div>
+<!-- Duplicate for seamless loop -->
+<div class="flex items-center gap-8 px-4">
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEVWioaqmpeHIzhkFg8Akz671H0D9nl_P8PWMioLJfw2ECTvxRXTYS1k6ZOq0MFqbcD9YIfy3Vqfzi_fv4GEJgC7YKVgWSHeztxUI1PIOnagK_htlS1Z7E_n_MU4zLkSKzl87A6TGI50KxPsJ43CCTxnJlWXAgJJAG0HHmD2nhPid5bj3g16TT0pA63DoDPldbU1O2fRCHTPBr_DA9b3mDGZGn8iPYuM8XP4CXHzyEHjP2bPqprAV8G3RFedVACGUeWEF49jJzV10"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NlE_CNIsUrFTJXANzvHwJw8gXBywNR4Hj1x-OlvxJZLWxEKl51TL07isP7zAm57F5aLkkvBTOnvAnoOblcW1If978UoeOiCkGGPKURURkEVPElZc34yQDO6UmP471m8-FKo0O_4UTlvAbhfTZGXtZUmlbMiHSCABv4mcj4QBsiwRpHUi00P329YQBcPRrjPe0voyFw7puOhjvlMjC3iVdU8J031PW-djmj9np6kLWMuqX5iKZToKA6VO5daOZzF8xCmsutvQXyE"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJZFHtCewfzPGqb5KnLH0mWqkU9iZOCyOt8KwUM9NoAlR4pulvbSPRRFikuEQixYXhRorgw2ppf2SaCpfAP1kMb6eG56XDo9hsDgITjMO87U_z0arEf4ez6DyF5_YMkIc5QslT2N09Ut7TuYJZIsmJMJY7txgD6ZCr-ffezKPpB4icgu0FCqnpmObJzs3M43C1tLiN-0HVKGaklk5Mq4cAhS7QhFtQjm50BFRVXswijreVS0oQmrXAPMZ9SM0veisgw4aS8DKz48o"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz91dfLn1UEsHMfu3kCAbZmguiSAzhrRABbQva6uwnVPFvdwzJrG3TU_SzOcx2u9OpCXNHrrIlFprL8_cR5pF4CHFy9p0anIzslYmuPiTEeqkgmn0HfnxlQVXGYfrbPGaR5GFDRDzJO1WEBHkCPV32moLIOSTWvSYYe2ueiCLojSyRMrnFEiRDKuPauaELF65e-QAQLR6AtwMbSVznkthwEY4yxil1SMfMyi2PjhW8j7uoyooffBBE647E_93PcFCOXv3fRDtkq4I"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPMvV94urPUyvNLth03MA6ibNHdZycm-NI3_X-PnicFj3XgGxTYzJdlYV8jAuiPBt_FXEKoDGRJpWCUN9HWSZ8M7i5vbtyq2pirbJeEv_nv3jF3zVI-gs61M1yCO5Ckp_oYtX1_Ukuttc8BWNPPdqMMb6f7y7zGJAL0dgfKOePtGeElOSiWCLNrwsVTmBoH4Z2cw7n7w8O77SoW8v-znHf3LdRpAxxZl0WGMyRMPXWQT8aH6Zw-F1Ky0v7KacXMga4sYVvQfrBYRQ"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh82id_xRp5f31PEvv06Xzvh510FDQzZqV-22YlulDwtMNS6K1pf69jb89MsSXLH6kVzVSh8gm4YAWxDerJ9tkZ0JW8oBROYrxlpY6Ka2PKjSb0Lot7E7wrfJ0WoInP4IzPoA_75KU9frsxnsE3C-N5IeuNWhfsEhOxpd7a89OQuz98wFuEA5z4K6ysrwTmMdU3LL96KJsW7M_WvsfirrT0-xUhkOpJui0lyzyElNFM-aZ9VlPvVcqp7Y7LAgvS2eHC5SajfRVWsA"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NlE_CNIsUrFTJXANzvHwJw8gXBywNR4Hj1x-OlvxJZLWxEKl51TL07isP7zAm57F5aLkkvBTOnvAnoOblcW1If978UoeOiCkGGPKURURkEVPElZc34yQDO6UmP471m8-FKo0O_4UTlvAbhfTZGXtZUmlbMiHSCABv4mcj4QBsiwRpHUi00P329YQBcPRrjPe0voyFw7puOhjvlMjC3iVdU8J031PW-djmj9np6kLWMuqX5iKZToKA6VO5daOZzF8xCmsutvQXyE"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI9J9sqZttxOp-jTELyuuKWmvMu8A-OOpaAJNrRG3uLutli01ypAlJgfvjfpj6oxQnROoHsO5UhGYz6olAbSvfvrj5OYdPTr7eWpJaVvqTiHIh045y0kSHE5O1MbRCxmK9tMpKtcgUANHfQGc_CZrP_kdbSo38TqjQ3goCRsy0r-Mw0KRLk2iioC6KQvVla3qaCG-7nKZl2eXvttb8OtJb4AAKJ8BKEK5Hsd07lTBeVpWujiD3O4SkbNHeXGXEnLuzB_moRhta1mY"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu8UvM1mjqmFRzol_cJ02BDAshxfopPYvLTJC2WbA6f2jfIaRIv9JcPpZ16vsqw7jdWFuNIX3E7ijuhqFBtaQcg9jHA_mfhR23GZFYdIQJ0t86DMGJaIGQML6UF9BbPPIuJ6xVrsuVhQbzjm9hJkbS8pEY5G2-xLCSSX4RE2Yc8qX6195WO5ZmSg_Iz7D-s06qP5z8ByXYeahKrYdEZchF8oCSde4_BvMPcmrAjDEtt28XtZAPQW7hLYSqsNxTwsFFUcHn5Zc9Wco"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxCxqL3UId9kd1zB4u_qs61h6JpzxGRazVKOFCkEWbjEoLyCEodmqcEv5bphfVfGJwv-q7nDR-K9kkcqr1SSAfCbX65p8CLc1FYtGiDvsZdMRK_PnR9NCQi6cvs8zSOFpUsOCMB-nU6eyvDzmKqA1g59IAzGt-AQHdJZfnIhYiZR__0hFpzNxkpvfeNUnnzxqphmyEIS7tPOQYfdaiQebItdAfarjmH8iBJL9XxBqHQItSOFVmSPb4JdtBaOcMWCfFS2WLRIvKeI0"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH20VQP7ZSd-s4fyVi9HakElRi6QbY5NDJkCasZ3Wcfx4iu_kG8NmQI9jzkz5GbLfXCA7EEen6KiFLEE9GNZvRVCQ9K_4rV6oClWH2ejNvTku3f0D_niOfpdIDPtNRoXxJQpnPMS9BNjwMRWtMUBb_1IwN-cdW5GLqwwmMez-pMxy8IoFhkHNfBXbgYHvi2ACnsGjaxjq5B9XgL4UpKNnRFtZxDiPe6GXGITqGQuLGwEqyrYHW3HUmRcD8tCwJT8AJPdAjwrhO5CA"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhRXZh5QXSq9w_lNJhc7NlF14Nsv7reKtP4fd2ueOHrPzox4JmpkKCtyUwHuBgPiy6A4ZAsaRx-GgUkFcDjMTjEIAFKNQy8kLfC6LvfN6-O9UIOO_LfVEwZGGIQI67X2EG1lN4vwFG_LERDxMdLSqRMpZzqRrf9BecNNcX9mxzMwotCczoc-7OpE1LtMJD6qs8vdeN7pWLQ-gEzt3PuZ2j5_X4rCajX_5RrX4EO-CWv_tmuaCge8G5vhWkvjklcr_HhmPLyOSa5ZU"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiKVq31qcJ3Hx2BLqW6sOrcQ_0j0LOYcxLnMtmnPNqLzWo0Ftyfdog02ssEjLSTRLAk4RCMDfMvRD7nrn6D4ONIyo1-ANvsp2PfdY22p4z59IFqXeX-uFoDKW9wKMv4lscOCsXUwEF56bNFxw4CxCfaoDB0YhH776zqIrGQHgIjSDBaRon6Bc1BLvDpOPOL9nFC1lt5I-80AB7vD7iZHl8k1WCigGYciN-Nh7YY5DE7BTrNcysXQmAflYPX8tuaRtQAE3i-rITaFo"/>
+</div>
+<div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-4 border border-primary/5 shrink-0 overflow-hidden shadow-sm">
+<img alt="Brand Logo" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5Aha-t3HhZuz6W7nMEy6QwAx3O9hMfcjetC9A9Qib7m-3DqXLvT2xe_l_73RBXq0fqv-HibRldH9uDAk38GUlrI7nEcLjCa_59t0ZkoavW2cPeVxKULA2KRiMgKvEV5GhnJdXkCsXSmQiNLNbGRvS8JcxKzUYmpbfht1MazKdCC-3308cHrdHKVAl7W31f9R1hiTc2JaKQXkLoWvMe2LE9JssznGqfaCaal5zL8ttBFEGKqAaDtIbgZvfgyP-YQyS2EdZhNejFnk"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Collection (Grid) -->
+<section class="py-24 px-6 bg-pearl-beige/30">
+<h3 class="font-serif text-3xl text-center mb-12 font-serif italic text-4xl mb-16 tracking-tight" style="color: #2E2A33;">Treasured Finds</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 gap-y-10">
+<!-- Product 1 -->
+<div class="group cursor-pointer" style="background-color: #E7DDD4; padding: 12px; border-radius: 2px;">
+<div class="aspect-[4/5] bg-[#ece9e6] mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="Clear perfume bottle with gold cap" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKuuBItBe64Nsw1IwXOHp8mu2_cebm8SAtYTRzDpHdPJYUJBjThOV15_1hF-hj1z57U6lVKPcQegL9uKXYPkrt7NK7PQ1dp8EbU8U9KZHZ5tggEBaPamU6w-Cs7qIwYrm4JeSN3cc5g0z_fH7Oln-h94xKnLNxhV8c3BlqXBZy1MseeLNOuX1ItfcAI8zUABbFj5amLSf_LCcgEjMFq0r2E2peS719QXNqNjD9Nh4WZtDwj0A6rnjhnvBzt8YqH6doM7P5fL0--kE"/>
+<div class="absolute top-2 left-2 bg-white px-2 py-1 text-[8px] uppercase tracking-tighter">95% Full</div>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold mb-1">Byredo</p>
+<h4 class="font-serif text-lg mb-1">The Essence</h4>
+<p class="text-xs text-charcoal/60" style="color: #9B8778;">$145 <span class="line-through ml-2 opacity-50">$196</span></p>
+</div>
+<!-- Product 2 -->
+<div class="group cursor-pointer" style="background-color: #E7DDD4; padding: 12px; border-radius: 2px;">
+<div class="aspect-[4/5] bg-[#ece9e6] mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="Dark amber fragrance bottle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGRec0RkBAqG9u8-han8XUJvQqrzVTq_-D78rSpB_khHujsIRXWwZGDlbJ8b4ZrTHpQyQyR4KjyqevFXZCSr_LvyhnByOreHUrG2USmdTbO053yPG0Jna1QS6NhzKoMvqHUDz8qVvPG8ZnDY7mUl7zmYCAey3qWaSJC6M4jGebqhqIGXV1evuSj02ni_7rQ796RzG89mDXkaTlkAdA5_u8zEHO7WDJJr5J45mct1CQmegmNqF91unxgQmxmlkEPROiICFy6YXi-e4"/>
+<div class="absolute top-2 left-2 bg-white px-2 py-1 text-[8px] uppercase tracking-tighter">New</div>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold mb-1">Aesop</p>
+<h4 class="font-serif text-lg mb-1">Midnight Jasmine</h4>
+<p class="text-xs text-charcoal/60" style="color: #9B8778;">$110 <span class="line-through ml-2 opacity-50">$140</span></p>
+</div>
+<!-- Product 3 -->
+<div class="group cursor-pointer" style="background-color: #E7DDD4; padding: 12px; border-radius: 2px;">
+<div class="aspect-[4/5] bg-[#ece9e6] mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="Classic French perfume bottle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwxSO4NIhz1gWudTejn7KFklVQ5Rf25HyOa_QNW8mnNdXTlZ6cNE2rmM2i_smWdZ3oQZ5C9ip4iy1LE60fi4A-HDPdGTrCt-1oulvN78bMPK7aCvCWk4_aQzeaQfZwaRwwxTbrKDANw5wYUCXbgZd9-IHdkIG_UIWqKPfFFsXzAjvzb93NVpDq02wPFHA96GOEcPzWR1Gok67gXqZ4RZ7R75b2Ya_CEm1OVf-Dj3EHhRRDBYgGsDPetvApxaRBbZMRVSnA6EmWzjo"/>
+<div class="absolute top-2 left-2 bg-white px-2 py-1 text-[8px] uppercase tracking-tighter">80% Full</div>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold mb-1">Diptyque</p>
+<h4 class="font-serif text-lg mb-1">Velvet Oak</h4>
+<p class="text-xs text-charcoal/60" style="color: #9B8778;">$95 <span class="line-through ml-2 opacity-50">$175</span></p>
+</div>
+<!-- Product 4 -->
+<div class="group cursor-pointer" style="background-color: #E7DDD4; padding: 12px; border-radius: 2px;">
+<div class="aspect-[4/5] bg-[#ece9e6] mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist lab style bottle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAIIq9qLxlX8mIpQEoBynlps5kPqP4gZVW5HsxIv6_JNJ-YPPUpJBF5cN3of4sPcp858NYP7cJDawjKbljzYwgNxHvxWLQTAKtljKHsAuk-wV0qLiULhP3JPR4kBIcjA_yp0VigPwKDOdi4J-6I0wKrwmxh7j_YjsuqOBUuPbaxjeNH0Cc1aJwgwksGaLIJ3UFlBR74cBN1mzT_Q1jj4qHZJZbo5uVwbtdwcW3w_YtEsen2dpGSluSA5zI4O8Ob2luMNHFwUV8T8w"/>
+<div class="absolute top-2 left-2 bg-white px-2 py-1 text-[8px] uppercase tracking-tighter">Vintage</div>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold mb-1">Le Labo</p>
+<h4 class="font-serif text-lg mb-1">Lunar Petals</h4>
+<p class="text-xs text-charcoal/60" style="color: #9B8778;">$180 <span class="line-through ml-2 opacity-50">$230</span></p>
+</div>
+</div>
+</section>
+<!-- Shop by Occasion -->
+<section class="py-24 bg-pearl-beige" style="background-color: #E7DDD4;">
+<h3 class="font-serif text-3xl text-center mb-10 italic tracking-tight text-4xl" style="color: #2E2A33;">Choose Your Mood</h3>
+<div class="flex flex-col gap-4 px-4">
+<div class="relative h-48 w-full overflow-hidden group">
+<img class="w-full h-full object-cover grayscale-[0.4] group-hover:scale-105 transition-transform duration-1000" data-alt="Elegant dinner table setting with candlelight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARWfskKgPpyEHUTa6AdjZ-CblER4KbjKmCp2fTETayY2bP0pe8pqwFJn9O5OlQXxy-AnvsIWXd35z0GTIbvuSNYeCreFzqUjbLRea5izB5-mFLQ64x5Q6PsAl17pTKBdeBt0zkje__LCGefehy7fgDESy8NPisx9Q9CBGQrAwSMhrX0oWyWFb5sW3z6XO2g9kp-yGbdVlhVpOehsaAH-y8vnO2NgyNSMGmfLT6vnRlrA0mB3lz8RdEqKt1mCdKi5pQ9HrgJIP7OM8"/>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+<h4 class="text-white font-serif text-3xl italic">Nocturnal Elegance</h4>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative h-48 overflow-hidden group">
+<img class="w-full h-full object-cover grayscale-[0.4] group-hover:scale-105 transition-transform duration-1000" data-alt="Morning light in a flower garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5nEiahWYsgWFVJ8JFLwTryKNdn3IN7i0b-nDPivLw-ZFNUcwdDiXcHOrpTKU6VwDgGm1dEeSPoQwUXJFed28JvDmw1dBHWOK6IAW-9in6-DAG925gW8p2OICW3nrGARmVcPSR3cEpdhIn7JNFSRZz0t9KHFMybP24tudnFrqDYNc3lATnivUGP_6tA6Z_23m4N-02pXG6OkcjNdH_R6NuPqMAH_lACc1xWRzByqfQeu_v1-57vLZV72HskdABCjTQdCUz7p6bNGQ"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center px-4">
+<h4 class="text-white font-serif text-2xl italic">Morning Dew</h4>
+</div>
+</div>
+<div class="relative h-48 overflow-hidden group">
+<img class="w-full h-full object-cover grayscale-[0.4] group-hover:scale-105 transition-transform duration-1000" data-alt="Old leather bound books in library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbeAWPnneM1hdAEzF309vzojdLpoJdhra8OI8KsCmYTMs0DsQvcEOfUv1kfHAikKbI_yAsGBM4khKB6X7SipZnVHgwQJM_aP0toJL027GDIvJF9LqCmRaqYQYpiY1CI3P5T_LuXADkrVRG9h2cPQ2qoZe-Vmi7tR1j1BPIX1BGId9BHAbV8m_jY2ta0ryB9sQnACitCYYbb6OKXXNpq1G1iEXVIKl310lhsGDN4vka9VlfFJlvp-2JQfPcMEK6Cm1ukgzd939h8vE"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center px-4">
+<h4 class="text-white font-serif text-2xl italic">Stately Library</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-32 px-10 text-center bg-soft-ivory">
+<span class="material-symbols-outlined text-primary mb-6 scale-150">format_quote</span>
+<p class="font-serif text-xl italic leading-relaxed mb-6">
+            "Finding my signature Byredo scent at half the retail price felt like discovering a secret garden. The authentication process gave me peace of mind."
+        </p>
+<p class="text-[10px] uppercase tracking-[0.2em] font-bold" style="color: #9B8778;">— Elena V., Paris</p>
+</section>
+<!-- Email Signup -->
+<section class="py-32 px-6 border-t border-primary/20 bg-pearl-beige/20" style="background-color: #F5F1EB;">
+<div class="max-w-md mx-auto text-center">
+<h3 class="font-serif text-3xl mb-4 italic" style="color: #2E2A33;">Join the Inner Circle</h3>
+<p class="text-sm text-charcoal/60 mb-8 font-light">Be the first to hear about new archival drops and limited vintages.</p>
+<form class="flex flex-col gap-4">
+<input class="bg-transparent border-b border-charcoal/20 focus:border-primary focus:ring-0 px-0 py-3 text-sm placeholder:text-charcoal/30" placeholder="Your email address" type="email"/>
+<button class="bg-primary text-soft-ivory py-4 text-[10px] uppercase tracking-[0.2em] font-bold" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="pt-24 pb-12 px-8" style="background-color: #E7DDD4; color: #2E2A33;">
+<div class="grid grid-cols-1 gap-12 mb-16">
+<div>
+<h5 class="font-serif text-2xl tracking-[0.1em] mb-6 text-[#2E2A33]">PERFUMERS</h5>
+<p class="text-xs leading-loose opacity-60 font-light max-w-xs text-[#2E2A33]">
+                    Redefining luxury through circularity. We believe every scent is a memory waiting to be shared. Authenticated, sustainable, and soulful.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<h6 class="text-[10px] uppercase tracking-widest mb-4 font-bold text-primary text-[#2E2A33]">Explore</h6>
+<ul class="flex flex-col gap-3 text-xs opacity-60 font-light">
+<li><a class="text-[#2E2A33]" href="#">The Archive</a></li>
+<li><a class="text-[#2E2A33]" href="#">Sell Your Scent</a></li>
+<li><a class="text-[#2E2A33]" href="#">Authentication</a></li>
+<li><a class="text-[#2E2A33]" href="#">Our Story</a></li>
+</ul>
+</div>
+<div>
+<h6 class="text-[10px] uppercase tracking-widest mb-4 font-bold text-primary text-[#2E2A33]">Support</h6>
+<ul class="flex flex-col gap-3 text-xs opacity-60 font-light">
+<li><a class="text-[#2E2A33]" href="#">Shipping</a></li>
+<li><a class="text-[#2E2A33]" href="#">Returns</a></li>
+<li><a class="text-[#2E2A33]" href="#">Care Guide</a></li>
+<li><a class="text-[#2E2A33]" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 flex flex-col gap-6 items-center">
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-sm opacity-50">share</span>
+<span class="material-symbols-outlined text-sm opacity-50">camera_alt</span>
+<span class="material-symbols-outlined text-sm opacity-50">mail</span>
+</div>
+<p class="text-[9px] opacity-40 tracking-widest uppercase text-[#2E2A33]">© 2024 Perfumers Resale. All Rights Reserved.</p>
+</div>
+</footer>
+<!-- Bottom Navigation Mobile -->
+<nav class="fixed bottom-0 left-0 right-0 bg-soft-ivory/95 border-t border-primary/10 z-50 flex justify-around items-center py-4">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined scale-90">home</span>
+<span class="text-[9px] uppercase tracking-tighter font-semibold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-charcoal/40 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined scale-90">grid_view</span>
+<span class="text-[9px] uppercase tracking-tighter font-semibold">Browse</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-charcoal/40 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined scale-90">favorite</span>
+<span class="text-[9px] uppercase tracking-tighter font-semibold">Wishlist</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-charcoal/40 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined scale-90">person</span>
+<span class="text-[9px] uppercase tracking-tighter font-semibold">Profile</span>
+</a>
+</nav>
+<div class="h-16"></div> <!-- Spacer for bottom nav -->
+</body></html>

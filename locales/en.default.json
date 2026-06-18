@@ -1,0 +1,189 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "general": {
+        "accessibility": {
+            "skip_to_content": "Skip to content"
+        }
+    },
+    "accessibility": {
+        "skip_to_text": "Skip to content",
+        "refresh_page": "Choosing a selection results in a full page refresh.",
+        "link_messages": {
+            "new_window": "Opens in a new window."
+        }
+    },
+    "actions": {
+        "add_to_cart": "Add to Cart",
+        "buy_now": "Buy it Now",
+        "search": "Search",
+        "filter": "Filter",
+        "sort": "Sort",
+        "load_more": "Load More",
+        "subscribe": "Subscribe",
+        "view_all": "View All",
+        "shop_now": "Shop Now",
+        "view_details": "View Details",
+        "apply": "Apply",
+        "clear": "Clear All",
+        "close": "Close",
+        "remove": "Remove",
+        "sold_out": "Sold Out"
+    },
+    "navigation": {
+        "home": "Home",
+        "browse": "Browse",
+        "wishlist": "Wishlist",
+        "profile": "Profile",
+        "cart": "Cart",
+        "menu": "Menu",
+        "collections": "Collections",
+        "brands": "Brands",
+        "new_in": "New In",
+        "sale": "Sale",
+        "about": "About",
+        "contact": "Contact"
+    },
+    "contact": {
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "phone": "Phone",
+            "message": "Message",
+            "post_success": "Thank you for contacting us. We will get back to you shortly."
+        }
+    },
+    "product": {
+        "fragrance_notes": "Fragrance Notes",
+        "top_notes": "Top Notes",
+        "heart_notes": "Heart Notes",
+        "base_notes": "Base Notes",
+        "delivery": "Delivery",
+        "returns": "Returns",
+        "select_volume": "Select Volume",
+        "quantity": "Quantity",
+        "sale": "Sale",
+        "new": "New",
+        "best_seller": "Best Seller",
+        "description": "Description",
+        "details": "Details",
+        "reviews": "Reviews",
+        "related_products": "You May Also Like",
+        "upsell_title": "Complete Your Collection",
+        "size": "Size",
+        "availability": "Availability",
+        "in_stock": "In Stock",
+        "out_of_stock": "Out of Stock",
+        "sku": "SKU",
+        "vendor": "Brand",
+        "type": "Type"
+    },
+    "collection": {
+        "title": "Collection",
+        "products_count": "{{ count }} products",
+        "sort_by": "Sort by",
+        "sort_best_selling": "Best Selling",
+        "sort_alphabetically_az": "A-Z",
+        "sort_alphabetically_za": "Z-A",
+        "sort_price_low": "Price: Low to High",
+        "sort_price_high": "Price: High to Low",
+        "sort_date_new": "Newest First",
+        "sort_date_old": "Oldest First",
+        "filter_by": "Filter by",
+        "no_products": "No products found",
+        "clear_filters": "Clear all filters",
+        "apply_filters": "Apply Filters"
+    },
+    "cart": {
+        "title": "Your Cart",
+        "empty": "Your cart is empty",
+        "continue_shopping": "Continue Shopping",
+        "subtotal": "Subtotal",
+        "checkout": "Checkout",
+        "note": "Order Note",
+        "shipping_note": "Shipping & taxes calculated at checkout",
+        "update": "Update Cart"
+    },
+    "sections": {
+        "hero": {
+            "default_heading": "The Art of Fragrance",
+            "default_subheading": "Curated collection of premium perfumes"
+        },
+        "featured_collections": {
+            "title": "Shop by Category"
+        },
+        "shop_by_brand": {
+            "title": "Shop by Brand",
+            "subtitle": "Discover your signature scent"
+        },
+        "shop_by_occasion": {
+            "title": "Shop by Occasion",
+            "subtitle": "Find the perfect fragrance"
+        },
+        "best_sellers": {
+            "title": "Best Sellers",
+            "subtitle": "Most loved fragrances"
+        },
+        "new_arrivals": {
+            "title": "New Arrivals",
+            "subtitle": "Just landed"
+        },
+        "trust_benefits": {
+            "title": "Why PERFUMERS",
+            "authentic": "100% Authentic",
+            "authentic_desc": "Every product is guaranteed authentic",
+            "shipping": "Fast Delivery",
+            "shipping_desc": "Across Egypt",
+            "returns": "Easy Returns",
+            "returns_desc": "14-day return policy",
+            "support": "Expert Support",
+            "support_desc": "Fragrance consultants available"
+        },
+        "testimonials": {
+            "title": "What Our Customers Say"
+        },
+        "email_signup": {
+            "title": "Join the PERFUMERS Family",
+            "subtitle": "Be the first to know about new arrivals and exclusive offers",
+            "placeholder": "Enter your email",
+            "button": "Subscribe",
+            "success": "Thank you for subscribing!"
+        },
+        "announcement_bar": {
+            "default_text": "Free shipping on orders over 1000 EGP"
+        }
+    },
+    "footer": {
+        "quick_links": "Quick Links",
+        "customer_service": "Customer Service",
+        "follow_us": "Follow Us",
+        "newsletter": "Newsletter",
+        "copyright": "© 2026 PERFUMERS. All rights reserved."
+    },
+    "search": {
+        "title": "Search",
+        "placeholder": "Search for perfumes, brands...",
+        "no_results": "No results found for",
+        "view_all": "View all results"
+    },
+    "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page {{ current }} of {{ total }}"
+    },
+    "breadcrumb": {
+        "home": "Home"
+    },
+    "404": {
+        "title": "Page Not Found",
+        "subtext": "The page you're looking for doesn't exist.",
+        "button": "Return Home"
+    }
+}

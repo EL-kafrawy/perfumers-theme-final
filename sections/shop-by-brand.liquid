@@ -1,0 +1,283 @@
+<style>
+  @keyframes premiumBrandSlide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .sbb-section {
+    background-color: #F5F1EB;
+    padding: 60px 0;
+    overflow: hidden;
+  }
+
+  .sbb-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .sbb-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .sbb-title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-charcoal, #2D2926);
+    margin: 0 0 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .sbb-subtitle {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    color: var(--color-text-secondary, #7E6C5F);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .sbb-divider {
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-primary, #93733B);
+    margin: 20px auto 0;
+  }
+
+  .sbb-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    padding: 10px 0;
+  }
+
+  .sbb-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+    animation: premiumBrandSlide {{ section.settings.animation_speed }}s linear infinite;
+  }
+
+  .sbb-carousel-wrapper:hover .sbb-track,
+  .sbb-carousel-wrapper:focus-within .sbb-track {
+    animation-play-state: paused;
+  }
+
+  /* Circle brand frames */
+  .sbb-track .brand-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(198, 163, 108, 0.15);
+    margin: 0 16px;
+    padding: 12px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+
+  .sbb-track .brand-circle img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.5s ease;
+    border-radius: 50%;
+  }
+
+  .sbb-track .brand-circle__text {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-charcoal, #2E2A33);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    word-break: break-word;
+  }
+
+  /* Hover and focus states */
+  .sbb-track .brand-circle:hover,
+  .sbb-track .brand-circle:focus-within {
+    border-color: var(--color-primary, #93733B);
+    transform: scale(1.06);
+    box-shadow: 0 4px 15px rgba(147, 115, 59, 0.12);
+    background-color: #FFFFFF;
+  }
+
+  .sbb-track .brand-circle:focus {
+    outline: none;
+  }
+
+  .sbb-track .brand-circle:focus-visible {
+    outline: 2px solid var(--color-primary, #93733B);
+    outline-offset: 4px;
+    border-color: var(--color-primary, #93733B);
+    transform: scale(1.06);
+    box-shadow: 0 4px 15px rgba(147, 115, 59, 0.12);
+    background-color: #FFFFFF;
+  }
+
+  .sbb-track .brand-circle:hover img,
+  .sbb-track .brand-circle:focus img,
+  .sbb-track .brand-circle:focus-within img {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  /* Responsive breakpoints for circles (80px mobile -> 100px desktop) */
+  @media screen and (min-width: 768px) {
+    .sbb-track .brand-circle {
+      width: 100px;
+      height: 100px;
+      margin: 0 24px;
+      padding: 16px;
+    }
+    .sbb-track .brand-circle__text {
+      font-size: 12px;
+    }
+  }
+
+  /* Accessibility: prefers-reduced-motion fallback */
+  @media (prefers-reduced-motion: reduce) {
+    .sbb-track {
+      animation: none;
+      overflow-x: auto;
+      width: 100%;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 10px;
+    }
+    .sbb-carousel-wrapper {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .sbb-track .brand-circle {
+      scroll-snap-align: center;
+    }
+  }
+</style>
+
+<section class="sbb-section" id="shopByBrandSection-{{ section.id }}">
+  <div class="sbb-container">
+    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+      <div class="sbb-header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="sbb-title">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="sbb-subtitle">{{ section.settings.subtitle | escape }}</p>
+        {%- endif -%}
+        <div class="sbb-divider"></div>
+      </div>
+    {%- endif -%}
+
+    <div class="sbb-carousel-wrapper">
+      <div class="sbb-track">
+        {%- comment -%} Double loop to create a seamless infinite marquee scrolling animation {%- endcomment -%}
+        {%- for i in (1..2) -%}
+          {%- assign is_clone = false -%}
+          {%- if i == 2 -%}
+            {%- assign is_clone = true -%}
+          {%- endif -%}
+          {%- for block in section.blocks -%}
+            {%- render 'brand-card', 
+                logo: block.settings.logo, 
+                logo_file: block.settings.logo_file, 
+                brand_name: block.settings.brand_name, 
+                link: block.settings.link, 
+                is_clone: is_clone 
+            -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by Brand",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop by Brand"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Discover our collection of curated luxury fragrance houses"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll duration (lower is faster)",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand Logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name",
+          "default": "Byredo"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "text",
+          "id": "logo_file",
+          "label": "Logo Filename in Assets",
+          "info": "Fallback filename if no image is uploaded (e.g. brand-logo-dkhoon.jpg)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Brand Circle Strip",
+      "blocks": [
+        { "type": "brand", "settings": { "brand_name": "Byredo", "logo_file": "brand-logo-dkhoon.jpg" } },
+        { "type": "brand", "settings": { "brand_name": "Aesop", "logo_file": "brand-logo-afnan.jpg" } },
+        { "type": "brand", "settings": { "brand_name": "Diptyque", "logo_file": "brand-logo-assaf.png" } },
+        { "type": "brand", "settings": { "brand_name": "Le Labo", "logo_file": "brand-logo-lattafa.png" } },
+        { "type": "brand", "settings": { "brand_name": "Chanel", "logo_file": "brand-logo-french-avenue.jpg" } },
+        { "type": "brand", "settings": { "brand_name": "Dior", "logo_file": "brand-logo-ibraq.jpg" } },
+        { "type": "brand", "settings": { "brand_name": "Rasasi", "logo_file": "brand-logo-rasasi.webp" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

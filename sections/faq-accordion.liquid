@@ -1,0 +1,121 @@
+<section class="faq-section" data-section-id="{{ section.id }}">
+  <div class="container container--narrow">
+    <div class="faq-header text-center">
+      <h1 class="faq-title serif-font">{{ page.title | default: 'Frequently Asked Questions' }}</h1>
+      {% if section.settings.description != blank %}
+        <p class="faq-description tagline">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="faq-items">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' -%}
+          <div class="faq-item" {{ block.shopify_attributes }}>
+            <button class="faq-question" aria-expanded="false" data-faq-trigger>
+              <span class="faq-question-text">{{ block.settings.question }}</span>
+              <span class="material-symbols-outlined faq-icon">expand_more</span>
+            </button>
+            <div class="faq-answer" hidden>
+              <div class="faq-answer-inner rte">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-faq-trigger]').forEach(button => {
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !isExpanded);
+      const answer = button.nextElementSibling;
+      answer.hidden = isExpanded;
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding: var(--space-4xl) 0;
+  }
+  .faq-header {
+    margin-bottom: var(--space-2xl);
+  }
+  .faq-items {
+    border-top: 1px solid var(--color-border-light);
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg) 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    color: var(--color-charcoal);
+    transition: var(--transition-base);
+  }
+  .faq-question:hover {
+    color: var(--color-gold);
+  }
+  .faq-icon {
+    transition: transform 0.3s ease;
+    color: var(--color-gold);
+  }
+  .faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+  }
+  .faq-answer {
+    padding-bottom: var(--space-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-taupe);
+  }
+  .faq-answer-inner {
+    max-width: 90%;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Find answers to the most common questions about our products and services."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How is shipping handled?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We offer premium shipping options within Egypt and internationally.</p>"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

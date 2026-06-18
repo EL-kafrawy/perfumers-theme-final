@@ -1,0 +1,101 @@
+<nav class="fixed bottom-0 left-0 right-0 bg-soft-ivory/95 border-t border-primary/10 z-50 flex justify-around items-center py-4">
+  <a class="flex flex-col items-center gap-1 text-primary" href="{{ section.settings.home_link | default: '/' }}">
+    <span class="material-symbols-outlined scale-90">home</span>
+    <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.home_label | default: "Home" }}</span>
+  </a>
+  <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.browse_link | default: '/collections/all' }}">
+    <span class="material-symbols-outlined scale-90">grid_view</span>
+    <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.browse_label | default: "Browse" }}</span>
+  </a>
+  <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.wishlist_link | default: '#' }}">
+    <span class="material-symbols-outlined scale-90">favorite</span>
+    <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.wishlist_label | default: "Wishlist" }}</span>
+  </a>
+  <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.profile_link | default: '/account' }}">
+    <span class="material-symbols-outlined scale-90">person</span>
+    <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.profile_label | default: "Profile" }}</span>
+  </a>
+</nav>
+<div class="h-16"></div> <!-- Spacer for bottom nav -->
+
+<style>
+  .fixed { position: fixed; }
+  .bottom-0 { bottom: 0; }
+  .left-0 { left: 0; }
+  .right-0 { right: 0; }
+  .bg-soft-ivory\/95 { background-color: rgba(245,241,235,0.95); }
+  .border-t { border-top-width: 1px; border-top-style: solid; }
+  .border-primary\/10 { border-color: rgba(200,164,106,0.1); }
+  .z-50 { z-index: 50; }
+  .flex { display: flex; }
+  .justify-around { justify-content: space-around; }
+  .items-center { align-items: center; }
+  .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+  .flex-col { flex-direction: column; }
+  .gap-1 { gap: 0.25rem; }
+  .text-primary { color: #C8A46A; }
+  .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; }
+  .scale-90 { transform: scale(0.9); }
+  .text-\[9px\] { font-size: 9px; }
+  .uppercase { text-transform: uppercase; }
+  .tracking-tighter { letter-spacing: -0.05em; }
+  .font-semibold { font-weight: 600; }
+  .text-charcoal\/40 { color: rgba(45,41,38,0.4); }
+  .h-16 { height: 4rem; }
+  a { text-decoration: none; }
+</style>
+
+{% schema %}
+{
+  "name": "Mobile Bottom Nav",
+  "settings": [
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Home label",
+      "default": "Home"
+    },
+    {
+      "type": "url",
+      "id": "home_link",
+      "label": "Home link"
+    },
+    {
+      "type": "text",
+      "id": "browse_label",
+      "label": "Browse label",
+      "default": "Browse"
+    },
+    {
+      "type": "url",
+      "id": "browse_link",
+      "label": "Browse link"
+    },
+    {
+      "type": "text",
+      "id": "wishlist_label",
+      "label": "Wishlist label",
+      "default": "Wishlist"
+    },
+    {
+      "type": "url",
+      "id": "wishlist_link",
+      "label": "Wishlist link"
+    },
+    {
+      "type": "text",
+      "id": "profile_label",
+      "label": "Profile label",
+      "default": "Profile"
+    },
+    {
+      "type": "url",
+      "id": "profile_link",
+      "label": "Profile link"
+    }
+  ],
+  "presets": [
+    { "name": "Mobile Bottom Nav" }
+  ]
+}
+{% endschema %}

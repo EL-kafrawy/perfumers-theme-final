@@ -1,0 +1,311 @@
+{{ 'base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .about-section {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Brand Story Hero */
+  .about-hero {
+    background-color: var(--color-soft-ivory);
+    padding-top: var(--space-4xl);
+    padding-bottom: var(--space-4xl);
+  }
+  .about-hero-title {
+    color: var(--color-charcoal);
+  }
+  .about-hero-text {
+    color: var(--color-charcoal);
+    margin: 0;
+  }
+  
+  /* Mission Statement */
+  .about-mission {
+    padding-top: var(--space-4xl);
+    padding-bottom: var(--space-4xl);
+  }
+  .about-mission-title {
+    color: var(--color-charcoal);
+    line-height: 1.4;
+    font-size: 1.5rem;
+  }
+  
+  /* Authentication Promise */
+  .about-auth {
+    background-color: var(--color-pearl-beige);
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+  }
+  .about-auth-title,
+  .about-auth-text {
+    color: var(--color-charcoal);
+  }
+  
+  /* Team or Founder */
+  .about-team {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+  }
+  .about-team-title,
+  .about-team-text {
+    color: var(--color-charcoal);
+  }
+  .about-team-role {
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  /* CTA */
+  .about-cta {
+    padding-top: var(--space-4xl);
+    padding-bottom: var(--space-4xl);
+  }
+  .about-cta-title,
+  .about-cta-text {
+    color: var(--color-charcoal);
+  }
+  .about-btn-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .about-btn {
+    display: inline-flex;
+    width: auto;
+    min-width: 200px;
+  }
+  
+  /* Shared Image Utilities */
+  .about-img-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .about-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+  }
+  
+  @media (min-width: 768px) {
+    .about-mission-title {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<div class="about-section">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      
+      {%- when 'brand_story' -%}
+        <div class="about-hero text-center" {{ block.shopify_attributes }}>
+          <div class="container container--narrow">
+            <h1 class="font-serif about-hero-title mb-md">{{ block.settings.heading | escape }}</h1>
+            <div class="font-sans text-lg about-hero-text">{{ block.settings.text }}</div>
+          </div>
+        </div>
+
+      {%- when 'mission' -%}
+        <div class="about-mission text-center" {{ block.shopify_attributes }}>
+          <div class="container container--narrow">
+            <h2 class="font-serif about-mission-title mb-md">{{ block.settings.mission_text | escape }}</h2>
+            <div class="divider"></div>
+          </div>
+        </div>
+
+      {%- when 'authentication' -%}
+        <div class="about-auth" {{ block.shopify_attributes }}>
+          <div class="container">
+            <div class="grid grid--2 flex-align-center gap-xl">
+              <div class="about-auth-content">
+                <h2 class="font-serif about-auth-title mb-md">{{ block.settings.heading | escape }}</h2>
+                <div class="divider divider--left"></div>
+                <div class="font-sans text-base about-auth-text mt-md">{{ block.settings.text }}</div>
+              </div>
+              <div class="about-img-wrapper">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'about-image' }}
+                {%- else -%}
+                  <div class="placeholder-image" style="aspect-ratio: 4/3;">Authentication Image</div>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {%- when 'team' -%}
+        <div class="about-team" {{ block.shopify_attributes }}>
+          <div class="container">
+            <div class="grid grid--2 flex-align-center gap-xl">
+              <div class="about-img-wrapper">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'about-image' }}
+                {%- else -%}
+                  <div class="placeholder-image" style="aspect-ratio: 1/1;">Founder Image</div>
+                {%- endif -%}
+              </div>
+              <div class="about-team-content">
+                <h2 class="font-serif about-team-title mb-sm">{{ block.settings.heading | escape }}</h2>
+                <div class="font-sans text-sm font-medium about-team-role mb-md">{{ block.settings.role | escape }}</div>
+                <div class="font-sans text-base about-team-text">{{ block.settings.text }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {%- when 'cta' -%}
+        <div class="about-cta text-center" {{ block.shopify_attributes }}>
+          <div class="container container--narrow">
+            <h2 class="font-serif about-cta-title mb-md">{{ block.settings.heading | escape }}</h2>
+            <div class="font-sans text-base about-cta-text mb-xl">{{ block.settings.text }}</div>
+            {%- if block.settings.button_link != blank and block.settings.button_text != blank -%}
+              <div class="about-btn-wrapper">
+                <a href="{{ block.settings.button_link }}" class="btn btn-primary about-btn">{{ block.settings.button_text | escape }}</a>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+    {%- endcase -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "About Page",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "brand_story",
+      "name": "Brand Story Hero",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Our Story"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Embracing the rich heritage of fragrance with a modern signature. PERFUMERS is dedicated to excellence and authenticity.</p>"
+        }
+      ]
+    },
+    {
+      "type": "mission",
+      "name": "Mission Statement",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "mission_text",
+          "label": "Mission Text",
+          "default": "Our mission is to bring the world's most luxurious and authentic scents into the lives of fragrance enthusiasts."
+        }
+      ]
+    },
+    {
+      "type": "authentication",
+      "name": "Authentication Promise",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "100% Guaranteed Authentic"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Whether new or pre-loved, every bottle in our collection undergoes a rigorous authentication process. Our experts verify everything from glass weight to batch codes, ensuring your signature scent is genuine.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "team",
+      "name": "Team / Founder",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Name",
+          "default": "Nour El-Din"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Founder & Master Curator"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Biography",
+          "default": "<p>A lifelong aficionado of fine perfumery, bringing carefully curated luxury to the Egyptian market.</p>"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "Call To Action",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Find Your Signature Scent"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Explore our vast collection of exclusive fragrances today and find the one that speaks to you.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop the Collection"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Page",
+      "blocks": [
+        { "type": "brand_story" },
+        { "type": "mission" },
+        { "type": "authentication" },
+        { "type": "team" },
+        { "type": "cta" }
+      ]
+    }
+  ]
+}
+{% endschema %}
