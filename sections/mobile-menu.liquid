@@ -75,10 +75,12 @@
 
     <!-- Footer Links Grid -->
     <div class="mobile-menu__footer-grid">
-      <a href="{{ section.settings.account_url | default: routes.account_url }}" class="mobile-menu__footer-btn">
-        <span class="material-symbols-outlined mobile-menu__footer-icon">account_circle</span>
-        <span class="mobile-menu__footer-text">Account</span>
-      </a>
+      {%- if section.settings.show_account -%}
+        <a href="{{ section.settings.account_url | default: routes.account_url }}" class="mobile-menu__footer-btn">
+          <span class="material-symbols-outlined mobile-menu__footer-icon">account_circle</span>
+          <span class="mobile-menu__footer-text">Account</span>
+        </a>
+      {%- endif -%}
       <a href="{{ routes.cart_url }}" class="mobile-menu__footer-btn">
         <span class="material-symbols-outlined mobile-menu__footer-icon">shopping_bag</span>
         <span class="mobile-menu__footer-text">{{ 'navigation.cart' | t }}
@@ -335,12 +337,15 @@
     transform: translateX(2px);
   }
 
-  /* Footer Links Grid */
+  /* Footer Links Grid — flex so it looks right with 2 or 3 buttons */
   .mobile-menu__footer-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 0.75rem;
     flex-shrink: 0;
+  }
+
+  .mobile-menu__footer-grid > .mobile-menu__footer-btn {
+    flex: 1 1 0;
   }
 
   .mobile-menu__footer-btn {
@@ -464,6 +469,13 @@
     {
       "type": "header",
       "content": "Footer Buttons & Brand"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show Account button",
+      "default": false,
+      "info": "Enable only when customer accounts are turned on, otherwise it links to a page that does not exist."
     },
     {
       "type": "url",

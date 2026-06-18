@@ -11,10 +11,12 @@
     <span class="material-symbols-outlined scale-90">favorite</span>
     <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.wishlist_label | default: "Wishlist" }}</span>
   </a>
-  <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.profile_link | default: routes.account_url }}">
-    <span class="material-symbols-outlined scale-90">person</span>
-    <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.profile_label | default: "Profile" }}</span>
-  </a>
+  {%- if section.settings.show_profile -%}
+    <a class="flex flex-col items-center gap-1 text-charcoal/40" href="{{ section.settings.profile_link | default: routes.account_url }}">
+      <span class="material-symbols-outlined scale-90">person</span>
+      <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ section.settings.profile_label | default: "Profile" }}</span>
+    </a>
+  {%- endif -%}
 </nav>
 <div class="h-16"></div> <!-- Spacer for bottom nav -->
 
@@ -81,6 +83,13 @@
       "type": "url",
       "id": "wishlist_link",
       "label": "Wishlist link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_profile",
+      "label": "Show Profile tab",
+      "default": false,
+      "info": "Enable only when customer accounts are turned on, otherwise it links to a page that does not exist."
     },
     {
       "type": "text",
