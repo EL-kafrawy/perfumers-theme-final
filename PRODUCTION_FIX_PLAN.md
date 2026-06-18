@@ -85,6 +85,26 @@ Audit and fix every link that renders `#` or empty:
 
 > Theme of the day: **no 404 routes, no mock data, hardened, tested, shipped.**
 
+> **STATUS — Day 2 CODE COMPLETE (tag `day2-code-complete`).**
+> Commits: `226e27f` (templates + hardening), `0dd448f` (content + i18n),
+> `3771272` (theme-check + parity fixes).
+> Verified with `shopify theme check`: real-theme errors 29 → 8 (all 8 are
+> pre-existing minor items in non-active sections, none introduced here).
+>
+> **Done in code:** 2.1 templates (gift_card, list-collections), 2.2 real
+> homepage content (collection-bound products + real brand logos), 2.4
+> hardening (escaped cart DOM, focus-trap leak, pagination), 2.5 i18n
+> (footer + trust badges → locale keys, EN+AR).
+>
+> **Needs YOUR store / a decision (can't do headless):**
+> - 2.3 final pixel parity (needs live render) — plus 2 product-page design
+>   gaps found vs Stitch: (a) FAMILY/OCCASION/SILLAGE attribute pills and
+>   (b) Delivery/Returns/Perfumer's-Art accordions. Both need product
+>   metafields — tell me the metafield keys (or "skip") and I'll build them.
+> - 2.6 final QA + publish (browser, EN+AR, end-to-end test order).
+> - Confirm ≥4 products exist in the `all` collection (else Treasured Finds
+>   is empty) and that men/women/unisex collections exist.
+
 ## Block 2.1 — ISSUE: Missing Shopify templates / 404 routes (~2 hrs)
 - [ ] `templates/gift_card.liquid` — create (Shopify-required), brand-styled.
 - [ ] `templates/list-collections.json` — the `/collections` index page + section.
