@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}" dir="{% if request.locale.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#C8A46A">
+  <title>{{ 'gift_cards.issued.title' | t: value: gift_card.balance | money }} | {{ shop.name }}</title>
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ content_for_header }}
+  <style>
+    .giftcard-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      background-color: var(--color-background, #F5F1EB);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--color-charcoal, #2E2A33);
+    }
+    .giftcard-card {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border: 1px solid rgba(200, 164, 106, 0.25);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(46, 42, 51, 0.08);
+    }
+    .giftcard-logo {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 300;
+      padding: 1.75rem 1rem 0.5rem;
+      color: var(--color-charcoal, #2E2A33);
+    }
+    .giftcard-heading {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--color-text-secondary, #9B8778);
+      margin: 0 0 1rem;
+    }
+    .giftcard-amount {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 400;
+      color: var(--color-primary, #C8A46A);
+      padding: 0.5rem 1rem 1.5rem;
+    }
+    .giftcard-amount.is-disabled { color: var(--color-text-secondary, #9B8778); text-decoration: line-through; }
+    .giftcard-qr {
+      display: flex;
+      justify-content: center;
+      padding: 0 1rem 1.5rem;
+    }
+    .giftcard-qr img { border-radius: 8px; }
+    .giftcard-code-wrap { padding: 0 1.5rem 1.5rem; text-align: center; }
+    .giftcard-code-label {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--color-text-secondary, #9B8778); margin-bottom: 0.5rem;
+    }
+    .giftcard-code {
+      display: inline-block;
+      font-family: 'Montserrat', monospace;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      padding: 0.75rem 1.25rem;
+      border: 1px dashed rgba(200, 164, 106, 0.5);
+      border-radius: 8px;
+      background: rgba(200, 164, 106, 0.06);
+      word-break: break-all;
+    }
+    .giftcard-status {
+      text-align: center; font-size: 0.8rem; color: var(--color-text-secondary, #9B8778);
+      padding: 0 1.5rem 1rem;
+    }
+    .giftcard-actions {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      padding: 0.5rem 1.5rem 2rem;
+    }
+    .giftcard-actions .btn { width: 100%; text-align: center; }
+    @media print {
+      .giftcard-actions { display: none; }
+      .giftcard-page { background: #fff; }
+    }
+  </style>
+</head>
+<body class="template-gift-card">
+  <main class="giftcard-page">
+    <div class="giftcard-card">
+      <div class="giftcard-logo">{{ shop.name }}</div>
+      <p class="giftcard-heading">{{ 'gift_cards.issued.subtext' | t | default: 'Your gift card' }}</p>
+
+      <div class="giftcard-amount{% unless gift_card.enabled %} is-disabled{% endunless %}">
+        {{ gift_card.balance | money }}
+      </div>
+
+      {%- if gift_card.enabled and gift_card.balance > 0 -%}
+        <div class="giftcard-qr">
+          <img src="/barcode?type=qr_code&data={{ gift_card.qr_identifier }}&size=200x200"
+               alt="{{ 'gift_cards.issued.qr_image_alt' | t | default: 'QR code' }}"
+               width="200" height="200" loading="lazy">
+        </div>
+      {%- endif -%}
+
+      <div class="giftcard-code-wrap">
+        <p class="giftcard-code-label">{{ 'gift_cards.issued.gift_card_code' | t | default: 'Gift card code' }}</p>
+        <span class="giftcard-code">{{ gift_card.code | format_code }}</span>
+      </div>
+
+      {%- unless gift_card.enabled -%}
+        <p class="giftcard-status">{{ 'gift_cards.issued.expired' | t | default: 'This gift card has expired.' }}</p>
+      {%- endunless -%}
+
+      {%- if gift_card.balance != gift_card.initial_value -%}
+        <p class="giftcard-status">
+          {{ 'gift_cards.issued.remaining_html' | t: balance: gift_card.balance | money | default: gift_card.balance | money }}
+        </p>
+      {%- endif -%}
+
+      <div class="giftcard-actions">
+        <a href="{{ shop.url }}" class="btn btn-primary">{{ 'gift_cards.issued.shop_link' | t | default: 'Start shopping' }}</a>
+        <button type="button" class="btn btn-secondary" onclick="window.print();">{{ 'gift_cards.issued.print' | t | default: 'Print' }}</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

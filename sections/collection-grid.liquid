@@ -74,30 +74,30 @@
 
     <!-- Products Grid -->
     {%- if collection.products.size > 0 -%}
-      <div class="collection-grid__products grid grid--{{ section.settings.columns }}" data-collection-grid>
-        {%- paginate collection.products by section.settings.products_per_page -%}
+      {%- paginate collection.products by section.settings.products_per_page -%}
+        <div class="collection-grid__products grid grid--{{ section.settings.columns }}" data-collection-grid>
           {%- for product in collection.products -%}
             <div class="product-card-wrapper">
               {% render 'product-card', product: product %}
             </div>
           {%- endfor -%}
+        </div>
 
-          {%- if paginate.next -%}
-            <div class="collection-grid__load-more text-center" style="grid-column: 1 / -1;">
-              <button
-                class="btn btn-secondary btn-small"
-                data-load-more
-                data-next-url="{{ paginate.next.url }}"
-                data-text="{{ 'actions.load_more' | t }}"
-              >
-                {{ 'actions.load_more' | t }}
-              </button>
-            </div>
-          {%- endif -%}
+        {%- if paginate.next -%}
+          <div class="collection-grid__load-more text-center">
+            <button
+              class="btn btn-secondary btn-small"
+              data-load-more
+              data-next-url="{{ paginate.next.url }}"
+              data-text="{{ 'actions.load_more' | t }}"
+            >
+              {{ 'actions.load_more' | t }}
+            </button>
+          </div>
+        {%- endif -%}
 
-          {% render 'pagination', paginate: paginate %}
-        {%- endpaginate -%}
-      </div>
+        {% render 'pagination', paginate: paginate %}
+      {%- endpaginate -%}
     {%- else -%}
       <div class="collection-grid__empty text-center py-3xl">
         <p>{{ 'collection.no_products' | t }}</p>

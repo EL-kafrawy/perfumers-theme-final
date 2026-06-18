@@ -116,6 +116,9 @@
         this.drawer.classList.remove('is-open');
         if (this.overlay) this.overlay.classList.remove('is-active');
         document.body.style.overflow = '';
+        if (window.PERFUMERS && window.PERFUMERS.removeTrapFocus) {
+            window.PERFUMERS.removeTrapFocus(this.drawer);
+        }
     };
 
     CartDrawer.prototype.isOpen = function () {
@@ -154,6 +157,91 @@
             });
     };
 
+    function svgIcon(paths) {
+        var ns = 'http://www.w3.org/2000/svg';
+        var svg = document.createElementNS(ns, 'svg');
+        svg.setAttribute('width', '16');
+        svg.setAttribute('height', '16');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        svg.setAttribute('stroke-width', '2');
+        svg.setAttribute('stroke-linecap', 'round');
+        svg.setAttribute('stroke-linejoin', 'round');
+        paths.forEach(function (d) {
+            var line = document.createElementNS(ns, 'line');
+            line.setAttribute('x1', d[0]); line.setAttribute('y1', d[1]);
+            line.setAttribute('x2', d[2]); line.setAttribute('y2', d[3]);
+            svg.appendChild(line);
+        });
+        return svg;
+    }
+
+    function el(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text != null) node.textContent = text;
+        return node;
+    }
+
+    function formatMoney(cents) {
+        return (cents / 100).toLocaleString('en-EG', { minimumFractionDigits: 2 }) + ' EGP';
+    }
+
+    function buildCartItem(item) {
+        var wrap = el('div', 'cart-drawer__item');
+        wrap.setAttribute('data-line-key', item.key);
+
+        var imgWrap = el('div', 'cart-drawer__item-image');
+        var img = document.createElement('img');
+        img.src = item.image || '';
+        img.alt = item.product_title || item.title || '';
+        img.loading = 'lazy';
+        imgWrap.appendChild(img);
+        wrap.appendChild(imgWrap);
+
+        var details = el('div', 'cart-drawer__item-details');
+        details.appendChild(el('p', 'cart-drawer__item-title', item.product_title || item.title));
+        if (item.variant_title) {
+            details.appendChild(el('p', 'cart-drawer__item-variant', item.variant_title));
+        }
+        details.appendChild(el('p', 'cart-drawer__item-price', formatMoney(item.final_line_price)));
+
+        var qty = el('div', 'cart-drawer__item-qty');
+        var minus = el('button', 'qty-btn');
+        minus.setAttribute('data-cart-qty-minus', '');
+        minus.setAttribute('aria-label', 'Decrease quantity');
+        minus.appendChild(svgIcon([[5, 12, 19, 12]]));
+
+        var input = document.createElement('input');
+        input.type = 'number';
+        input.setAttribute('data-cart-qty', '');
+        input.setAttribute('data-line-key', item.key);
+        input.value = item.quantity;
+        input.min = '0';
+        input.setAttribute('aria-label', 'Quantity');
+
+        var plus = el('button', 'qty-btn');
+        plus.setAttribute('data-cart-qty-plus', '');
+        plus.setAttribute('aria-label', 'Increase quantity');
+        plus.appendChild(svgIcon([[12, 5, 12, 19], [5, 12, 19, 12]]));
+
+        qty.appendChild(minus);
+        qty.appendChild(input);
+        qty.appendChild(plus);
+        details.appendChild(qty);
+        wrap.appendChild(details);
+
+        var remove = el('button', 'cart-drawer__item-remove');
+        remove.setAttribute('data-cart-remove', '');
+        remove.setAttribute('data-line-key', item.key);
+        remove.setAttribute('aria-label', 'Remove item');
+        remove.appendChild(svgIcon([[18, 6, 6, 18], [6, 6, 18, 18]]));
+        wrap.appendChild(remove);
+
+        return wrap;
+    }
+
     CartDrawer.prototype.renderCart = function (cart) {
         var itemsContainer = this.drawer.querySelector(selectors.cartItems);
         var emptyMessage = this.drawer.querySelector(selectors.cartEmpty);
@@ -172,30 +260,12 @@
         if (emptyMessage) emptyMessage.style.display = 'none';
         if (footer) footer.style.display = 'block';
 
-        var html = '';
+        /* Build items with the DOM API so product/variant titles are inserted as
+           text (never parsed as HTML) — no string-concat injection surface. */
+        itemsContainer.innerHTML = '';
         cart.items.forEach(function (item) {
-            html += '<div class="cart-drawer__item" data-line-key="' + item.key + '">';
-            html += '  <div class="cart-drawer__item-image">';
-            html += '    <img src="' + item.image + '" alt="' + item.title + '" loading="lazy">';
-            html += '  </div>';
-            html += '  <div class="cart-drawer__item-details">';
-            html += '    <p class="cart-drawer__item-title">' + item.product_title + '</p>';
-            if (item.variant_title) {
-                html += '    <p class="cart-drawer__item-variant">' + item.variant_title + '</p>';
-            }
-            html += '    <p class="cart-drawer__item-price">' + (item.final_line_price / 100).toLocaleString('en-EG', {minimumFractionDigits: 2}) + ' EGP</p>';
-            html += '    <div class="cart-drawer__item-qty">';
-            html += '      <button class="qty-btn" data-cart-qty-minus aria-label="Decrease quantity"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg></button>';
-            html += '      <input type="number" data-cart-qty data-line-key="' + item.key + '" value="' + item.quantity + '" min="0" aria-label="Quantity">';
-            html += '      <button class="qty-btn" data-cart-qty-plus aria-label="Increase quantity"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>';
-            html += '    </div>';
-            html += '  </div>';
-            html += '  <button class="cart-drawer__item-remove" data-cart-remove data-line-key="' + item.key + '" aria-label="Remove item">';
-            html += '    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-            html += '  </button>';
-            html += '</div>';
+            itemsContainer.appendChild(buildCartItem(item));
         });
-        itemsContainer.innerHTML = html;
 
         if (totalEl) {
             totalEl.textContent = (cart.total_price / 100).toLocaleString('en-EG', {minimumFractionDigits: 2}) + ' EGP';

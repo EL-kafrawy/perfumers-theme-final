@@ -1,0 +1,102 @@
+<section class="list-collections section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="list-collections__header text-center">
+      {%- if section.settings.accent_text != blank -%}
+        <span class="list-collections__accent">{{ section.settings.accent_text }}</span>
+      {%- endif -%}
+      <h1 class="list-collections__title">{{ section.settings.title | default: 'Collections' }}</h1>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="list-collections__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- assign collections_list = collections -%}
+    {%- if collections_list.size > 0 -%}
+      <div class="list-collections__grid grid grid--{{ section.settings.columns }}">
+        {%- for collection in collections_list -%}
+          {%- if collection.handle == 'frontpage' -%}{%- continue -%}{%- endif -%}
+          <a href="{{ collection.url }}" class="list-collections__card" aria-label="{{ collection.title | escape }}">
+            <div class="list-collections__image-wrapper">
+              {%- if collection.featured_image -%}
+                <img
+                  src="{{ collection.featured_image | image_url: width: 600, format: 'webp' }}"
+                  srcset="{{ collection.featured_image | image_url: width: 600, format: 'webp' }} 1x, {{ collection.featured_image | image_url: width: 900, format: 'webp' }} 1.5x"
+                  alt="{{ collection.featured_image.alt | default: collection.title | escape }}"
+                  class="list-collections__image"
+                  width="600" height="600" loading="lazy">
+              {%- else -%}
+                <div class="list-collections__image placeholder-image">
+                  {{ 'collection-1' | placeholder_svg_tag }}
+                </div>
+              {%- endif -%}
+            </div>
+            <div class="list-collections__overlay"></div>
+            <div class="list-collections__caption">
+              <h2 class="list-collections__card-title">{{ collection.title }}</h2>
+              <span class="list-collections__count">{{ collection.products_count }} {% if collection.products_count == 1 %}item{% else %}items{% endif %}</span>
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="text-center">{{ 'collection.no_products' | t }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .list-collections { padding: var(--space-3xl, 4rem) 0; background: var(--color-background, #F5F1EB); }
+  .list-collections__header { margin-bottom: var(--space-2xl, 3rem); }
+  .list-collections__accent {
+    display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem;
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em;
+    color: var(--color-primary, #C8A46A); margin-bottom: 0.5rem;
+  }
+  .list-collections__title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3rem); color: var(--color-charcoal, #2E2A33); margin: 0 0 0.5rem;
+  }
+  .list-collections__subtitle { font-family: 'Montserrat', sans-serif; color: var(--color-text-secondary, #9B8778); margin: 0; }
+  .list-collections__grid { display: grid; gap: 1.5rem; }
+  .grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .list-collections__card {
+    position: relative; display: block; text-decoration: none; color: #fff;
+    border-radius: 12px; overflow: hidden; aspect-ratio: 1 / 1;
+  }
+  .list-collections__image-wrapper, .list-collections__image { width: 100%; height: 100%; }
+  .list-collections__image { object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .list-collections__card:hover .list-collections__image { transform: scale(1.05); }
+  .list-collections__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(46,42,51,0.1) 0%, rgba(46,42,51,0.6) 100%);
+  }
+  .list-collections__caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.25rem; text-align: center; }
+  .list-collections__card-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 1.5rem; margin: 0 0 0.25rem; }
+  .list-collections__count { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.85; }
+  @media (min-width: 768px) {
+    .grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .grid--4 { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collections List",
+  "settings": [
+    { "type": "text", "id": "accent_text", "label": "Accent text", "default": "Explore" },
+    { "type": "text", "id": "title", "label": "Title", "default": "All Collections" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Browse every curated edit in the archive" },
+    {
+      "type": "select", "id": "columns", "label": "Columns (desktop)",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    }
+  ]
+}
+{% endschema %}

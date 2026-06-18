@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main-list-collections": {
+      "type": "main-list-collections",
+      "settings": {
+        "accent_text": "Explore",
+        "title": "All Collections",
+        "subtitle": "Browse every curated edit in the archive",
+        "columns": "3"
+      }
+    }
+  },
+  "order": [
+    "main-list-collections"
+  ]
+}

@@ -137,39 +137,50 @@
       });
   };
 
-  /* ---- Utility: Trap Focus in Element ---- */
+  /* ---- Utility: Trap Focus in Element ----
+     Stores the handler on the element so it can be removed cleanly on close.
+     Removes any prior trap first, so repeated opens never stack listeners. */
   window.PERFUMERS.trapFocus = function(container) {
+    if (!container) return;
+    window.PERFUMERS.removeTrapFocus(container);
+
     var focusableElements = container.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
     var firstFocusable = focusableElements[0];
     var lastFocusable = focusableElements[focusableElements.length - 1];
 
-    container.addEventListener('keydown', function(e) {
-      if (e.key === 'Tab') {
-        if (e.shiftKey) {
-          if (document.activeElement === firstFocusable) {
-            e.preventDefault();
-            lastFocusable.focus();
-          }
-        } else {
-          if (document.activeElement === lastFocusable) {
-            e.preventDefault();
-            firstFocusable.focus();
-          }
+    var handler = function(e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault();
+          if (lastFocusable) lastFocusable.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault();
+          if (firstFocusable) firstFocusable.focus();
         }
       }
-    });
+    };
+
+    container.__trapHandler = handler;
+    container.addEventListener('keydown', handler);
 
     if (firstFocusable) {
       firstFocusable.focus();
     }
   };
 
-  /* ---- Utility: Remove Focus Trap ---- */
+  /* ---- Utility: Remove Focus Trap ----
+     Detaches the stored handler WITHOUT cloning the node (cloning would
+     destroy delegated listeners bound to the drawer, e.g. the cart drawer). */
   window.PERFUMERS.removeTrapFocus = function(container) {
-    var clone = container.cloneNode(true);
-    container.parentNode.replaceChild(clone, container);
+    if (container && container.__trapHandler) {
+      container.removeEventListener('keydown', container.__trapHandler);
+      container.__trapHandler = null;
+    }
   };
 
 })();
