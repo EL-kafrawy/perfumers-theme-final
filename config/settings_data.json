@@ -34,20 +34,66 @@
       "header": {
         "type": "header",
         "settings": {
-          "logo": ""
+          "logo_width": 180
         }
       },
       "announcement-bar": {
         "type": "announcement-bar",
-        "settings": {}
+        "settings": {
+          "message_1": "🚚 Delivery in 1–3 Days Across Cairo | Free Shipping Over 500 EGP",
+          "message_2": "✅ Cash on Delivery Available Storewide",
+          "message_3": "💯 100% Authentic Fragrances — Guaranteed"
+        }
       },
       "footer": {
         "type": "footer",
         "settings": {
           "about_text": "Premium fragrances, authentically sourced. Every scent delivered across Egypt.",
           "phone": "+201065833338",
-          "email": "hello@perfumers.eg"
+          "email": "hello@perfumers.eg",
+          "location": "Cairo, Egypt",
+          "link_archive": "",
+          "link_authentication": "",
+          "link_story": "",
+          "link_shipping": "",
+          "link_returns": "",
+          "link_care": "",
+          "link_contact": "",
+          "social_facebook": "",
+          "social_instagram": "https://www.instagram.com/perfumers_eg?utm_source=qr",
+          "social_tiktok": "https://www.tiktok.com/@perfumers_eg?_r=1&_t=ZS-96gExiwYnES",
+          "social_whatsapp": "",
+          "copyright": "© 2026 PERFUMERS. All rights reserved."
         }
+      },
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {
+          "upsell_heading": "Complete the ritual...",
+          "upsell_product": "",
+          "upsell_desc": "12 curated samples, 2ml each"
+        }
+      },
+      "mobile-menu": {
+        "type": "mobile-menu",
+        "settings": {
+          "menu": "main-menu",
+          "menu_title": "Aromatic Journey",
+          "divider_text": "Curated Selection",
+          "featured_product": "",
+          "featured_tagline": "Featured Set",
+          "featured_title": "The Discovery Kit",
+          "featured_desc": "Twelve poetic journeys in glass.",
+          "featured_url": "",
+          "show_account": false,
+          "account_url": "",
+          "support_url": "",
+          "brand_mark": "Est. 1924 • Paris • Grasse"
+        }
+      },
+      "search-overlay": {
+        "type": "search-overlay",
+        "settings": {}
       }
     },
     "content_for_index": []
