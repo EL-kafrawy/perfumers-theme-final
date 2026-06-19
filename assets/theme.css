@@ -402,3 +402,32 @@ html[dir="rtl"] .template-product #MainContent > .shopify-section:first-child {
 html[dir="rtl"] .template-product #MainContent > .shopify-section:nth-child(2) {
   order: 1;
 }
+
+/* ==========================================================================
+   #PRODUCT PAGE — THIN SAFE MARGIN
+   Keeps a thin gutter on every product page so no text or logo touches the
+   screen edge, while images stay full-bleed and may fill the whole canvas
+   (the gallery uses .section--flush with no .container, so it is unaffected).
+   Applies to all products automatically (scoped to .template-product).
+   Tune the gutter with --product-safe-margin.
+   ========================================================================== */
+.template-product {
+  --product-safe-margin: 16px;
+}
+
+/* Text / logo content: guarantee the thin side gutter.
+   .container is used by the info, fragrance-notes, related and sticky-bar
+   sections. The full-bleed gallery has no .container, so images are untouched.
+   On desktop the info column's own padding rule (higher specificity) still
+   wins, so this mainly restores the missing gutter on mobile/tablet. */
+.template-product #MainContent .container {
+  padding-left: var(--product-safe-margin);
+  padding-right: var(--product-safe-margin);
+}
+
+/* Belt-and-suspenders: any full-bleed section on a product page may bleed to
+   the edge regardless of the gutter above (images can fill the whole canvas). */
+.template-product #MainContent > .shopify-section .section--flush {
+  margin-left: 0;
+  margin-right: 0;
+}
