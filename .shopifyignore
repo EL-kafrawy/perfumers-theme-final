@@ -11,6 +11,7 @@ scripts/
 *.xlsx
 
 # Editor atomic-save / CLI temp files — cause "Must have a .liquid file
-# extension" upload errors during `shopify theme dev`. Match anywhere in path.
+# extension" upload errors during `shopify theme dev`.
 *.tmp
-/\.tmp\./
+*.tmp.*
+**/*.tmp.*
