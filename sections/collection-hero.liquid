@@ -1,11 +1,17 @@
+{%- comment -%}
+  Banner image priority: the collection's own image (set in Shopify admin) first.
+  If none is set, fall back to a real local theme asset by gender handle so the
+  banner is never a broken image.
+{%- endcomment -%}
 {%- assign collection_image = collection.image -%}
+{%- assign fallback_image = '' -%}
 {%- if collection_image == blank -%}
   {%- if collection.handle == 'unisex' -%}
-    {%- assign fallback_image = 'https://lh3.googleusercontent.com/aida/ADBb0uihj-VaoUIDnCMzKxoyRaBxwfCB2yxuNh4Ca8__m5Zq4tTiFVn1sZCzjDuoWjFnf1dHTZYfvU0r7DuDPf9aLVo-rdOwWFMi_mu7jyNTVsWJw7asZnNoR5aUB72w2L0sFBKSlSpm5lLzCf6lk17C5z_wqKDmGiP2EcamQhcyae-dVzS8hLbqHeidunyKiraQKBhZ3wAP7haq7ABWt1DjSUKgkVAJ-jpZIbVqEwz5WFUMLvxDy-zHFF4AvA2WGmAvViGLlr8fn0lavg' -%}
+    {%- assign fallback_image = 'unisex.webp' | asset_url -%}
   {%- elsif collection.handle == 'men' -%}
-    {%- assign fallback_image = 'https://lh3.googleusercontent.com/aida/ADBb0uh-rP-F3Tgib7Nb1QmPfF8Eqz24kqzuWS1XJDuw0BKlMqhfC6FEEP2i7nrVLWpx0O0kif2PnfwwPZ5YtlLGCcrmsGfG8x9VU-SFIE9-pUTeJ-ZqX_Thes9uiIgP5vLZNEifPpgyvYIrqpe1TYMZeV0XXrPtjbkSxy3Zh9Xqfz9USFTYSNc4TRo-CZsnxvGkE_FXAtb_QEnb2ZDVxMPz6eWzDLRV6v_WxVItabPgASGt8bj0TOwK7WZqNA6bhk0l6nzplSwUvmluSg' -%}
+    {%- assign fallback_image = 'men.jpg' | asset_url -%}
   {%- elsif collection.handle == 'women' -%}
-    {%- assign fallback_image = 'https://lh3.googleusercontent.com/aida/ADBb0uigq1OmCuY0vlhwXw4g2Hq5Pdzg6iNjk0up0J1BfixlVSKzshkbWn4iSo1KHYRrQjgYPuMTl5fDLGgAmv2tEyxBJRRBLSU4uiI2Y3zeGHQzw_ePt_hwqlQqZC-K0c0q8QtkkPj6bvnP2jty-DqNAhegiFxeXHE4rkZttTjHQoGWhk74pt4o07Qt02N2bAtXFws2ps8YAdmNJSIzc0EKuhgfxF2m8WVg7PhYt2AQ5odcQNTcO5BxUQjy51NdOg648jWXGdOsAlCsmg' -%}
+    {%- assign fallback_image = 'women.jpg' | asset_url -%}
   {%- endif -%}
 {%- endif -%}
 
