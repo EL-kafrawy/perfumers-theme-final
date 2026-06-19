@@ -9,3 +9,8 @@ stitch_homepage_perfumers/
 product-images/
 scripts/
 *.xlsx
+
+# Editor atomic-save / CLI temp files — cause "Must have a .liquid file
+# extension" upload errors during `shopify theme dev`. Match anywhere in path.
+*.tmp
+/\.tmp\./

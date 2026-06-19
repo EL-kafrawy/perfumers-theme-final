@@ -14,3 +14,7 @@ Thumbs.db
 product-images/
 scripts/
 *.xlsx
+
+# Editor atomic-save / CLI temp files
+*.tmp
+*.tmp.*
