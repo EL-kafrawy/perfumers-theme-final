@@ -105,19 +105,22 @@
 
   .site-header__cart-badge {
     position: absolute;
-    top: 0;
-    right: 0;
-    background-color: var(--color-primary, #C8A46A);
-    color: #ffffff;
-    font-size: 8px; /* text-[8px] */
-    width: 16px; /* size-4 */
-    height: 16px;
-    border-radius: 9999px; /* rounded-full */
+    top: -4px;
+    right: -6px;
+    background-color: #2E2A33;
+    color: #F5F1EB;
+    font-size: 8px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 3px;
+    border-radius: 9999px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-sans, 'Montserrat', sans-serif);
     font-weight: 700;
+    line-height: 1;
+    border: 1.5px solid var(--color-soft-ivory, #F5F1EB);
   }
 
   /* Desktop Adjustments */
@@ -159,7 +162,7 @@
     <div class="site-header__logo">
       <a href="{{ routes.root_url }}" class="site-header__logo-link">
         {% if section.settings.logo != blank %}
-          <img src="{{ section.settings.logo | image_url: width: 400 }}"
+          <img src="{{ section.settings.logo | image_url: width: 300 }}"
                alt="{{ shop.name }}"
                class="site-header__logo-img"
                width="{{ section.settings.logo_width | default: 150 | at_most: 150 }}"

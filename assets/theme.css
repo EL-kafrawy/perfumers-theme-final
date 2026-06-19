@@ -6,7 +6,7 @@
 :root {
   /* --- Colors --- */
   /* Brand Constants extracted from Tailwind config & User Corrections */
-  --color-primary: #93733B;           /* Golden Bronze (Accessible 4.5:1) */
+  --color-primary: #C8A46A;           /* Champagne Gold — matches brand */
   --color-soft-ivory: #F5F1EB;        /* Background Light / Ivory */
   --color-pearl-beige: #E7DDD4;       /* Secondary Background / Beige */
   --color-charcoal: #2E2A33;          /* Deep Charcoal / Text */
@@ -22,7 +22,7 @@
 
   /* Semantic Color Mappings (Fix 1: Exact Semantic Aliases) */
   --color-ivory: #F5F1EB;
-  --color-gold: #93733B;
+  --color-gold: #C8A46A;
   --color-pearl: #E7DDD4;
   
   --color-background: var(--color-ivory);
@@ -367,25 +367,27 @@ html[dir="rtl"] h2 {
   /* Turn the first two sections into a two-column grid */
   .template-product #MainContent {
     display: grid;
-    grid-template-columns: 55fr 45fr;
+    grid-template-columns: 46fr 54fr;
     grid-template-rows: auto;
     align-items: start;
   }
 
-  /* Gallery (col 1) — sticky while info scrolls */
+  /* Gallery (col 1) — sticky while info scrolls, capped so it never taller than viewport */
   .template-product #MainContent > .shopify-section:first-child {
     grid-column: 1;
     grid-row: 1;
     position: sticky;
     top: 80px;
     align-self: start;
+    max-height: calc(100vh - 90px);
+    overflow: hidden;
   }
 
   /* Info (col 2) */
   .template-product #MainContent > .shopify-section:nth-child(2) {
     grid-column: 2;
     grid-row: 1;
-    padding: var(--space-3xl) var(--space-2xl) var(--space-3xl) var(--space-3xl);
+    padding: var(--space-2xl) var(--space-2xl) var(--space-2xl) var(--space-xl);
   }
 
   /* Remove the container's inner padding in the info column — grid handles width */

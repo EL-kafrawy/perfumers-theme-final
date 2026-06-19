@@ -1,15 +1,14 @@
-<section class="related-products section" data-section-id="{{ section.id }}">
+<section class="related-products" data-section-id="{{ section.id }}">
   <div class="container">
-    <div class="section__header" data-animate>
-      <span class="section__accent">{{ section.settings.accent_text }}</span>
-      <h2 class="section__title">{{ 'product.related_products' | t }}</h2>
-      <div class="divider"></div>
+    <div class="related-products__header">
+      <span class="related-products__accent">{{ section.settings.accent_text }}</span>
+      <h2 class="related-products__title">{{ 'product.related_products' | t }}</h2>
     </div>
 
     <div class="scroll-row related-products__row">
       {%- assign related = product.collections.first.products -%}
       {%- for rel_product in related limit: 8 -%}
-        {%- if rel_product.id != product.id -%}
+        {%- if rel_product.id != product.id and rel_product.available -%}
           <div class="related-products__item">
             {% render 'product-card', product: rel_product %}
           </div>
@@ -20,18 +19,59 @@
 </section>
 
 <style>
-  .related-products__item {
-    flex: 0 0 220px;
-    max-width: 220px;
+  .related-products {
+    padding: 2.5rem 0 3rem;
+    border-top: 1px solid var(--color-pearl, #E7DDD4);
+    background: var(--color-soft-ivory, #F5F1EB);
   }
-  @media (min-width: 768px) {
+  .related-products__header {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .related-products__accent {
+    display: block;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-gold, #C8A46A);
+    margin-bottom: 4px;
+  }
+  .related-products__title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-charcoal, #2E2A33);
+    margin: 0;
+  }
+  /* Mobile: compact horizontal scroll */
+  .related-products__row {
+    gap: 12px;
+    padding-bottom: 4px;
+  }
+  .related-products__item {
+    flex: 0 0 130px;
+    max-width: 130px;
+  }
+  @media (min-width: 480px) {
+    .related-products__item {
+      flex: 0 0 150px;
+      max-width: 150px;
+    }
+  }
+  /* Desktop: 4-column grid, items sized by grid not flex */
+  @media (min-width: 1024px) {
     .related-products__row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-xl);
+      gap: 20px;
       overflow: visible;
     }
-    .related-products__item { flex: none; max-width: none; }
+    .related-products__item {
+      flex: none;
+      max-width: none;
+    }
   }
 </style>
 

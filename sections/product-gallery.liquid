@@ -5,7 +5,7 @@
       {%- if product.featured_image -%}
         <img
           src="{{ product.featured_image | image_url: width: 800 }}"
-          alt="{{ product.featured_image.alt | escape }}"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
           class="product-gallery__main-image"
           data-product-main-image
           width="800"
@@ -61,6 +61,12 @@
     aspect-ratio: 3 / 4;
     object-fit: cover;
     display: block;
+    max-height: 70vh;
+  }
+  @media (min-width: 1024px) {
+    .product-gallery__main-image {
+      max-height: calc(100vh - 180px);
+    }
   }
   .product-gallery__thumbs {
     padding: var(--space-md);
@@ -79,6 +85,11 @@
     transition: border-color var(--transition-fast);
   }
   .product-gallery__thumb.is-active {
+    border-color: var(--color-gold);
+  }
+  .product-gallery__thumb:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
     border-color: var(--color-gold);
   }
   .product-gallery__thumb img {

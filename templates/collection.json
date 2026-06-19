@@ -9,10 +9,6 @@
  */
 {
     "sections": {
-        "collection-hero": {
-            "type": "collection-hero",
-            "settings": {}
-        },
         "filter-drawer": {
             "type": "filter-drawer",
             "settings": {}
@@ -27,7 +23,6 @@
         }
     },
     "order": [
-        "collection-hero",
         "filter-drawer",
         "collection-grid"
     ]

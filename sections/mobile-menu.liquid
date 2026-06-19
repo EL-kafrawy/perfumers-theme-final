@@ -24,17 +24,31 @@
             </li>
           {%- endfor -%}
         {%- else -%}
-          {%- comment -%} No Shopify menu assigned: show real fallback destinations, never "#". {%- endcomment -%}
-          {%- assign fallback_titles = "Shop All,New Arrivals,Best Sellers,Gift Sets" | split: "," -%}
-          {%- assign fallback_urls = "/collections/all,/collections/new-arrivals,/collections/best-sellers,/collections/gift-sets" | split: "," -%}
-          {%- for fallback_title in fallback_titles -%}
-            <li class="mobile-menu__link-item">
-              <a class="mobile-menu__link group" href="{{ fallback_urls[forloop.index0] }}">
-                <span class="mobile-menu__link-text">{{ fallback_title }}</span>
-                <span class="material-symbols-outlined mobile-menu__link-arrow">arrow_forward_ios</span>
-              </a>
-            </li>
-          {%- endfor -%}
+          {%- comment -%} No Shopify menu assigned — show the four core nav destinations. {%- endcomment -%}
+          <li class="mobile-menu__link-item">
+            <a class="mobile-menu__link" href="/">
+              <span class="mobile-menu__link-text">Home</span>
+              <span class="material-symbols-outlined mobile-menu__link-arrow">arrow_forward_ios</span>
+            </a>
+          </li>
+          <li class="mobile-menu__link-item">
+            <a class="mobile-menu__link" href="/collections/hot-sellers">
+              <span class="mobile-menu__link-text">Hot Sellers</span>
+              <span class="material-symbols-outlined mobile-menu__link-arrow">arrow_forward_ios</span>
+            </a>
+          </li>
+          <li class="mobile-menu__link-item">
+            <a class="mobile-menu__link" href="/collections/all">
+              <span class="mobile-menu__link-text">Shop by Gender</span>
+              <span class="material-symbols-outlined mobile-menu__link-arrow">arrow_forward_ios</span>
+            </a>
+          </li>
+          <li class="mobile-menu__link-item">
+            <a class="mobile-menu__link" href="/collections/all">
+              <span class="mobile-menu__link-text">Shop by Brand</span>
+              <span class="material-symbols-outlined mobile-menu__link-arrow">arrow_forward_ios</span>
+            </a>
+          </li>
         {%- endif -%}
       </ul>
     </nav>
@@ -75,13 +89,7 @@
 
     <!-- Footer Links Grid -->
     <div class="mobile-menu__footer-grid">
-      {%- if section.settings.show_account -%}
-        <a href="{{ section.settings.account_url | default: routes.account_url }}" class="mobile-menu__footer-btn">
-          <span class="material-symbols-outlined mobile-menu__footer-icon">account_circle</span>
-          <span class="mobile-menu__footer-text">Account</span>
-        </a>
-      {%- endif -%}
-      <a href="{{ routes.cart_url }}" class="mobile-menu__footer-btn">
+<a href="{{ routes.cart_url }}" class="mobile-menu__footer-btn">
         <span class="material-symbols-outlined mobile-menu__footer-icon">shopping_bag</span>
         <span class="mobile-menu__footer-text">{{ 'navigation.cart' | t }}
           <span class="cart-count" data-cart-count aria-label="Cart items"></span>
@@ -469,19 +477,6 @@
     {
       "type": "header",
       "content": "Footer Buttons & Brand"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_account",
-      "label": "Show Account button",
-      "default": false,
-      "info": "Enable only when customer accounts are turned on, otherwise it links to a page that does not exist."
-    },
-    {
-      "type": "url",
-      "id": "account_url",
-      "label": "Account Link",
-      "info": "Leave blank to use standard Shopify customer account URL."
     },
     {
       "type": "url",
