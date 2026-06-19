@@ -12,8 +12,10 @@
     "hero": {
       "type": "hero-banner",
       "settings": {
+        "image": "shopify://shop_images/Gemini_Generated_Image_rsx6efrsx6efrsx6-clean.png",
+        "image_alt": "Luxury perfume bottle detail",
         "accent_text": "The Resale Collective",
-        "heading": "Every scent has a story <br/> to tell twice.",
+        "heading": "Every scent has a story  to tell twice.",
         "subheading": "A curated archive of pre-loved luxury fragrances for the discerning nose.",
         "button_text": "Explore the Archive",
         "button_link": "shopify://collections/all"
@@ -21,18 +23,79 @@
     },
     "brand-marquee": {
       "type": "brand-marquee",
-      "settings": {
-        "heading": "Shop by Brand"
-      },
       "blocks": {
-        "brand-1": { "type": "logo", "settings": { "brand_name": "Dkhoon", "logo_file": "brand-logo-dkhoon.jpg" } },
-        "brand-2": { "type": "logo", "settings": { "brand_name": "Afnan", "logo_file": "brand-logo-afnan.jpg" } },
-        "brand-3": { "type": "logo", "settings": { "brand_name": "Assaf", "logo_file": "brand-logo-assaf.png" } },
-        "brand-4": { "type": "logo", "settings": { "brand_name": "Lattafa", "logo_file": "brand-logo-lattafa.png" } },
-        "brand-5": { "type": "logo", "settings": { "brand_name": "French Avenue", "logo_file": "brand-logo-french-avenue.jpg" } },
-        "brand-6": { "type": "logo", "settings": { "brand_name": "IBRAQ", "logo_file": "brand-logo-ibraq.jpg" } },
-        "brand-7": { "type": "logo", "settings": { "brand_name": "Rasasi", "logo_file": "brand-logo-rasasi.webp" } },
-        "brand-8": { "type": "logo", "settings": { "brand_name": "Qurashi", "logo_file": "brand-logo-qurashi.png" } }
+        "brand-1": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Dkhoon",
+            "logo_url": "",
+            "logo_file": "brand-logo-dkhoon.jpg",
+            "link": ""
+          }
+        },
+        "brand-2": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Afnan",
+            "logo_url": "",
+            "logo_file": "brand-logo-afnan.jpg",
+            "link": ""
+          }
+        },
+        "brand-3": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Assaf",
+            "logo_url": "",
+            "logo_file": "brand-logo-assaf.png",
+            "link": ""
+          }
+        },
+        "brand-4": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Lattafa",
+            "logo_url": "",
+            "logo_file": "brand-logo-lattafa.png",
+            "link": ""
+          }
+        },
+        "brand-5": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "French Avenue",
+            "logo_url": "",
+            "logo_file": "brand-logo-french-avenue.jpg",
+            "link": ""
+          }
+        },
+        "brand-6": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "IBRAQ",
+            "logo_url": "",
+            "logo_file": "brand-logo-ibraq.jpg",
+            "link": ""
+          }
+        },
+        "brand-7": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Rasasi",
+            "logo_url": "",
+            "logo_file": "brand-logo-rasasi.webp",
+            "link": ""
+          }
+        },
+        "brand-8": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Qurashi",
+            "logo_url": "",
+            "logo_file": "brand-logo-qurashi.png",
+            "link": ""
+          }
+        }
       },
       "block_order": [
         "brand-1",
@@ -43,7 +106,10 @@
         "brand-6",
         "brand-7",
         "brand-8"
-      ]
+      ],
+      "settings": {
+        "heading": "Shop by Brand"
+      }
     },
     "featured-products": {
       "type": "featured-collection",
@@ -57,13 +123,11 @@
     },
     "shop-by-occasion": {
       "type": "shop-by-occasion",
-      "settings": {
-        "title": "Shop by Gender"
-      },
       "blocks": {
         "occ-1": {
           "type": "occasion",
           "settings": {
+            "image_url": "",
             "title": "Unisex",
             "collection": "unisex",
             "link": "/collections/unisex"
@@ -72,6 +136,7 @@
         "occ-2": {
           "type": "occasion",
           "settings": {
+            "image_url": "",
             "title": "Men",
             "collection": "men",
             "link": "/collections/men"
@@ -80,13 +145,21 @@
         "occ-3": {
           "type": "occasion",
           "settings": {
+            "image_url": "",
             "title": "Women",
             "collection": "women",
             "link": "/collections/women"
           }
         }
       },
-      "block_order": ["occ-1", "occ-2", "occ-3"]
+      "block_order": [
+        "occ-1",
+        "occ-2",
+        "occ-3"
+      ],
+      "settings": {
+        "title": "Shop by Gender"
+      }
     },
     "testimonials": {
       "type": "testimonials",
@@ -108,7 +181,14 @@
       "type": "mobile-nav",
       "settings": {
         "home_label": "Home",
-        "browse_label": "Browse"
+        "home_link": "",
+        "browse_label": "Browse",
+        "browse_link": "",
+        "wishlist_label": "Wishlist",
+        "wishlist_link": "",
+        "show_profile": false,
+        "profile_label": "Profile",
+        "profile_link": ""
       }
     }
   },
