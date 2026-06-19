@@ -21,37 +21,6 @@
                 "returns_text": "14-day hassle-free returns"
             }
         },
-        "fragrance-notes": {
-            "type": "fragrance-notes",
-            "settings": {
-                "accent_text": "Notes"
-            },
-            "blocks": {
-                "top-notes": {
-                    "type": "top",
-                    "settings": {
-                        "notes": "Bergamot, Lemon, Pink Pepper"
-                    }
-                },
-                "heart-notes": {
-                    "type": "heart",
-                    "settings": {
-                        "notes": "Rose, Jasmine, Iris"
-                    }
-                },
-                "base-notes": {
-                    "type": "base",
-                    "settings": {
-                        "notes": "Sandalwood, Musk, Amber"
-                    }
-                }
-            },
-            "block_order": [
-                "top-notes",
-                "heart-notes",
-                "base-notes"
-            ]
-        },
         "related-products": {
             "type": "related-products",
             "settings": {
@@ -66,7 +35,6 @@
     "order": [
         "product-gallery",
         "product-info",
-        "fragrance-notes",
         "related-products",
         "product-sticky-bar"
     ]
