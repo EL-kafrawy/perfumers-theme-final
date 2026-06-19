@@ -87,31 +87,57 @@
     <h3>{{ section.settings.heading }}</h3>
   </div>
   <div class="brand-slider-wrapper">
+    {%- comment -%}
+      Dynamic brands: any collection flagged with the boolean metafield
+      custom.is_brand renders automatically here. Logo = custom.brand_logo
+      (file/image metafield) if set, otherwise the collection's image.
+      Falls back to manually-added logo blocks when no collections are flagged.
+    {%- endcomment -%}
+    {%- assign has_brands = false -%}
+    {%- for collection in collections -%}
+      {%- if collection.metafields.custom.is_brand.value -%}{%- assign has_brands = true -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
     <div class="brand-slider-track" id="brandSliderTrack">
       {%- for i in (1..2) -%}
         {%- assign is_clone = false -%}
         {%- if i == 2 -%}{%- assign is_clone = true -%}{%- endif -%}
         <div class="brand-slider-col">
-          {%- for block in section.blocks -%}
-            {%- assign brand_link = block.settings.link -%}
-            {%- if brand_link == blank or brand_link == '#' -%}
-              {%- assign brand_link = routes.all_products_collection_url -%}
-            {%- endif -%}
-            <a href="{{ brand_link }}"
-               class="brand-logo-card"
-               {% if is_clone %}aria-hidden="true" tabindex="-1"{% endif %}
-               {{ block.shopify_attributes }}>
-              {%- if block.settings.logo != blank -%}
-                <img src="{{ block.settings.logo | image_url: width: 240 }}" alt="{{ block.settings.brand_name | escape }}" width="96" height="96" loading="lazy" draggable="false">
-              {%- elsif block.settings.logo_url != blank -%}
-                <img src="{{ block.settings.logo_url }}" alt="{{ block.settings.brand_name | escape }}" width="96" height="96" loading="lazy" draggable="false">
-              {%- elsif block.settings.logo_file != blank -%}
-                <img src="{{ block.settings.logo_file | asset_url }}" alt="{{ block.settings.brand_name | escape }}" width="96" height="96" loading="lazy" draggable="false">
-              {%- else -%}
-                <span style="font-size: 10px; text-transform: uppercase; font-weight: bold; color: #2D2926;">{{ block.settings.brand_name }}</span>
+          {%- if has_brands -%}
+            {%- for collection in collections -%}
+              {%- unless collection.metafields.custom.is_brand.value -%}{%- continue -%}{%- endunless -%}
+              {%- assign brand_logo = collection.metafields.custom.brand_logo.value | default: collection.image -%}
+              <a href="{{ collection.url }}"
+                 class="brand-logo-card"
+                 {% if is_clone %}aria-hidden="true" tabindex="-1"{% endif %}>
+                {%- if brand_logo != blank -%}
+                  <img src="{{ brand_logo | image_url: width: 240 }}" alt="{{ collection.title | escape }}" width="96" height="96" loading="lazy" draggable="false">
+                {%- else -%}
+                  <span style="font-size: 10px; text-transform: uppercase; font-weight: bold; color: #2D2926;">{{ collection.title }}</span>
+                {%- endif -%}
+              </a>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for block in section.blocks -%}
+              {%- assign brand_link = block.settings.link -%}
+              {%- if brand_link == blank or brand_link == '#' -%}
+                {%- assign brand_link = routes.all_products_collection_url -%}
               {%- endif -%}
-            </a>
-          {%- endfor -%}
+              <a href="{{ brand_link }}"
+                 class="brand-logo-card"
+                 {% if is_clone %}aria-hidden="true" tabindex="-1"{% endif %}
+                 {{ block.shopify_attributes }}>
+                {%- if block.settings.logo != blank -%}
+                  <img src="{{ block.settings.logo | image_url: width: 240 }}" alt="{{ block.settings.brand_name | escape }}" width="96" height="96" loading="lazy" draggable="false">
+                {%- elsif block.settings.logo_url != blank -%}
+                  <img src="{{ block.settings.logo_url }}" alt="{{ block.settings.brand_name | escape }}" width="96" height="96" loading="lazy" draggable="false">
+                {%- elsif block.settings.logo_file != blank -%}
+                  <img src="{{ block.settings.logo_file | asset_url }}" alt="{{ block.settings.brand_name | escape }}" width="96" height="96" loading="lazy" draggable="false">
+                {%- else -%}
+                  <span style="font-size: 10px; text-transform: uppercase; font-weight: bold; color: #2D2926;">{{ block.settings.brand_name }}</span>
+                {%- endif -%}
+              </a>
+            {%- endfor -%}
+          {%- endif -%}
         </div>
       {%- endfor -%}
     </div>
@@ -124,6 +150,10 @@
 {
   "name": "Brand Logo Slider",
   "settings": [
+    {
+      "type": "paragraph",
+      "content": "Brands are automatic: any Collection with the boolean metafield 'custom.is_brand' = true appears here, using its 'custom.brand_logo' image (or the collection image) and linking to its collection page. The manual blocks below are only used when no collections are flagged."
+    },
     {
       "type": "text",
       "id": "heading",

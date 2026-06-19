@@ -9,3 +9,8 @@ Thumbs.db
 # Shopify CLI
 .shopify/
 *.log
+
+# Source assets / data — NOT part of the theme (upload to Shopify separately)
+product-images/
+scripts/
+*.xlsx

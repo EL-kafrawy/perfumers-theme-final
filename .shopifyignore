@@ -6,3 +6,6 @@ stitch_homepage_perfumers/
 .git/
 *.md
 .gitignore
+product-images/
+scripts/
+*.xlsx
