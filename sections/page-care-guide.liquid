@@ -1,0 +1,179 @@
+<section class="page-content-section">
+  <div class="container container--narrow">
+
+    <div class="page-content__hero">
+      <span class="page-content__accent">{{ section.settings.accent | default: "Fragrance Knowledge" }}</span>
+      <h1 class="page-content__title">{{ section.settings.title | default: "Fragrance Care Guide" }}</h1>
+      <p class="page-content__subtitle">{{ section.settings.subtitle | default: "Everything you need to know to protect, store, and make the most of your fragrances." }}</p>
+    </div>
+
+    <div class="page-content__divider"></div>
+
+    <div class="page-content__blocks">
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.storage_title | default: "How to Store Your Fragrance" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.storage_body | default: "<p>Perfume is sensitive to heat, light, and humidity. Store your bottles in a cool, dark place — a drawer or cabinet works perfectly. Avoid displaying them on windowsills or in bathrooms where steam and temperature fluctuations degrade the composition over time.</p><ul><li>Ideal temperature: 15–20°C</li><li>Away from direct sunlight</li><li>Upright position to prevent leakage</li></ul>" }}</div>
+      </div>
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.apply_title | default: "How to Apply Properly" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.apply_body | default: "<p>Spray on pulse points — wrists, the neck, inner elbows, and behind the knees. These spots emit heat which helps the fragrance project. Apply after showering on moisturised skin for the best longevity.</p><p>Avoid rubbing your wrists together after spraying — it crushes the top notes and shortens their lifespan.</p>" }}</div>
+      </div>
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.longevity_title | default: "Making Your Scent Last Longer" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.longevity_body | default: "<p>Moisturised skin holds fragrance significantly longer than dry skin. Apply an unscented body lotion before spraying. Alternatively, use a matching body cream from the same fragrance line.</p><p>Spritzing onto fabric (clothes, scarves) extends scent longevity as fibers hold molecules longer than skin.</p>" }}</div>
+      </div>
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.notes_title | default: "Understanding Fragrance Notes" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.notes_body | default: "<p>Every fragrance is built in three layers called notes:</p><ul><li><strong>Top Notes</strong> — what you smell first. Light, citrus or green. Lasts 15–30 minutes.</li><li><strong>Heart (Mid) Notes</strong> — the soul of the fragrance. Floral, spice, or woody. Lasts 2–4 hours.</li><li><strong>Base Notes</strong> — the lasting impression. Musk, amber, woods, vanilla. Can persist 6–12 hours.</li></ul><p>Always wait 30 minutes before judging a fragrance — the opening rarely represents the full picture.</p>" }}</div>
+      </div>
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.resale_title | default: "Buying Pre-Loved Fragrances" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.resale_body | default: "<p>Pre-loved fragrances from Perfumers are authenticated and quality-checked. As long as they have been stored correctly, a fragrance can last 3–5 years unopened, and 12–24 months once opened.</p><p>Signs a fragrance is past its best: darkened juice, a noticeably vinegar or alcohol-heavy smell, and significantly reduced projection. We reject any item showing these signs before it reaches you.</p>" }}</div>
+      </div>
+
+      <div class="page-content__block page-content__block--contact">
+        <h2 class="page-content__block-title">{{ section.settings.contact_title | default: "Questions?" }}</h2>
+        <p>{{ section.settings.contact_body | default: "Our team are fragrance enthusiasts. Ask us anything — we love talking scent." }}</p>
+        {%- if section.settings.contact_cta_label != blank -%}
+          <a href="{{ section.settings.contact_cta_link | default: '/pages/contact' }}" class="page-content__cta">{{ section.settings.contact_cta_label }}</a>
+        {%- else -%}
+          <a href="/pages/contact" class="page-content__cta">Ask Us Anything</a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-content-section {
+    padding: 4rem 0 6rem;
+    background: var(--color-soft-ivory, #F5F1EB);
+  }
+  .page-content__hero {
+    text-align: center;
+    padding-bottom: 2.5rem;
+  }
+  .page-content__accent {
+    display: block;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-gold, #C8A46A);
+    margin-bottom: 0.75rem;
+  }
+  .page-content__title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-charcoal, #2E2A33);
+    margin: 0 0 1rem;
+  }
+  .page-content__subtitle {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.85rem;
+    color: var(--color-taupe, #7E6C5F);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .page-content__divider {
+    width: 40px;
+    height: 1px;
+    background: var(--color-gold, #C8A46A);
+    margin: 0 auto 3rem;
+  }
+  .page-content__blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .page-content__block {
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--color-pearl, #E7DDD4);
+    border-radius: 4px;
+  }
+  .page-content__block--contact {
+    background: var(--color-pearl, #E7DDD4);
+    text-align: center;
+  }
+  .page-content__block-title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--color-charcoal, #2E2A33);
+    margin: 0 0 0.75rem;
+  }
+  .page-content__block-body {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.82rem;
+    color: var(--color-taupe, #7E6C5F);
+    line-height: 1.9;
+  }
+  .page-content__block-body p { margin: 0 0 0.75rem; }
+  .page-content__block-body p:last-child { margin-bottom: 0; }
+  .page-content__block-body ul { padding-left: 1.25rem; margin: 0.5rem 0; }
+  .page-content__block-body li { margin-bottom: 0.25rem; }
+  .page-content__block p {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.82rem;
+    color: var(--color-taupe, #7E6C5F);
+    line-height: 1.9;
+    margin: 0 0 1.5rem;
+  }
+  .page-content__cta {
+    display: inline-block;
+    background: var(--color-charcoal, #2E2A33);
+    color: #F5F1EB;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s ease;
+  }
+  .page-content__cta:hover { background: #C8A46A; }
+</style>
+
+{% schema %}
+{
+  "name": "Care Guide Page",
+  "settings": [
+    { "type": "text", "id": "accent", "label": "Accent label", "default": "Fragrance Knowledge" },
+    { "type": "text", "id": "title", "label": "Page title", "default": "Fragrance Care Guide" },
+    { "type": "textarea", "id": "subtitle", "label": "Intro text", "default": "Everything you need to know to protect, store, and make the most of your fragrances." },
+    { "type": "header", "content": "Storage" },
+    { "type": "text", "id": "storage_title", "label": "Heading", "default": "How to Store Your Fragrance" },
+    { "type": "richtext", "id": "storage_body", "label": "Content", "default": "<p>Store in a cool, dark place away from heat, light, and humidity.</p>" },
+    { "type": "header", "content": "Application" },
+    { "type": "text", "id": "apply_title", "label": "Heading", "default": "How to Apply Properly" },
+    { "type": "richtext", "id": "apply_body", "label": "Content", "default": "<p>Spray on pulse points — wrists, neck, inner elbows, behind the knees.</p>" },
+    { "type": "header", "content": "Longevity" },
+    { "type": "text", "id": "longevity_title", "label": "Heading", "default": "Making Your Scent Last Longer" },
+    { "type": "richtext", "id": "longevity_body", "label": "Content", "default": "<p>Moisturised skin holds fragrance significantly longer than dry skin.</p>" },
+    { "type": "header", "content": "Fragrance Notes" },
+    { "type": "text", "id": "notes_title", "label": "Heading", "default": "Understanding Fragrance Notes" },
+    { "type": "richtext", "id": "notes_body", "label": "Content", "default": "<p>Every fragrance has top, heart, and base notes that develop over time.</p>" },
+    { "type": "header", "content": "Pre-Loved Buying" },
+    { "type": "text", "id": "resale_title", "label": "Heading", "default": "Buying Pre-Loved Fragrances" },
+    { "type": "richtext", "id": "resale_body", "label": "Content", "default": "<p>Pre-loved fragrances from Perfumers are authenticated and quality-checked.</p>" },
+    { "type": "header", "content": "Contact Block" },
+    { "type": "text", "id": "contact_title", "label": "Heading", "default": "Questions?" },
+    { "type": "textarea", "id": "contact_body", "label": "Body text", "default": "Our team are fragrance enthusiasts. Ask us anything." },
+    { "type": "text", "id": "contact_cta_label", "label": "CTA button text", "default": "Ask Us Anything" },
+    { "type": "url", "id": "contact_cta_link", "label": "CTA button link" }
+  ],
+  "presets": [{ "name": "Care Guide Page" }]
+}
+{% endschema %}

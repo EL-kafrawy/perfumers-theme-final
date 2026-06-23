@@ -187,34 +187,15 @@
 
     <div class="sbb-carousel-wrapper">
       {%- comment -%}
-        Dynamic brands: any collection flagged with the boolean metafield
-        custom.is_brand renders automatically. Logo = custom.brand_logo
-        (file/image metafield) if set, otherwise the collection's image.
-        Falls back to manually-added blocks when no collections are flagged.
+        To add a brand: click "Add block" in the theme editor.
+        Fill in Brand Name, upload the Logo, and paste the Collection Link.
+        It will immediately appear in the sliding strip.
       {%- endcomment -%}
-      {%- assign has_brands = false -%}
-      {%- for collection in collections -%}
-        {%- if collection.metafields.custom.is_brand.value -%}{%- assign has_brands = true -%}{%- break -%}{%- endif -%}
-      {%- endfor -%}
-      <div class="sbb-track">
-        {%- comment -%} Double loop to create a seamless infinite marquee scrolling animation {%- endcomment -%}
-        {%- for i in (1..2) -%}
-          {%- assign is_clone = false -%}
-          {%- if i == 2 -%}
-            {%- assign is_clone = true -%}
-          {%- endif -%}
-          {%- if has_brands -%}
-            {%- for collection in collections -%}
-              {%- unless collection.metafields.custom.is_brand.value -%}{%- continue -%}{%- endunless -%}
-              {%- assign brand_logo = collection.metafields.custom.brand_logo.value | default: collection.image -%}
-              {%- render 'brand-card',
-                  logo: brand_logo,
-                  brand_name: collection.title,
-                  link: collection.url,
-                  is_clone: is_clone
-              -%}
-            {%- endfor -%}
-          {%- else -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="sbb-track">
+          {%- for i in (1..2) -%}
+            {%- assign is_clone = false -%}
+            {%- if i == 2 -%}{%- assign is_clone = true -%}{%- endif -%}
             {%- for block in section.blocks -%}
               {%- render 'brand-card',
                   logo: block.settings.logo,
@@ -224,9 +205,9 @@
                   is_clone: is_clone
               -%}
             {%- endfor -%}
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -237,7 +218,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Brands are automatic: any Collection with the boolean metafield 'custom.is_brand' = true appears here, using its 'custom.brand_logo' image (or the collection image) and linking to its collection page. The manual blocks below are only used when no collections are flagged."
+      "content": "To add a brand: click 'Add block' below, upload a logo, enter the brand name, and paste the collection URL. It will immediately appear in the sliding strip. To remove a brand, delete its block."
     },
     {
       "type": "text",

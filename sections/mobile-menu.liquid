@@ -123,11 +123,13 @@
 
   /* Scoped Mobile Menu Drawer overrides */
   .mobile-menu.drawer {
-    background-color: #f8f7f6; /* Soft Ivory matching Stitch background-light */
+    background-color: #f8f7f6;
     color: var(--color-charcoal, #2E2A33);
     display: flex;
     flex-direction: column;
     z-index: 1000;
+    overflow: hidden; /* let .mobile-menu__body handle scroll, not the drawer root */
+    height: 100%;
   }
 
   .mobile-menu__header {

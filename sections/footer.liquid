@@ -24,11 +24,6 @@
           <ul class="site-footer__list">
             <li><a href="{{ url_archive }}">{{ 'footer.the_archive' | t }}</a></li>
             <li><a href="/pages/sell-your-scent">{{ 'footer.sell_your_scent' | t }}</a></li>
-            {%- if section.settings.link_authentication != blank -%}
-              <li><a href="{{ section.settings.link_authentication }}">{{ 'footer.authentication' | t }}</a></li>
-            {%- else -%}
-              <li><span class="site-footer__static">{{ 'footer.authentication' | t }}</span></li>
-            {%- endif -%}
             {%- if section.settings.link_story != blank -%}
               <li><a href="{{ section.settings.link_story }}">{{ 'footer.our_story' | t }}</a></li>
             {%- else -%}

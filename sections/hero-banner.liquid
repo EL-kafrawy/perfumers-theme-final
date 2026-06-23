@@ -1,7 +1,7 @@
 <section class="relative min-h-[70vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden pt-4 bg-[#F5F1EB]" style="background-color: #F5F1EB;">
   <div class="absolute inset-0 z-0">
     {%- if section.settings.image != blank -%}
-      <img class="w-full h-full object-cover opacity-70 mix-blend-multiply" src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.image_alt | escape }}" width="2000" height="1400">
+      <img class="w-full h-full object-cover opacity-70 mix-blend-multiply" src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.image_alt | escape }}" width="2000" height="1400" style="object-position: {{ section.settings.image_position | default: 'center center' }};">
     {%- endif -%}
     <div class="absolute inset-0 bg-gradient-to-b from-soft-ivory/20 via-soft-ivory/40 to-soft-ivory"></div>
   </div>
@@ -9,7 +9,7 @@
     {%- if section.settings.accent_text != blank -%}
       <span class="text-[9px] uppercase tracking-[0.5em] text-primary mb-4 block font-semibold font-display">{{ section.settings.accent_text }}</span>
     {%- endif -%}
-    <h2 class="mb-6 leading-[1.2] tracking-tight" style="font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: #2E2A33; font-style: normal;">{{ section.settings.heading }}</h2>
+    <h2 class="mb-6 leading-[1.2] tracking-tight hero-heading" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; color: #2E2A33; font-style: normal;">{{ section.settings.heading }}</h2>
     <p class="mb-8 leading-relaxed max-w-[400px] mx-auto" style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 400; color: #9B8778;">{{ section.settings.subheading }}</p>
     <a class="inline-block uppercase tracking-[0.2em] transition-all hover:bg-charcoal/90" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" style="background-color: #C8A46A; color: #F5F1EB; font-family: 'Montserrat', sans-serif; font-weight: 600; border-radius: 2px; padding: 16px 32px; font-size: 12px;">{{ section.settings.button_text }}</a>
   </div>
@@ -56,6 +56,9 @@
   .inline-block { display: inline-block; }
   .tracking-\[0\.2em\] { letter-spacing: 0.2em; }
   .transition-all { transition: all 0.3s ease; }
+  .hero-heading { font-size: 42px; }
+  @media (min-width: 640px) { .hero-heading { font-size: 58px; } }
+  @media (min-width: 1024px) { .hero-heading { font-size: 72px; } }
 </style>
 
 {% schema %}
@@ -101,6 +104,19 @@
       "type": "url",
       "id": "button_link",
       "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image focal point (mobile)",
+      "default": "center center",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "top center", "label": "Top" },
+        { "value": "bottom center", "label": "Bottom" },
+        { "value": "center left", "label": "Left" },
+        { "value": "center right", "label": "Right" }
+      ]
     }
   ],
   "presets": [

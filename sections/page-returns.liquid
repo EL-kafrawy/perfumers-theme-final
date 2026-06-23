@@ -1,0 +1,177 @@
+<section class="page-content-section">
+  <div class="container container--narrow">
+
+    <div class="page-content__hero">
+      <span class="page-content__accent">{{ section.settings.accent | default: "Customer Care" }}</span>
+      <h1 class="page-content__title">{{ section.settings.title | default: "Returns & Refunds" }}</h1>
+      <p class="page-content__subtitle">{{ section.settings.subtitle | default: "We want you to love every fragrance you receive. If something isn't right, we'll make it right." }}</p>
+    </div>
+
+    <div class="page-content__divider"></div>
+
+    <div class="page-content__blocks">
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.policy_title | default: "Return Window" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.policy_body | default: "You have <strong>14 days</strong> from the date of delivery to request a return. After this period, we are unable to accept returns." }}</div>
+      </div>
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.condition_title | default: "Item Condition" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.condition_body | default: "Items must be returned in the same condition they were received — unused, unaltered, and in their original packaging with all accessories included. Fragrances that have been heavily used or damaged after delivery are not eligible for return." }}</div>
+      </div>
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.process_title | default: "How to Return" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.process_body | default: "1. Contact us via WhatsApp or email within 14 days of delivery.<br>2. Share your order number and photos of the item.<br>3. We will confirm eligibility and provide return instructions.<br>4. Ship the item back using a trackable courier.<br>5. Once received and inspected, your refund will be processed within 3–5 business days." }}</div>
+      </div>
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.refund_title | default: "Refunds" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.refund_body | default: "Approved refunds are issued to your original payment method. Cash on Delivery orders are refunded via bank transfer or Vodafone Cash. Shipping fees are non-refundable unless the return is due to our error." }}</div>
+      </div>
+
+      <div class="page-content__block">
+        <h2 class="page-content__block-title">{{ section.settings.exceptions_title | default: "Non-Returnable Items" }}</h2>
+        <div class="page-content__block-body">{{ section.settings.exceptions_body | default: "The following cannot be returned: gift cards, sale items marked as final sale, and items damaged due to misuse or mishandling after delivery." }}</div>
+      </div>
+
+      <div class="page-content__block page-content__block--contact">
+        <h2 class="page-content__block-title">{{ section.settings.contact_title | default: "Need Help?" }}</h2>
+        <p>{{ section.settings.contact_body | default: "Our team is here to assist you. Reach us on WhatsApp or email and we'll respond within 24 hours." }}</p>
+        {%- if section.settings.contact_cta_label != blank -%}
+          <a href="{{ section.settings.contact_cta_link | default: '/pages/contact' }}" class="page-content__cta">{{ section.settings.contact_cta_label }}</a>
+        {%- else -%}
+          <a href="/pages/contact" class="page-content__cta">Contact Us</a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-content-section {
+    padding: 4rem 0 6rem;
+    background: var(--color-soft-ivory, #F5F1EB);
+  }
+  .page-content__hero {
+    text-align: center;
+    padding-bottom: 2.5rem;
+  }
+  .page-content__accent {
+    display: block;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-gold, #C8A46A);
+    margin-bottom: 0.75rem;
+  }
+  .page-content__title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-charcoal, #2E2A33);
+    margin: 0 0 1rem;
+  }
+  .page-content__subtitle {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.85rem;
+    color: var(--color-taupe, #7E6C5F);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .page-content__divider {
+    width: 40px;
+    height: 1px;
+    background: var(--color-gold, #C8A46A);
+    margin: 0 auto 3rem;
+  }
+  .page-content__blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .page-content__block {
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--color-pearl, #E7DDD4);
+    border-radius: 4px;
+  }
+  .page-content__block--contact {
+    background: var(--color-pearl, #E7DDD4);
+    text-align: center;
+  }
+  .page-content__block-title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--color-charcoal, #2E2A33);
+    margin: 0 0 0.75rem;
+  }
+  .page-content__block-body {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.82rem;
+    color: var(--color-taupe, #7E6C5F);
+    line-height: 1.9;
+  }
+  .page-content__block p {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.82rem;
+    color: var(--color-taupe, #7E6C5F);
+    line-height: 1.9;
+    margin: 0 0 1.5rem;
+  }
+  .page-content__cta {
+    display: inline-block;
+    background: var(--color-charcoal, #2E2A33);
+    color: #F5F1EB;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s ease;
+  }
+  .page-content__cta:hover {
+    background: #C8A46A;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Returns Page",
+  "settings": [
+    { "type": "text", "id": "accent", "label": "Accent label", "default": "Customer Care" },
+    { "type": "text", "id": "title", "label": "Page title", "default": "Returns & Refunds" },
+    { "type": "textarea", "id": "subtitle", "label": "Intro text", "default": "We want you to love every fragrance you receive. If something isn't right, we'll make it right." },
+    { "type": "header", "content": "Return Window" },
+    { "type": "text", "id": "policy_title", "label": "Heading", "default": "Return Window" },
+    { "type": "richtext", "id": "policy_body", "label": "Content", "default": "<p>You have <strong>14 days</strong> from the date of delivery to request a return.</p>" },
+    { "type": "header", "content": "Item Condition" },
+    { "type": "text", "id": "condition_title", "label": "Heading", "default": "Item Condition" },
+    { "type": "richtext", "id": "condition_body", "label": "Content", "default": "<p>Items must be returned unused, unaltered, and in their original packaging.</p>" },
+    { "type": "header", "content": "How to Return" },
+    { "type": "text", "id": "process_title", "label": "Heading", "default": "How to Return" },
+    { "type": "richtext", "id": "process_body", "label": "Content", "default": "<p>Contact us via WhatsApp or email within 14 days of delivery with your order number and photos.</p>" },
+    { "type": "header", "content": "Refunds" },
+    { "type": "text", "id": "refund_title", "label": "Heading", "default": "Refunds" },
+    { "type": "richtext", "id": "refund_body", "label": "Content", "default": "<p>Approved refunds are issued within 3–5 business days to your original payment method.</p>" },
+    { "type": "header", "content": "Exceptions" },
+    { "type": "text", "id": "exceptions_title", "label": "Heading", "default": "Non-Returnable Items" },
+    { "type": "richtext", "id": "exceptions_body", "label": "Content", "default": "<p>Gift cards, final sale items, and items damaged after delivery cannot be returned.</p>" },
+    { "type": "header", "content": "Contact Block" },
+    { "type": "text", "id": "contact_title", "label": "Heading", "default": "Need Help?" },
+    { "type": "textarea", "id": "contact_body", "label": "Body text", "default": "Our team is here to assist you. Reach us on WhatsApp or email and we'll respond within 24 hours." },
+    { "type": "text", "id": "contact_cta_label", "label": "CTA button text", "default": "Contact Us" },
+    { "type": "url", "id": "contact_cta_link", "label": "CTA button link" }
+  ],
+  "presets": [{ "name": "Returns Page" }]
+}
+{% endschema %}

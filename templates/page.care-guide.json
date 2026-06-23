@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "page-care-guide": {
+      "type": "page-care-guide",
+      "settings": {}
+    }
+  },
+  "order": ["page-care-guide"]
+}
