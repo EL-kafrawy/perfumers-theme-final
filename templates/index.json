@@ -105,6 +105,24 @@
             "logo_file": "brand-logo-qurashi.png",
             "link": ""
           }
+        },
+        "logo_KmxpKx": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Rayhaan",
+            "logo_url": "",
+            "logo_file": "",
+            "link": ""
+          }
+        },
+        "logo_LJcKFQ": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "",
+            "logo_url": "",
+            "logo_file": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -116,7 +134,9 @@
         "brand-5",
         "brand-6",
         "brand-7",
-        "brand-8"
+        "brand-8",
+        "logo_KmxpKx",
+        "logo_LJcKFQ"
       ],
       "settings": {
         "heading": "Shop by Brand"
