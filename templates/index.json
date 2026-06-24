@@ -18,12 +18,22 @@
         "heading": "Every scent has a story  to tell twice.",
         "subheading": "A curated archive of pre-loved luxury fragrances for the discerning nose.",
         "button_text": "Explore the Archive",
-        "button_link": "shopify://collections/all"
+        "button_link": "shopify://collections/all",
+        "image_position": "center center"
       }
     },
     "brand-marquee": {
       "type": "brand-marquee",
       "blocks": {
+        "logo_fAaCNj": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Afnan",
+            "logo_url": "",
+            "logo_file": "",
+            "link": ""
+          }
+        },
         "brand-1": {
           "type": "logo",
           "settings": {
@@ -98,6 +108,7 @@
         }
       },
       "block_order": [
+        "logo_fAaCNj",
         "brand-1",
         "brand-2",
         "brand-3",
@@ -180,15 +191,10 @@
     "mobile-bottom-nav": {
       "type": "mobile-nav",
       "settings": {
-        "home_label": "Home",
         "home_link": "",
-        "browse_label": "Browse",
-        "browse_link": "",
-        "wishlist_label": "Wishlist",
-        "wishlist_link": "",
-        "show_profile": false,
-        "profile_label": "Profile",
-        "profile_link": ""
+        "hot_sellers_link": "",
+        "gender_link": "",
+        "brand_link": ""
       }
     }
   },
