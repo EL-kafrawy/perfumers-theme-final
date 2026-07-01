@@ -37,37 +37,37 @@
         "brand-1": {
           "type": "logo",
           "settings": {
-            "brand_name": "Arabiyat  Prestige",
+            "brand_name": "Afnan",
             "logo_url": "",
-            "logo_file": "brand-logo-dkhoon.jpg",
-            "link": ""
+            "logo_file": "brand-logo-afnan.jpg",
+            "link": "/collections/afnan"
           }
         },
         "brand-2": {
           "type": "logo",
           "settings": {
-            "brand_name": "Afnan",
+            "brand_name": "Arabiyat Prestige",
             "logo_url": "",
-            "logo_file": "brand-logo-afnan.jpg",
-            "link": ""
+            "logo_file": "",
+            "link": "/collections/arabiyat-prestige"
           }
         },
         "brand-3": {
           "type": "logo",
           "settings": {
-            "brand_name": "Assaf",
+            "brand_name": "Armaf",
             "logo_url": "",
-            "logo_file": "brand-logo-assaf.png",
-            "link": ""
+            "logo_file": "",
+            "link": "/collections/armaf"
           }
         },
         "brand-4": {
           "type": "logo",
           "settings": {
-            "brand_name": "Lattafa",
+            "brand_name": "Assaf",
             "logo_url": "",
-            "logo_file": "brand-logo-lattafa.png",
-            "link": ""
+            "logo_file": "brand-logo-assaf.png",
+            "link": "/collections/assaf"
           }
         },
         "brand-5": {
@@ -76,34 +76,88 @@
             "brand_name": "French Avenue",
             "logo_url": "",
             "logo_file": "brand-logo-french-avenue.jpg",
-            "link": ""
+            "link": "/collections/french-avenue"
           }
         },
         "brand-6": {
           "type": "logo",
           "settings": {
-            "brand_name": "IBRAQ",
+            "brand_name": "Ibraq",
             "logo_url": "",
             "logo_file": "brand-logo-ibraq.jpg",
-            "link": ""
+            "link": "/collections/ibraq"
           }
         },
         "brand-7": {
           "type": "logo",
           "settings": {
-            "brand_name": "Rasasi",
+            "brand_name": "Khadlaj",
             "logo_url": "",
-            "logo_file": "brand-logo-rasasi.webp",
-            "link": ""
+            "logo_file": "KHADLAJ-1728143202371.webp",
+            "link": "/collections/khadlaj"
           }
         },
         "brand-8": {
           "type": "logo",
           "settings": {
-            "brand_name": "Qurashi",
+            "brand_name": "Lattafa",
             "logo_url": "",
-            "logo_file": "brand-logo-qurashi.png",
-            "link": ""
+            "logo_file": "brand-logo-lattafa.png",
+            "link": "/collections/lattafa"
+          }
+        },
+        "brand-9": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Laverne",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/laverne"
+          }
+        },
+        "brand-10": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Maison Asrar",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/maison-asrar"
+          }
+        },
+        "brand-11": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Paris Corner",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/paris-corner"
+          }
+        },
+        "brand-12": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Rasasi",
+            "logo_url": "",
+            "logo_file": "brand-logo-rasasi.webp",
+            "link": "/collections/rasasi"
+          }
+        },
+        "brand-13": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Rayhaan",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/rayhaan"
+          }
+        },
+        "brand-14": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Zimaya",
+            "logo_url": "",
+            "logo_file": "Logo_zimaya.webp",
+            "link": "/collections/zimaya"
           }
         },
         "logo_KmxpKx": {
@@ -135,6 +189,12 @@
         "brand-6",
         "brand-7",
         "brand-8",
+        "brand-9",
+        "brand-10",
+        "brand-11",
+        "brand-12",
+        "brand-13",
+        "brand-14",
         "logo_KmxpKx",
         "logo_LJcKFQ"
       ],

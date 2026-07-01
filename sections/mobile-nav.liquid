@@ -3,7 +3,7 @@
     <span class="material-symbols-outlined">home</span>
     <span class="mobile-bottom-nav__label">Home</span>
   </a>
-  <a class="mobile-bottom-nav__item" href="{{ section.settings.hot_sellers_link | default: '/collections/hot-sellers' }}" data-nav-item="hot-sellers">
+  <a class="mobile-bottom-nav__item" href="{{ section.settings.hot_sellers_link | default: '/collections/best-sellers' }}" data-nav-item="hot-sellers">
     <span class="material-symbols-outlined">local_fire_department</span>
     <span class="mobile-bottom-nav__label">Hot Sellers</span>
   </a>
@@ -107,7 +107,7 @@
       "type": "url",
       "id": "hot_sellers_link",
       "label": "Hot Sellers link",
-      "info": "e.g. /collections/hot-sellers"
+      "info": "e.g. /collections/best-sellers"
     },
     {
       "type": "url",
