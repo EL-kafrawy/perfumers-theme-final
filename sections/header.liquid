@@ -53,7 +53,7 @@
     font-family: var(--font-serif, 'Cormorant Garamond', serif);
     font-size: {{ section.settings.wordmark_size | default: 24 }}px;
     font-weight: {{ section.settings.wordmark_weight | default: 400 }};
-    letter-spacing: {{ section.settings.wordmark_tracking | default: 0.2 }}em;
+    letter-spacing: {{ section.settings.wordmark_tracking | default: 20 | divided_by: 100.0 }}em;
     text-transform: uppercase;
     color: var(--color-charcoal, #2E2A33) !important;
     text-decoration: none;
@@ -242,11 +242,11 @@
       "type": "range",
       "id": "wordmark_tracking",
       "min": 0,
-      "max": 0.5,
-      "step": 0.02,
-      "unit": "em",
+      "max": 50,
+      "step": 2,
+      "unit": "×.01em",
       "label": "Wordmark letter spacing",
-      "default": 0.2
+      "default": 20
     }
   ]
 }
