@@ -163,7 +163,12 @@
                style="max-height: 55px; width: auto; max-width: 150px; object-fit: contain; display: block;"
                loading="eager">
         {% else %}
-          <span class="font-serif tracking-[0.2em] text-charcoal leading-none">PERFUMERS</span>
+          <img src="{{ 'logo--.png' | asset_url }}"
+               alt="{{ shop.name }}"
+               class="site-header__logo-img"
+               height="55"
+               style="max-height: 55px; width: auto; max-width: 150px; object-fit: contain; display: block;"
+               loading="eager">
         {% endif %}
       </a>
     </div>
