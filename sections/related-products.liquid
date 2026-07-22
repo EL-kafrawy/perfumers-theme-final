@@ -1,11 +1,8 @@
-<section class="related-products" data-section-id="{{ section.id }}">
+<section class="related-products related-products--pdp" data-section-id="{{ section.id }}">
   <div class="container">
-    <div class="related-products__header">
-      <span class="related-products__accent">{{ section.settings.accent_text }}</span>
-      <h2 class="related-products__title">{{ 'product.related_products' | t }}</h2>
-    </div>
+    <h2 class="related-products__title">{{ section.settings.heading | default: 'You May Also Like' }}</h2>
 
-    <div class="scroll-row related-products__row">
+    <div class="related-products__grid">
       {%- comment -%}
         Simple recommendation algorithm (Liquid):
         Pool = products from the same collection.
@@ -14,7 +11,7 @@
         Pass 3: fill remaining slots with the rest of the collection.
         shown_ids uses comma delimiters (",id,") to prevent partial-id matches.
       {%- endcomment -%}
-      {%- assign max_count = section.settings.products_count | default: 12 -%}
+      {%- assign max_count = section.settings.products_count | default: 4 -%}
       {%- assign pool = product.collections.first.products -%}
       {%- assign shown = 0 -%}
       {%- assign shown_ids = ',' -%}
@@ -68,59 +65,39 @@
 
 <style>
   .related-products {
-    padding: 2.5rem 0 3rem;
-    border-top: 1px solid var(--color-pearl, #E7DDD4);
+    padding: 3.5rem 0 3rem;
     background: var(--color-soft-ivory, #F5F1EB);
-  }
-  .related-products__header {
-    text-align: center;
-    margin-bottom: 1.25rem;
-  }
-  .related-products__accent {
-    display: block;
-    font-family: var(--font-sans, 'Montserrat', sans-serif);
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    color: var(--color-gold, #C8A46A);
-    margin-bottom: 4px;
   }
   .related-products__title {
     font-family: var(--font-serif, 'Cormorant Garamond', serif);
-    font-size: 1.35rem;
-    font-weight: 400;
     font-style: italic;
+    font-size: 1.5rem;
+    font-weight: 400;
     color: var(--color-charcoal, #2E2A33);
-    margin: 0;
+    margin: 0 0 2rem;
   }
-  /* Mobile: compact horizontal scroll */
-  .related-products__row {
-    gap: 12px;
-    padding-bottom: 4px;
+  /* Two-column grid on mobile, wider on desktop */
+  .related-products__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
-  .related-products__item {
-    flex: 0 0 130px;
-    max-width: 130px;
-  }
-  @media (min-width: 480px) {
-    .related-products__item {
-      flex: 0 0 150px;
-      max-width: 150px;
-    }
-  }
-  /* Desktop: 4-column grid, items sized by grid not flex */
-  @media (min-width: 1024px) {
-    .related-products__row {
-      display: grid;
+  @media (min-width: 768px) {
+    .related-products__grid {
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      overflow: visible;
-    }
-    .related-products__item {
-      flex: none;
-      max-width: none;
+      gap: 1.5rem;
     }
   }
+
+  /* Product-page card treatment: square image + serif italic title */
+  .related-products--pdp .product-card__image-wrapper { aspect-ratio: 1 / 1; border-radius: 2px; }
+  .related-products--pdp .product-card__title {
+    font-style: italic;
+    font-size: 1.125rem;
+    -webkit-line-clamp: 1;
+    min-height: 0;
+  }
+  .related-products--pdp .product-card__brand { color: rgba(46,42,51,0.5); }
 </style>
 
 {% schema %}
@@ -129,18 +106,18 @@
   "settings": [
     {
       "type": "text",
-      "id": "accent_text",
-      "label": "Accent text",
-      "default": "Discover"
+      "id": "heading",
+      "label": "Heading",
+      "default": "You May Also Like"
     },
     {
       "type": "range",
       "id": "products_count",
-      "min": 4,
-      "max": 20,
+      "min": 2,
+      "max": 12,
       "step": 1,
       "label": "Number of suggested products",
-      "default": 12
+      "default": 4
     }
   ],
   "presets": [

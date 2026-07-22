@@ -1,96 +1,88 @@
 <div class="product-sticky-bar" id="sticky-atc" data-sticky-bar data-section-id="{{ section.id }}">
-  <div class="container">
-    <div class="product-sticky-bar__inner">
-      <div class="product-sticky-bar__info">
-        <p class="product-sticky-bar__title">{{ product.title }}</p>
-        <span class="product-sticky-bar__price" data-product-price>
-          {% render 'price', price: product.price %}
-        </span>
-      </div>
-      <button
-        class="btn btn-primary product-sticky-bar__btn"
-        onclick="document.querySelector('[name=add]') ? document.querySelector('[name=add]').click() : document.querySelector('.product-form__submit').click()"
-        {% unless product.available %}disabled{% endunless %}
-      >
-        {%- if product.available -%}
-          {{ 'actions.add_to_cart' | t }}
-        {%- else -%}
-          {{ 'actions.sold_out' | t }}
-        {%- endif -%}
-      </button>
+  <div class="product-sticky-bar__inner">
+    <div class="product-sticky-bar__info">
+      <span class="product-sticky-bar__label">Total</span>
+      <span class="product-sticky-bar__price" data-product-price>{% render 'price', price: product.price %}</span>
     </div>
+    <button
+      class="product-sticky-bar__btn"
+      onclick="document.querySelector('[data-add-to-cart]') ? document.querySelector('[data-add-to-cart]').click() : (document.querySelector('[name=add]') && document.querySelector('[name=add]').click())"
+      {% unless product.available %}disabled{% endunless %}
+    >
+      {%- if product.available -%}
+        {{ 'actions.add_to_cart' | t }}
+      {%- else -%}
+        {{ 'actions.sold_out' | t }}
+      {%- endif -%}
+    </button>
   </div>
 </div>
 
 <style>
   .product-sticky-bar {
     position: fixed;
-    bottom: -80px;
+    bottom: -90px;
     left: 0;
     right: 0;
     z-index: 8888;
-    background: #fff;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-    padding: 12px 20px;
+    background: rgba(245, 241, 235, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(200, 164, 106, 0.2);
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+    padding: 14px 20px;
     transition: bottom 0.3s ease;
-    font-family: inherit;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
   }
-  .product-sticky-bar.visible {
-    bottom: 0;
-  }
-  /* Keep legacy class for backward compatibility */
-  .product-sticky-bar.is-visible {
-    bottom: 0;
-  }
+  .product-sticky-bar.visible,
+  .product-sticky-bar.is-visible { bottom: 0; }
+
   .product-sticky-bar__inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
+    max-width: 768px;
+    margin: 0 auto;
   }
   .product-sticky-bar__info {
-    flex: 1;
-    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
   }
-  .product-sticky-bar__title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a1a;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0;
+  .product-sticky-bar__label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    color: var(--color-charcoal, #2E2A33);
   }
   .product-sticky-bar__price {
-    font-size: var(--text-sm, 0.875rem);
-    font-weight: 600;
-    color: var(--color-gold, #C8A46A);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-charcoal, #2E2A33);
   }
   .product-sticky-bar__btn {
-    width: auto;
-    flex-shrink: 0;
-    background: #1a1a1a;
+    flex: 1;
+    background: var(--color-gold, #C8A46A);
     color: #fff;
     border: none;
-    border-radius: 6px;
-    padding: 10px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    border-radius: 2px;
+    padding: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.2s;
+    transition: opacity 0.2s;
   }
-  .product-sticky-bar__btn:hover { background: #333; }
-  @media (max-width: 767px) {
-    .product-sticky-bar { padding: 10px 16px; }
-  }
+  .product-sticky-bar__btn:hover { opacity: 0.92; }
+  .product-sticky-bar__btn:disabled { opacity: 0.5; cursor: not-allowed; }
 </style>
 
 <script>
   (function(){
-    var mainBtn = document.querySelector('[data-add-to-cart], [name=add], .product-form__submit, .btn-addtocart');
+    var mainBtn = document.querySelector('[data-add-to-cart], [name=add], .product-form__submit');
     var stickyBar = document.getElementById('sticky-atc');
     if (!mainBtn || !stickyBar) return;
     var observer = new IntersectionObserver(function(entries){
