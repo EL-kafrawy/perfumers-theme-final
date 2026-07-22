@@ -63,11 +63,14 @@
     display: block;
     max-height: 70vh;
   }
-  /* Mobile-first: square hero keeps product details visible without a long scroll */
+  /* Mobile: smaller, centered product image so Add to Cart sits higher on screen */
   @media (max-width: 767px) {
     .product-gallery__main-image {
       aspect-ratio: 1 / 1;
-      max-height: 68vh;
+      max-height: 44vh;
+      width: auto;
+      max-width: 100%;
+      margin: 0 auto;
     }
   }
   @media (min-width: 1024px) {
