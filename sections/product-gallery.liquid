@@ -63,6 +63,13 @@
     display: block;
     max-height: 70vh;
   }
+  /* Mobile-first: keep the hero image compact so the product details stay visible without a long scroll */
+  @media (max-width: 767px) {
+    .product-gallery__main-image {
+      aspect-ratio: 4 / 5;
+      max-height: 56vh;
+    }
+  }
   @media (min-width: 1024px) {
     .product-gallery__main-image {
       max-height: calc(100vh - 180px);

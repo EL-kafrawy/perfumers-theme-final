@@ -12,7 +12,7 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(200, 164, 106, 0.2); /* primary/20 */
-    height: 70px;
+    height: {{ section.settings.header_height | default: 70 }}px;
     padding: 0 24px; /* px-6 */
     overflow: hidden;
   }
@@ -51,9 +51,9 @@
 
   .site-header__logo-link {
     font-family: var(--font-serif, 'Cormorant Garamond', serif);
-    font-size: 1.5rem; /* text-2xl */
-    font-weight: 300;
-    letter-spacing: 0.2em; /* tracking-[0.2em] */
+    font-size: {{ section.settings.wordmark_size | default: 24 }}px;
+    font-weight: {{ section.settings.wordmark_weight | default: 400 }};
+    letter-spacing: {{ section.settings.wordmark_tracking | default: 0.2 }}em;
     text-transform: uppercase;
     color: var(--color-charcoal, #2E2A33) !important;
     text-decoration: none;
@@ -197,6 +197,56 @@
       "unit": "px",
       "label": "Logo width",
       "default": 180
+    },
+    {
+      "type": "header",
+      "content": "Header size"
+    },
+    {
+      "type": "range",
+      "id": "header_height",
+      "min": 56,
+      "max": 110,
+      "step": 2,
+      "unit": "px",
+      "label": "Header height",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Wordmark typography (when no logo image)"
+    },
+    {
+      "type": "range",
+      "id": "wordmark_size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Wordmark font size",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "wordmark_weight",
+      "label": "Wordmark font weight",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "wordmark_tracking",
+      "min": 0,
+      "max": 0.5,
+      "step": 0.02,
+      "unit": "em",
+      "label": "Wordmark letter spacing",
+      "default": 0.2
     }
   ]
 }

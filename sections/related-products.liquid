@@ -6,13 +6,61 @@
     </div>
 
     <div class="scroll-row related-products__row">
-      {%- assign related = product.collections.first.products -%}
-      {%- for rel_product in related limit: 8 -%}
-        {%- if rel_product.id != product.id and rel_product.available -%}
-          <div class="related-products__item">
-            {% render 'product-card', product: rel_product %}
-          </div>
-        {%- endif -%}
+      {%- comment -%}
+        Simple recommendation algorithm (Liquid):
+        Pool = products from the same collection.
+        Pass 1: products sharing at least one tag with the current product.
+        Pass 2: products from the same brand (vendor).
+        Pass 3: fill remaining slots with the rest of the collection.
+        shown_ids uses comma delimiters (",id,") to prevent partial-id matches.
+      {%- endcomment -%}
+      {%- assign max_count = section.settings.products_count | default: 12 -%}
+      {%- assign pool = product.collections.first.products -%}
+      {%- assign shown = 0 -%}
+      {%- assign shown_ids = ',' -%}
+
+      {%- comment -%} Pass 1 — shared tags {%- endcomment -%}
+      {%- for rel in pool -%}
+        {%- if shown >= max_count -%}{%- break -%}{%- endif -%}
+        {%- if rel.id == product.id or rel.available == false -%}{%- continue -%}{%- endif -%}
+        {%- assign id_key = ',' | append: rel.id | append: ',' -%}
+        {%- unless shown_ids contains id_key -%}
+          {%- assign is_match = false -%}
+          {%- for t in rel.tags -%}
+            {%- if product.tags contains t -%}{%- assign is_match = true -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if is_match -%}
+            <div class="related-products__item">{% render 'product-card', product: rel %}</div>
+            {%- assign shown_ids = shown_ids | append: rel.id | append: ',' -%}
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+
+      {%- comment -%} Pass 2 — same brand {%- endcomment -%}
+      {%- for rel in pool -%}
+        {%- if shown >= max_count -%}{%- break -%}{%- endif -%}
+        {%- if rel.id == product.id or rel.available == false -%}{%- continue -%}{%- endif -%}
+        {%- assign id_key = ',' | append: rel.id | append: ',' -%}
+        {%- unless shown_ids contains id_key -%}
+          {%- if rel.vendor == product.vendor -%}
+            <div class="related-products__item">{% render 'product-card', product: rel %}</div>
+            {%- assign shown_ids = shown_ids | append: rel.id | append: ',' -%}
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+
+      {%- comment -%} Pass 3 — fill remaining from the collection {%- endcomment -%}
+      {%- for rel in pool -%}
+        {%- if shown >= max_count -%}{%- break -%}{%- endif -%}
+        {%- if rel.id == product.id or rel.available == false -%}{%- continue -%}{%- endif -%}
+        {%- assign id_key = ',' | append: rel.id | append: ',' -%}
+        {%- unless shown_ids contains id_key -%}
+          <div class="related-products__item">{% render 'product-card', product: rel %}</div>
+          {%- assign shown_ids = shown_ids | append: rel.id | append: ',' -%}
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endunless -%}
       {%- endfor -%}
     </div>
   </div>
@@ -84,6 +132,15 @@
       "id": "accent_text",
       "label": "Accent text",
       "default": "Discover"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "label": "Number of suggested products",
+      "default": 12
     }
   ],
   "presets": [

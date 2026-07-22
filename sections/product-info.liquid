@@ -111,12 +111,6 @@
 
       <!-- Product Meta -->
       <div class="product-info__meta">
-        {%- if product.type != blank -%}
-          <p class="product-info__meta-item">
-            <span class="product-info__meta-label">{{ 'product.type' | t }}:</span>
-            {{ product.type }}
-          </p>
-        {%- endif -%}
         {%- if product.sku != blank -%}
           <p class="product-info__meta-item">
             <span class="product-info__meta-label">{{ 'product.sku' | t }}:</span>
