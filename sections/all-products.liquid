@@ -60,13 +60,15 @@
   .all-products__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-    row-gap: 2.5rem;
+    column-gap: 1.25rem;
+    row-gap: 3rem;
     align-items: stretch;
   }
   @media (min-width: 768px) {
     .all-products__grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      column-gap: 2rem;
+      row-gap: 3.5rem;
     }
   }
   .all-products__empty {

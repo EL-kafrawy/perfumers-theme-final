@@ -74,6 +74,11 @@
   --space-3xl: 48px;
   --space-4xl: 72px;
 
+  /* Grid gutter used by .grid in base.css. This was previously referenced but
+     never defined, so `gap: var(--grid-gutter)` was invalid and collapsed to 0 —
+     which is why product cards sat flush against each other. */
+  --grid-gutter: 16px;
+
   /* --- Shadows --- */
   --shadow-sm: 0 1px 2px 0 rgba(46, 42, 51, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(46, 42, 51, 0.1), 0 2px 4px -1px rgba(46, 42, 51, 0.06);

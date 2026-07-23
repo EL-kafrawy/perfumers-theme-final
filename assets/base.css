@@ -22,7 +22,7 @@
 /* ---- Grid System ---- */
 .grid {
     display: grid;
-    gap: var(--grid-gutter);
+    gap: var(--grid-gutter, 16px);
 }
 
 .grid--2 {
