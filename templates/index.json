@@ -12,12 +12,12 @@
     "hero": {
       "type": "hero-banner",
       "settings": {
-        "image": "shopify://shop_images/Gemini_Generated_Image_rsx6efrsx6efrsx6-clean.png",
+        "image": "",
         "image_alt": "Luxury perfume bottle detail",
         "accent_text": "The Resale Collective",
         "heading": "Every scent has a story  to tell twice.",
         "subheading": "A curated archive of pre-loved luxury fragrances for the discerning nose.",
-        "button_text": "Explore the Archive",
+        "button_text": "Shop Now",
         "button_link": "shopify://collections/all",
         "image_position": "center center"
       }
@@ -25,15 +25,6 @@
     "brand-marquee": {
       "type": "brand-marquee",
       "blocks": {
-        "logo_fAaCNj": {
-          "type": "logo",
-          "settings": {
-            "brand_name": "Afnan",
-            "logo_url": "",
-            "logo_file": "",
-            "link": ""
-          }
-        },
         "brand-1": {
           "type": "logo",
           "settings": {
@@ -159,28 +150,9 @@
             "logo_file": "Logo_zimaya.webp",
             "link": "/collections/zimaya"
           }
-        },
-        "logo_KmxpKx": {
-          "type": "logo",
-          "settings": {
-            "brand_name": "Rayhaan",
-            "logo_url": "",
-            "logo_file": "",
-            "link": ""
-          }
-        },
-        "logo_LJcKFQ": {
-          "type": "logo",
-          "settings": {
-            "brand_name": "",
-            "logo_url": "",
-            "logo_file": "",
-            "link": ""
-          }
         }
       },
       "block_order": [
-        "logo_fAaCNj",
         "brand-1",
         "brand-2",
         "brand-3",
@@ -194,9 +166,7 @@
         "brand-11",
         "brand-12",
         "brand-13",
-        "brand-14",
-        "logo_KmxpKx",
-        "logo_LJcKFQ"
+        "brand-14"
       ],
       "settings": {
         "heading": "Shop by Brand"
@@ -206,7 +176,7 @@
       "type": "featured-collection",
       "settings": {
         "accent_text": "Top Picks",
-        "title": "Treasured Finds",
+        "title": "Latest Release",
         "collection": "best-sellers",
         "products_to_show": 4,
         "show_view_all": false
@@ -252,17 +222,19 @@
         "title": "Shop by Gender"
       }
     },
-    "testimonials": {
-      "type": "testimonials",
+    "all-products": {
+      "type": "all-products",
       "settings": {
-        "quote": "Finding my signature Byredo scent at half the retail price felt like discovering a secret garden. The authentication process gave me peace of mind.",
-        "attribution": "Elena V., Paris"
+        "accent_text": "The Full Collection",
+        "title": "All Products",
+        "products_to_show": 12,
+        "show_view_all": true
       }
     },
     "email-signup": {
       "type": "email-signup",
       "settings": {
-        "title": "Join the Inner Circle",
+        "title": "Join Perfumers Family",
         "subtitle": "Be the first to hear about new archival drops and limited vintages.",
         "placeholder": "Your email address",
         "button_text": "Subscribe"
@@ -282,8 +254,8 @@
     "hero",
     "brand-marquee",
     "featured-products",
+    "all-products",
     "shop-by-occasion",
-    "testimonials",
     "email-signup",
     "mobile-bottom-nav"
   ]

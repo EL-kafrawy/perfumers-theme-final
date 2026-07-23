@@ -64,6 +64,23 @@
   .product-card {
     position: relative;
     overflow: hidden;
+    /* Fill the grid cell so every card in a row is the same height */
+    height: 100%;
+    display: flex;
+  }
+  .product-card__link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .product-card__info {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+  /* Push price to the bottom so prices align across cards */
+  .product-card__price-wrapper {
+    margin-top: auto;
   }
   .product-card__image--hover {
     position: absolute;

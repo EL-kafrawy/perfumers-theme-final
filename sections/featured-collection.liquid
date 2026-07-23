@@ -8,38 +8,9 @@
 
     <div class="treasured-finds__grid">
       {%- if col != blank and col.products.size > 0 -%}
+        {%- comment -%} Use the shared product-card so cards are identical site-wide {%- endcomment -%}
         {%- for product in col.products limit: products_to_show -%}
-          <a href="{{ product.url }}" class="treasured-find-card group">
-            <div class="treasured-find-card__img-wrapper">
-              {%- if product.featured_image -%}
-                <img class="treasured-find-card__image" src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" width="600" height="750" loading="lazy">
-              {%- else -%}
-                <div class="w-full h-full" style="background: #ece9e6;"></div>
-              {%- endif -%}
-              
-              {%- liquid
-                assign badge_text = ''
-                for tag in product.tags
-                  if tag contains 'badge:'
-                    assign badge_text = tag | remove: 'badge:'
-                  endif
-                endfor
-              -%}
-              {%- if badge_text != blank -%}
-                <div class="treasured-find-card__badge">{{ badge_text }}</div>
-              {%- elsif product.compare_at_price > product.price -%}
-                <div class="treasured-find-card__badge">Sale</div>
-              {%- endif -%}
-            </div>
-            <p class="treasured-find-card__brand">{{ product.vendor }}</p>
-            <h4 class="treasured-find-card__title">{{ product.title }}</h4>
-            <p class="treasured-find-card__price">
-              {{ product.price | money }}
-              {%- if product.compare_at_price > product.price -%}
-                <span class="line-through treasured-find-card__price--compare">{{ product.compare_at_price | money }}</span>
-              {%- endif -%}
-            </p>
-          </a>
+          {% render 'product-card', product: product %}
         {%- endfor -%}
         {%- else -%}
           {%- if section.blocks.size > 0 -%}

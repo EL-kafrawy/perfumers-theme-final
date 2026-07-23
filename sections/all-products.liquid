@@ -1,0 +1,121 @@
+{%- assign products_to_show = section.settings.products_to_show | default: 12 -%}
+
+<section class="all-products-section" data-section-id="{{ section.id }}">
+  <div class="all-products__container">
+    {%- if section.settings.accent_text != blank -%}
+      <span class="all-products__accent">{{ section.settings.accent_text }}</span>
+    {%- endif -%}
+    <h2 class="all-products__title">{{ section.settings.title | default: 'All Products' }}</h2>
+
+    <div class="all-products__grid">
+      {%- for product in collections.all.products limit: products_to_show -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <p class="all-products__empty">{{ 'collection.no_products' | t }}</p>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.show_view_all -%}
+      <div class="all-products__view-all">
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn-secondary">
+          {{ 'actions.view_all' | t | default: 'View All' }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .all-products-section {
+    padding: 4.5rem 1.5rem;
+    background-color: var(--color-soft-ivory, #F5F1EB);
+  }
+  .all-products__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .all-products__accent {
+    display: block;
+    text-align: center;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold, #C8A46A);
+    margin-bottom: 8px;
+  }
+  .all-products__title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 2.25rem;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    text-align: center;
+    color: var(--color-charcoal, #2E2A33);
+    margin: 0 0 3rem;
+  }
+  /* Same grid rhythm as the Latest Release section so cards line up site-wide */
+  .all-products__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    row-gap: 2.5rem;
+    align-items: stretch;
+  }
+  @media (min-width: 768px) {
+    .all-products__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .all-products__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--color-taupe, #7E6C5F);
+  }
+  .all-products__view-all {
+    text-align: center;
+    margin-top: 3rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "All Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent text",
+      "default": "The Full Collection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "All Products"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 48,
+      "step": 4,
+      "label": "Products to show",
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View All' button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "All Products"
+    }
+  ]
+}
+{% endschema %}
