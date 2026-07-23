@@ -31,6 +31,46 @@
   </ol>
 </nav>
 
+{%- comment -%} SEO: BreadcrumbList structured data {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": {{ 'breadcrumb.home' | t | json }},
+      "item": {{ request.origin | json }}
+    }
+    {%- if collection -%},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ collection.title | json }},
+      "item": {{ request.origin | append: collection.url | json }}
+    }
+    {%- endif -%}
+    {%- if product -%},
+    {
+      "@type": "ListItem",
+      "position": {% if collection %}3{% else %}2{% endif %},
+      "name": {{ product.title | json }},
+      "item": {{ request.origin | append: product.url | json }}
+    }
+    {%- endif -%}
+    {%- if page -%},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ page.title | json }},
+      "item": {{ request.origin | append: page.url | json }}
+    }
+    {%- endif -%}
+  ]
+}
+</script>
+
 <style>
   .breadcrumb__list {
     display: flex;

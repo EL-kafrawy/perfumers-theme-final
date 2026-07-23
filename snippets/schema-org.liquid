@@ -1,0 +1,44 @@
+{%- comment -%}
+  Site-wide Organization + WebSite structured data (JSON-LD).
+  Rendered once from layout/theme.liquid. Skipped on the password page.
+{%- endcomment -%}
+{%- unless request.page_type == 'password' -%}
+  {%- liquid
+    assign logo_url = 'logo--.png' | asset_url
+    unless logo_url contains 'https'
+      assign logo_url = 'https:' | append: logo_url
+    endunless
+  -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ request.origin | json }},
+  "logo": {{ logo_url | json }}
+  {%- assign sep = '' -%}
+  {%- capture social_list -%}
+    {%- if settings.social_instagram != blank -%}{{ sep }}{{ settings.social_instagram | json }}{%- assign sep = ',' -%}{%- endif -%}
+    {%- if settings.social_facebook != blank -%}{{ sep }}{{ settings.social_facebook | json }}{%- assign sep = ',' -%}{%- endif -%}
+    {%- if settings.social_tiktok != blank -%}{{ sep }}{{ settings.social_tiktok | json }}{%- assign sep = ',' -%}{%- endif -%}
+  {%- endcapture -%}
+  {%- assign social_list = social_list | strip -%}
+  {%- if social_list != blank %},
+  "sameAs": [{{ social_list }}]
+  {%- endif %}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": {{ request.origin | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ request.origin }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{%- endunless -%}

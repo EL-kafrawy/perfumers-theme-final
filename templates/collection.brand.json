@@ -181,7 +181,8 @@
         "brand-14"
       ],
       "settings": {
-        "heading": "Switch Brand"
+        "heading": "",
+        "compact": true
       }
     },
     "filter-drawer": {

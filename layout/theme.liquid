@@ -79,6 +79,9 @@
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 
   {{ content_for_header }}
+
+  {%- comment -%} SEO: site-wide Organization + WebSite structured data {%- endcomment -%}
+  {% render 'schema-org' %}
 </head>
 
 <body class="gradient template-{{ template.name }}">

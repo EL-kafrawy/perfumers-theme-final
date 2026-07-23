@@ -23,6 +23,51 @@
     letter-spacing: -0.025em; /* tracking-tight */
     margin: 0;
   }
+
+  /* --- Compact mode: a slim switcher strip (used on brand pages) ---
+     Keeps the full-size treatment available for the homepage section. */
+  .brand-slider-section--compact {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-top: 1px solid rgba(200, 164, 106, 0.18);
+    border-bottom: 1px solid rgba(200, 164, 106, 0.18);
+  }
+  .brand-slider-section--compact .brand-slider__heading {
+    margin-bottom: 0.85rem;
+  }
+  .brand-slider-section--compact .brand-slider__heading h3 {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold, #C8A46A);
+  }
+  .brand-slider-section--compact .brand-logo-card {
+    height: 56px;
+    min-width: 92px;
+    max-width: 150px;
+    padding: 0 14px;
+  }
+  .brand-slider-section--compact .brand-logo-card img {
+    max-height: calc(38px * var(--logo-scale, 1));
+  }
+  .brand-slider-section--compact .brand-slider-track,
+  .brand-slider-section--compact .brand-slider-col {
+    gap: 1.25rem;
+  }
+  @media screen and (max-width: 767px) {
+    .brand-slider-section--compact .brand-logo-card {
+      height: 48px;
+      min-width: 78px;
+      max-width: 128px;
+      padding: 0 10px;
+    }
+    .brand-slider-section--compact .brand-logo-card img {
+      max-height: calc(30px * var(--logo-scale, 1));
+    }
+  }
   .brand-slider-wrapper {
     position: relative;
     display: flex;
@@ -80,14 +125,18 @@
   /* Text fallback for brands with no logo, sized to sit level with real logos */
   .brand-logo-card__text {
     font-family: var(--font-sans, 'Montserrat', sans-serif);
-    font-size: 12px;
+    font-size: 10px;
     text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     color: #2D2926;
     text-align: center;
-    line-height: 1.2;
+    line-height: 1.15;
     white-space: nowrap;
+  }
+  .brand-slider-section--compact .brand-logo-card__text {
+    font-size: 9px;
+    letter-spacing: 0.05em;
   }
   .brand-logo-card:hover {
     transform: scale(1.05); /* hover:scale-105 */
@@ -122,10 +171,12 @@
   }
 </style>
 
-<section class="brand-slider-section" id="brandSliderSection">
-  <div class="brand-slider__heading">
-    <h3>{{ section.settings.heading }}</h3>
-  </div>
+<section class="brand-slider-section{% if section.settings.compact %} brand-slider-section--compact{% endif %}" id="brandSliderSection">
+  {%- if section.settings.heading != blank -%}
+    <div class="brand-slider__heading">
+      <h3>{{ section.settings.heading }}</h3>
+    </div>
+  {%- endif -%}
   <div class="brand-slider-wrapper">
     {%- comment -%}
       Dynamic brands: any collection flagged with the boolean metafield
@@ -200,7 +251,15 @@
       "type": "text",
       "id": "heading",
       "label": "Section heading",
+      "info": "Leave empty to hide the heading entirely.",
       "default": "Shop by Brand"
+    },
+    {
+      "type": "checkbox",
+      "id": "compact",
+      "label": "Compact strip",
+      "info": "Slim version with a small label and tighter spacing. Use on brand pages so the switcher takes minimal vertical space.",
+      "default": false
     }
   ],
   "blocks": [

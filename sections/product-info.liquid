@@ -4,6 +4,9 @@
       <!-- Product JSON Data (required by product-page.js) -->
       <script type="application/json" data-product-json>{{ product | json }}</script>
 
+      <!-- SEO: Product structured data (JSON-LD) -->
+      {% render 'schema-product', product: product %}
+
       <!-- Accent / Collection -->
       <p class="pdp__accent">
         {%- if section.settings.accent_text != blank -%}{{ section.settings.accent_text }}{%- else -%}{{ product.vendor }}{%- endif -%}
