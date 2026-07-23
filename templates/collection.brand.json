@@ -17,7 +17,171 @@
         "show_description": true,
         "text_alignment": "center",
         "padding_top": 60,
-        "padding_bottom": 30
+        "padding_bottom": 20
+      }
+    },
+    "brand-switcher": {
+      "type": "brand-marquee",
+      "blocks": {
+        "brand-1": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Afnan",
+            "logo_url": "",
+            "logo_file": "brand-logo-afnan.jpg",
+            "link": "/collections/afnan",
+            "logo_scale": 100
+          }
+        },
+        "brand-2": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Arabiyat Prestige",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/arabiyat-prestige",
+            "logo_scale": 100
+          }
+        },
+        "brand-3": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Armaf",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/armaf",
+            "logo_scale": 100
+          }
+        },
+        "brand-4": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Assaf",
+            "logo_url": "",
+            "logo_file": "brand-logo-assaf.png",
+            "link": "/collections/assaf",
+            "logo_scale": 100
+          }
+        },
+        "brand-5": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "French Avenue",
+            "logo_url": "",
+            "logo_file": "brand-logo-french-avenue.jpg",
+            "link": "/collections/french-avenue",
+            "logo_scale": 100
+          }
+        },
+        "brand-6": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Ibraq",
+            "logo_url": "",
+            "logo_file": "brand-logo-ibraq.jpg",
+            "link": "/collections/ibraq",
+            "logo_scale": 100
+          }
+        },
+        "brand-7": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Khadlaj",
+            "logo_url": "",
+            "logo_file": "KHADLAJ-1728143202371.webp",
+            "link": "/collections/khadlaj",
+            "logo_scale": 100
+          }
+        },
+        "brand-8": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Lattafa",
+            "logo_url": "",
+            "logo_file": "brand-logo-lattafa.png",
+            "link": "/collections/lattafa",
+            "logo_scale": 100
+          }
+        },
+        "brand-9": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Laverne",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/laverne",
+            "logo_scale": 100
+          }
+        },
+        "brand-10": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Maison Asrar",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/maison-asrar",
+            "logo_scale": 100
+          }
+        },
+        "brand-11": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Paris Corner",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/paris-corner",
+            "logo_scale": 100
+          }
+        },
+        "brand-12": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Rasasi",
+            "logo_url": "",
+            "logo_file": "brand-logo-rasasi.webp",
+            "link": "/collections/rasasi",
+            "logo_scale": 100
+          }
+        },
+        "brand-13": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Rayhaan",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "/collections/rayhaan",
+            "logo_scale": 100
+          }
+        },
+        "brand-14": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Zimaya",
+            "logo_url": "",
+            "logo_file": "Logo_zimaya.webp",
+            "link": "/collections/zimaya",
+            "logo_scale": 100
+          }
+        }
+      },
+      "block_order": [
+        "brand-1",
+        "brand-2",
+        "brand-3",
+        "brand-4",
+        "brand-5",
+        "brand-6",
+        "brand-7",
+        "brand-8",
+        "brand-9",
+        "brand-10",
+        "brand-11",
+        "brand-12",
+        "brand-13",
+        "brand-14"
+      ],
+      "settings": {
+        "heading": "Switch Brand"
       }
     },
     "filter-drawer": {
@@ -27,7 +191,7 @@
     "collection-grid": {
       "type": "collection-grid",
       "settings": {
-        "products_per_page": 16,
+        "products_per_page": 48,
         "columns": "4",
         "show_gender_filter": true
       }
@@ -35,6 +199,7 @@
   },
   "order": [
     "brand-hero",
+    "brand-switcher",
     "filter-drawer",
     "collection-grid"
   ]
