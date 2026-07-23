@@ -246,18 +246,11 @@ a {
   color: var(--color-ivory);
 }
 
-/* Product Card */
-.product-card {
-  background-color: var(--color-surface);
-  padding: 32px;
-  border: 1px solid rgba(46, 42, 51, 0.1);
-  transition: var(--transition-base);
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
+/* Product Card
+   NOTE: card styling lives in snippets/product-card.liquid (single source of
+   truth so cards are identical site-wide). The old rules here added 32px
+   padding, a surface background and a border on top of the snippet, which
+   made cards different sizes and broke grid alignment. Intentionally removed. */
 
 /* ==========================================================================
    #MOBILE LAYOUT FIXES (Phase 1)
@@ -349,10 +342,10 @@ html[dir="rtl"] h2 {
 }
 
 
-/* --- Site Header --- */
-.site-header {
-  padding: 0;
-}
+/* --- Site Header ---
+   Header padding/layout is owned by sections/header.liquid so the centred
+   logo and icon spacing stay consistent. The old `padding: 0` override here
+   competed with it and is intentionally removed. */
 
 /* ==========================================================================
    #PRODUCT PAGE — TWO-COLUMN LAYOUT
