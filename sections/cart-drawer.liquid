@@ -21,6 +21,8 @@
   </div>
 
   <div class="cart-drawer__footer" data-cart-footer style="display:none;">
+    {%- comment -%} Bundle / upsell feature — toggle via "Enable cart bundle/upsell" {%- endcomment -%}
+    {%- if section.settings.show_upsell -%}
     <div class="cart-upsell-container">
       {%- if section.settings.upsell_heading != blank -%}
         <p class="cart-upsell__heading">{{ section.settings.upsell_heading }}</p>
@@ -37,6 +39,7 @@
         </div>
       {%- endif -%}
     </div>
+    {%- endif -%}
     
     <div class="cart-drawer__subtotal">
       <span>{{ 'cart.subtotal' | t }}</span>
@@ -218,7 +221,14 @@
   "settings": [
     {
       "type": "header",
-      "content": "Upsell Section"
+      "content": "Bundle / Upsell Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_upsell",
+      "label": "Enable cart bundle/upsell",
+      "info": "Show the add-on product bundle inside the cart drawer.",
+      "default": true
     },
     {
       "type": "text",

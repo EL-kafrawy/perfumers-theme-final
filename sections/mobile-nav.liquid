@@ -3,17 +3,17 @@
     <span class="material-symbols-outlined">home</span>
     <span class="mobile-bottom-nav__label">Home</span>
   </a>
-  <a class="mobile-bottom-nav__item" href="{{ section.settings.hot_sellers_link | default: '/collections/all' }}" data-nav-item="all-products">
+  <a class="mobile-bottom-nav__item" href="{{ section.settings.hot_sellers_link | default: '/collections/all' }}" data-nav-item="shop-all">
     <span class="material-symbols-outlined">grid_view</span>
-    <span class="mobile-bottom-nav__label">All Products</span>
+    <span class="mobile-bottom-nav__label">Shop All</span>
   </a>
   <a class="mobile-bottom-nav__item" href="{{ section.settings.gender_link | default: '/collections/all' }}" data-nav-item="gender">
     <span class="material-symbols-outlined">wc</span>
     <span class="mobile-bottom-nav__label">By Gender</span>
   </a>
-  <a class="mobile-bottom-nav__item" href="{{ section.settings.brand_link | default: '/collections/all' }}" data-nav-item="brand">
-    <span class="material-symbols-outlined">sell</span>
-    <span class="mobile-bottom-nav__label">By Brand</span>
+  <a class="mobile-bottom-nav__item" href="{{ section.settings.brand_link | default: routes.cart_url }}" data-nav-item="cart">
+    <span class="material-symbols-outlined">shopping_bag</span>
+    <span class="mobile-bottom-nav__label">Cart</span>
   </a>
 </nav>
 <div class="mobile-bottom-nav__spacer"></div>
