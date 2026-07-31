@@ -5,8 +5,16 @@
   - badge: {String} 'sale', 'new', 'best_seller' (optional)
 {%- endcomment -%}
 
-<div class="product-card">
-  <a href="{{ product.url }}" class="product-card__link" aria-label="{{ product.title }}">
+{%- comment -%}
+  `available` is true when any variant is in stock, so a card is only marked
+  sold out when the whole product is unbuyable.
+{%- endcomment -%}
+{%- assign is_sold_out = false -%}
+{%- unless product.available -%}{%- assign is_sold_out = true -%}{%- endunless -%}
+
+<div class="product-card{% if is_sold_out %} product-card--sold-out{% endif %}">
+  <a href="{{ product.url }}" class="product-card__link"
+     aria-label="{{ product.title }}{% if is_sold_out %} — {{ 'actions.sold_out' | t }}{% endif %}">
     <div class="product-card__image-wrapper">
       {%- if product.featured_image -%}
         <img 
@@ -33,7 +41,10 @@
         </div>
       {%- endif -%}
 
-      {%- if badge == 'sale' or product.compare_at_price > product.price -%}
+      {%- comment -%} Sold out outranks Sale/New — it's the fact that changes the decision. {%- endcomment -%}
+      {%- if is_sold_out -%}
+        <span class="product-card__badge product-card__badge--sold-out">{{ 'actions.sold_out' | t }}</span>
+      {%- elsif badge == 'sale' or product.compare_at_price > product.price -%}
         <span class="product-card__badge product-card__badge--sale">{{ 'product.sale' | t }}</span>
       {%- elsif badge == 'new' -%}
         <span class="product-card__badge product-card__badge--new">{{ 'product.new' | t }}</span>
@@ -164,6 +175,73 @@
     color: var(--color-taupe, #7E6C5F);
     opacity: 0.6;
     text-decoration: line-through;
+  }
+
+  /* --- Badges ------------------------------------------------------
+     The image wrapper is overflow:hidden and the image fills it, so a
+     badge has to be taken out of flow or it gets clipped away. */
+  .product-card__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 2px;
+    background: var(--color-charcoal, #2E2A33);
+    color: var(--color-ivory, #F5F1EB);
+    pointer-events: none;
+  }
+  .product-card__badge--sale {
+    background: var(--color-gold, #C8A46A);
+    color: var(--color-ivory, #F5F1EB);
+  }
+  .product-card__badge--new {
+    background: var(--color-charcoal, #2E2A33);
+    color: var(--color-ivory, #F5F1EB);
+  }
+
+  /* --- Sold out ----------------------------------------------------
+     Read as unavailable at a glance: the image drains of colour and the
+     badge sits centred rather than in the corner, so it isn't mistaken
+     for a promo tag. */
+  .product-card__badge--sold-out {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(46, 42, 51, 0.82);
+    color: #FFFFFF;
+    padding: 8px 16px;
+    letter-spacing: 0.18em;
+    backdrop-filter: blur(2px);
+  }
+  .product-card--sold-out .product-card__image {
+    filter: grayscale(100%);
+    opacity: 0.62;
+  }
+  /* No lift or image swap on a card you can't buy from. */
+  .product-card--sold-out:hover .product-card__image:not(.product-card__image--hover) {
+    transform: none;
+  }
+  .product-card--sold-out:hover .product-card__image--hover {
+    opacity: 0;
+  }
+  .product-card--sold-out .product-card__title,
+  .product-card--sold-out .product-card__price {
+    color: var(--color-taupe, #7E6C5F);
+  }
+  .product-card--sold-out .product-card__price {
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card__image { transition: none; }
   }
 
 </style>

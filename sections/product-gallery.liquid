@@ -18,8 +18,14 @@
         </div>
       {%- endif -%}
 
-      {%- if product.compare_at_price > product.price -%}
-        <span class="product-card__badge product-card__badge--sale">{{ 'product.sale' | t }}</span>
+      {%- comment -%}
+        Sold out outranks Sale here for the same reason it does on the card:
+        the price is irrelevant if the bottle can't be bought.
+      {%- endcomment -%}
+      {%- if product.available == false -%}
+        <span class="product-gallery__badge product-gallery__badge--sold-out">{{ 'actions.sold_out' | t }}</span>
+      {%- elsif product.compare_at_price > product.price -%}
+        <span class="product-gallery__badge product-gallery__badge--sale">{{ 'product.sale' | t }}</span>
       {%- endif -%}
     </div>
 
@@ -78,6 +84,43 @@
       max-height: calc(100vh - 180px);
     }
   }
+  /* ---- Badges ----
+     These used to reuse .product-card__badge, whose CSS only reaches the page
+     when a product card happens to render on it. Own them here instead. */
+  .product-gallery__badge {
+    position: absolute;
+    top: var(--space-md, 16px);
+    left: var(--space-md, 16px);
+    z-index: 2;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    padding: 7px 12px;
+    border-radius: 2px;
+    background: var(--color-gold, #C8A46A);
+    color: var(--color-ivory, #F5F1EB);
+    pointer-events: none;
+  }
+  /* Centred and neutral, matching the product card, so it reads as a state
+     rather than a promotion. */
+  .product-gallery__badge--sold-out {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(46, 42, 51, 0.82);
+    color: #FFFFFF;
+    padding: 10px 20px;
+    letter-spacing: 0.18em;
+    backdrop-filter: blur(2px);
+  }
+  .product-gallery__main:has(.product-gallery__badge--sold-out) .product-gallery__main-image {
+    filter: grayscale(100%);
+    opacity: 0.72;
+  }
+
   .product-gallery__thumbs {
     padding: var(--space-md);
     gap: var(--space-sm);

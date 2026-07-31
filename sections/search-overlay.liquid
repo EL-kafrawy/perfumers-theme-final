@@ -117,6 +117,7 @@
     background: var(--color-gold-10);
   }
   .search-result__image {
+    position: relative;
     width: 60px;
     height: 75px;
     flex-shrink: 0;
@@ -128,6 +129,29 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  /* Sold-out results stay clickable but read as unavailable. */
+  .search-result--sold-out .search-result__image img {
+    filter: grayscale(100%);
+    opacity: 0.62;
+  }
+  .search-result__sold-out {
+    position: absolute;
+    inset: auto 0 0 0;
+    background: rgba(46, 42, 51, 0.82);
+    color: #FFFFFF;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 3px 2px;
+    line-height: 1;
+  }
+  .search-result--sold-out .search-result__price {
+    text-decoration: line-through;
+    opacity: 0.7;
   }
   .search-result__title {
     font-family: var(--font-display);

@@ -21,7 +21,11 @@
               {%- elsif block.settings.url != blank -%}
                 {%- assign block_url = block.settings.url -%}
               {%- endif -%}
-              <a href="{{ block_url }}" class="treasured-find-card group" {{ block.shopify_attributes }}>
+              {%- assign block_sold_out = false -%}
+              {%- if block.settings.product != blank and block.settings.product.available == false -%}
+                {%- assign block_sold_out = true -%}
+              {%- endif -%}
+              <a href="{{ block_url }}" class="treasured-find-card group{% if block_sold_out %} treasured-find-card--sold-out{% endif %}" {{ block.shopify_attributes }}>
                 <div class="treasured-find-card__img-wrapper">
                   {%- if block.settings.product != blank and block.settings.product.featured_image -%}
                     <img class="treasured-find-card__image" src="{{ block.settings.product.featured_image | image_url: width: 600 }}" alt="{{ block.settings.product.title | escape }}" width="600" height="750" loading="lazy">
@@ -32,7 +36,9 @@
                   {%- else -%}
                     <div class="w-full h-full" style="background: #ece9e6;"></div>
                   {%- endif -%}
-                  {%- if block.settings.badge != blank -%}
+                  {%- if block_sold_out -%}
+                    <div class="treasured-find-card__badge treasured-find-card__badge--sold-out">{{ 'actions.sold_out' | t }}</div>
+                  {%- elsif block.settings.badge != blank -%}
                     <div class="treasured-find-card__badge">{{ block.settings.badge }}</div>
                   {%- endif -%}
                 </div>
@@ -153,6 +159,28 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     line-height: 1;
+  }
+
+  /* Match the shared product card's sold-out treatment. */
+  .treasured-find-card__badge--sold-out {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(46, 42, 51, 0.82);
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+  }
+
+  .treasured-find-card--sold-out .treasured-find-card__image {
+    filter: grayscale(100%);
+    opacity: 0.62;
+  }
+
+  .treasured-find-card--sold-out:hover .treasured-find-card__image {
+    transform: none;
   }
 
   .treasured-find-card__brand {

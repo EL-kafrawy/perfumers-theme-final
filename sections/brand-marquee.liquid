@@ -1,8 +1,4 @@
 <style>
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
   .brand-slider-section {
     background-color: #F5F1EB; /* bg-soft-ivory */
     padding-top: 4.5rem; /* py-18 */
@@ -46,12 +42,8 @@
   }
   .brand-slider-section--compact .brand-logo-card {
     height: 56px;
-    min-width: 92px;
-    max-width: 150px;
-    padding: 0 14px;
-  }
-  .brand-slider-section--compact .brand-logo-card img {
-    max-height: calc(38px * var(--logo-scale, 1));
+    width: 132px;
+    padding: 8px 14px;
   }
   .brand-slider-section--compact .brand-slider-track,
   .brand-slider-section--compact .brand-slider-col {
@@ -60,30 +52,46 @@
   @media screen and (max-width: 767px) {
     .brand-slider-section--compact .brand-logo-card {
       height: 48px;
-      min-width: 78px;
-      max-width: 128px;
-      padding: 0 10px;
-    }
-    .brand-slider-section--compact .brand-logo-card img {
-      max-height: calc(30px * var(--logo-scale, 1));
+      width: 112px;
+      padding: 6px 10px;
     }
   }
+
+  /* --- Scroller -----------------------------------------------------
+     The wrapper is the scroll container, so a finger drag on mobile is
+     plain native scrolling (with momentum) and the autoplay in
+     brand-marquee.js drives the very same scrollLeft. One mechanism,
+     so the two can't fight. */
   .brand-slider-wrapper {
     position: relative;
-    display: flex;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* legacy Edge */
+    overscroll-behavior-x: contain; /* don't trigger back-swipe */
+    /* No touch-action override: the browser decides from the gesture, so a
+       vertical swipe starting on the strip still scrolls the page. */
+  }
+  .brand-slider-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  /* Only advertise grabbing once JS is actually driving it. */
+  .brand-slider-wrapper.is-interactive {
+    cursor: grab;
+  }
+  .brand-slider-wrapper.is-dragging {
+    cursor: grabbing;
+  }
+  .brand-slider-wrapper.is-dragging .brand-logo-card {
+    /* Suppress hover lift while dragging so logos don't twitch. */
+    transform: none;
   }
   .brand-slider-track {
     display: flex;
     gap: 2rem; /* gap-8 */
     width: max-content;
-    animation: marquee 30s linear infinite; /* animate-marquee */
-    will-change: transform;
     white-space: nowrap;
-  }
-  .brand-slider-section:hover .brand-slider-track,
-  .brand-slider-section:focus-within .brand-slider-track {
-    animation-play-state: paused;
   }
   .brand-slider-col {
     display: flex;
@@ -91,10 +99,10 @@
     gap: 2rem; /* gap-8 */
     padding: 0 1rem; /* px-4 */
   }
-  /* Fixed-height "lockup": every logo shares the same height while its width
-     flexes to its natural shape. This is what lets wide wordmarks and square
-     badge marks read at the same optical weight — a fixed circle cannot,
-     because the usable area inside a circle is far smaller than the circle. */
+  /* Fixed "lockup" box: every brand gets an identical rectangle — same width
+     AND same height — and the artwork is fitted inside it. Previously only the
+     height was capped while width ran free, so a wide wordmark and a square
+     badge ended up occupying very different amounts of the strip. */
   .brand-logo-card {
     display: flex;
     align-items: center;
@@ -102,9 +110,8 @@
     text-decoration: none;
     flex-shrink: 0;
     height: 80px;
-    min-width: 110px;
-    max-width: 190px;
-    padding: 0 20px;
+    width: 172px;
+    padding: 12px 20px;
     background-color: transparent;
     border: none;
     border-radius: 0;
@@ -116,9 +123,8 @@
   @media screen and (max-width: 767px) {
     .brand-logo-card {
       height: 64px;
-      min-width: 88px;
-      max-width: 150px;
-      padding: 0 14px;
+      width: 132px;
+      padding: 10px 14px;
     }
   }
 
@@ -142,31 +148,25 @@
     transform: scale(1.05); /* hover:scale-105 */
   }
   .brand-logo-card img {
-    /* Height is normalised (so all logos share a baseline), width is free.
-       --logo-scale lets each brand be nudged for optical balance, because
-       logos with lots of built-in whitespace read smaller at the same height. */
-    height: auto;
-    width: auto;
-    max-height: calc(52px * var(--logo-scale, 1));
-    max-width: 100%;
+    /* Fill the shared box and let object-fit letterbox the artwork inside it,
+       so the size is enforced on the image itself rather than left to each
+       logo's own aspect ratio. --logo-scale stays available as a per-brand
+       nudge for logos carrying a lot of built-in whitespace; at the default
+       of 100% every logo is sized identically. */
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     object-position: center;
+    transform: scale(var(--logo-scale, 1));
     pointer-events: none;
     user-select: none;
   }
 
-  @media screen and (max-width: 767px) {
-    .brand-logo-card img {
-      max-height: calc(40px * var(--logo-scale, 1));
-    }
-  }
-  
-  /* Accessibility: prefers-reduced-motion fallback */
+  /* Accessibility: prefers-reduced-motion fallback.
+     Autoplay is disabled in JS; the strip stays manually scrollable. */
   @media (prefers-reduced-motion: reduce) {
-    .brand-slider-track {
-      animation: none;
-      overflow-x: auto;
-      width: 100%;
+    .brand-logo-card {
+      transition: none;
     }
   }
 </style>
@@ -177,7 +177,12 @@
       <h3>{{ section.settings.heading }}</h3>
     </div>
   {%- endif -%}
-  <div class="brand-slider-wrapper">
+  <div class="brand-slider-wrapper"
+       data-brand-marquee
+       data-speed="{{ section.settings.scroll_speed | default: 30 }}"
+       tabindex="0"
+       role="region"
+       aria-label="{{ section.settings.heading | default: 'Shop by Brand' | escape }}">
     {%- comment -%}
       Dynamic brands: any collection flagged with the boolean metafield
       custom.is_brand renders automatically here. Logo = custom.brand_logo
@@ -188,7 +193,7 @@
     {%- for collection in collections -%}
       {%- if collection.metafields.custom.is_brand.value -%}{%- assign has_brands = true -%}{%- break -%}{%- endif -%}
     {%- endfor -%}
-    <div class="brand-slider-track" id="brandSliderTrack">
+    <div class="brand-slider-track" id="brandSliderTrack" data-brand-marquee-track>
       {%- for i in (1..2) -%}
         {%- assign is_clone = false -%}
         {%- if i == 2 -%}{%- assign is_clone = true -%}{%- endif -%}
@@ -237,7 +242,12 @@
   </div>
 </section>
 
-{%- comment -%} JS Duplication removed in favor of Liquid duplication for confirmation {%- endcomment -%}
+{%- comment -%}
+  The strip is rendered twice above (Liquid duplication) so the scroller can
+  wrap seamlessly at one copy's width. brand-marquee.js drives the autoplay
+  and the drag-to-scroll.
+{%- endcomment -%}
+<script src="{{ 'brand-marquee.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
@@ -260,6 +270,17 @@
       "label": "Compact strip",
       "info": "Slim version with a small label and tighter spacing. Use on brand pages so the switcher takes minimal vertical space.",
       "default": false
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "label": "Seconds per loop",
+      "info": "Lower is faster. Customers can drag the strip at any time; this only controls the idle auto-scroll.",
+      "default": 30
     }
   ],
   "blocks": [

@@ -130,11 +130,17 @@
         products.forEach(function (product) {
             var imageUrl = product.image || '';
             var price = product.price ? (parseFloat(product.price)).toFixed(2) + ' EGP' : '';
+            // Predictive search returns `available`; treat only an explicit
+            // false as sold out so a missing field never mislabels a product.
+            var soldOut = product.available === false;
 
-            html += '<a href="' + product.url + '" class="search-result">';
+            html += '<a href="' + product.url + '" class="search-result' + (soldOut ? ' search-result--sold-out' : '') + '">';
             html += '  <div class="search-result__image">';
             if (imageUrl) {
                 html += '    <img src="' + imageUrl + '" alt="' + product.title + '" loading="lazy">';
+            }
+            if (soldOut) {
+                html += '    <span class="search-result__sold-out">Sold Out</span>';
             }
             html += '  </div>';
             html += '  <div class="search-result__info">';
