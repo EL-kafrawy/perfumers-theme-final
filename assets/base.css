@@ -440,6 +440,38 @@
     transform: scaleX(-1);
 }
 
+/* --- Material Symbols -----------------------------------------------------
+   These icons are ligatures: the element's text content IS the glyph name, so
+   before the icon font paints, the UI shows the literal words "expand_more",
+   "shopping_bag", "search". The rule that maps that text to a glyph lives only
+   in Google's stylesheet, which the layout loads asynchronously — so the words
+   are visible on every first paint, and permanently if fonts.googleapis.com is
+   slow or blocked.
+
+   Declaring the family locally means we no longer depend on that stylesheet
+   arriving, and hiding the element until the font is confirmed loaded means the
+   glyph name is never shown to a customer. theme.liquid adds .icons-ready. */
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    /* visibility, not display/color: the box keeps its size so revealing the
+       icon can't shift the layout around it. */
+    visibility: hidden;
+}
+.icons-ready .material-symbols-outlined {
+    visibility: visible;
+}
+
 /* Scroll Row Snap alignment */
 [dir="rtl"] .scroll-row > * {
     scroll-snap-align: end;

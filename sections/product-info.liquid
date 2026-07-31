@@ -52,12 +52,17 @@
         <!-- Quantity + Actions -->
         <div class="pdp__actions">
           <div class="pdp__qty">
+            {%- comment -%}
+              Inline SVG, not the Material Symbols ligature font: the glyph name
+              IS the element's text, so any delay or failure loading that font
+              paints the literal words "remove"/"add" on the buy button.
+            {%- endcomment -%}
             <button type="button" class="pdp__qty-btn" data-product-qty-minus aria-label="Decrease quantity">
-              <span class="material-symbols-outlined">remove</span>
+              {% render 'icon-minus' %}
             </button>
             <input type="number" class="pdp__qty-input" data-product-qty name="quantity" value="1" min="1" max="99" aria-label="{{ 'product.quantity' | t }}">
             <button type="button" class="pdp__qty-btn" data-product-qty-plus aria-label="Increase quantity">
-              <span class="material-symbols-outlined">add</span>
+              {% render 'icon-plus' %}
             </button>
           </div>
 
@@ -157,7 +162,7 @@
         {%- endif -%}
         {%- if product.description != blank -%}
           <details class="pdp__acc">
-            <summary class="pdp__acc-head"><span>{{ section.settings.desc_heading | default: "The Perfumer's Art" }}</span><span class="material-symbols-outlined pdp__acc-icon">expand_more</span></summary>
+            <summary class="pdp__acc-head"><span>{{ section.settings.desc_heading | default: "The Perfumer's Art" }}</span><svg class="pdp__acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
             <div class="pdp__acc-body pdp__acc-body--rte">{{ product.description }}</div>
           </details>
         {%- endif -%}

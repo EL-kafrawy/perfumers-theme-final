@@ -7,7 +7,12 @@
     <span class="material-symbols-outlined">grid_view</span>
     <span class="mobile-bottom-nav__label">Shop All</span>
   </a>
-  <a class="mobile-bottom-nav__item" href="{{ section.settings.gender_link | default: '/collections/all' }}" data-nav-item="gender">
+  {%- comment -%}
+    Defaults to the collections index, not /collections/all — that was the exact
+    destination of "Shop All" next to it, so two of the four nav buttons did the
+    same thing. The MEN / WOMEN / UNISEX collections are reachable from here.
+  {%- endcomment -%}
+  <a class="mobile-bottom-nav__item" href="{{ section.settings.gender_link | default: routes.collections_url }}" data-nav-item="gender">
     <span class="material-symbols-outlined">wc</span>
     <span class="mobile-bottom-nav__label">By Gender</span>
   </a>
@@ -112,14 +117,14 @@
     {
       "type": "url",
       "id": "gender_link",
-      "label": "Shop by Gender link",
-      "info": "e.g. /collections/all"
+      "label": "By Gender link",
+      "info": "Must not be /collections/all — that is where Shop All already goes. Use /collections or a gender collection such as /collections/men."
     },
     {
       "type": "url",
       "id": "brand_link",
-      "label": "Shop by Brand link",
-      "info": "e.g. /collections/all"
+      "label": "Cart link (4th button)",
+      "info": "Despite the id, this drives the Cart button. Leave blank to use the real cart URL."
     }
   ],
   "presets": [

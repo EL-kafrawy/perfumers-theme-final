@@ -14,6 +14,41 @@
         loading: '[data-search-loading]'
     };
 
+    /**
+     * Render an amount using the shop's own money format string, so search
+     * results read identically to prices everywhere else on the site.
+     * Shopify's format is a template such as "LE {{amount}}"; the placeholder
+     * name picks the separator and decimal convention.
+     */
+    function formatMoney(value, format) {
+        var amount = parseFloat(value);
+        if (isNaN(amount)) return '';
+
+        var placeholder = /\{\{\s*(\w+)\s*\}\}/.exec(format || '');
+        var style = placeholder ? placeholder[1] : 'amount';
+
+        function group(num, decimals, thousands, decimalMark) {
+            var fixed = Math.abs(num).toFixed(decimals);
+            var parts = fixed.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+            return (num < 0 ? '-' : '') + parts.join(parts[1] ? decimalMark : '');
+        }
+
+        var out;
+        switch (style) {
+            case 'amount_no_decimals':                out = group(amount, 0, ',', '.'); break;
+            case 'amount_with_comma_separator':       out = group(amount, 2, '.', ','); break;
+            case 'amount_no_decimals_with_comma_separator': out = group(amount, 0, '.', ','); break;
+            case 'amount_with_apostrophe_separator':  out = group(amount, 2, "'", '.'); break;
+            default:                                  out = group(amount, 2, ',', '.');
+        }
+
+        // No format string configured — fall back to a plain grouped number
+        // rather than inventing a currency label.
+        if (!placeholder) return out;
+        return format.replace(/\{\{\s*\w+\s*\}\}/, out);
+    }
+
     function SearchOverlay() {
         this.overlay = document.querySelector(selectors.overlay);
 
@@ -126,10 +161,13 @@
     SearchOverlay.prototype.renderResults = function (products, query) {
         if (!this.resultsList) return;
 
+        // Captured out here because forEach's callback doesn't share `this`.
+        var moneyFormat = this.overlay.getAttribute('data-money-format') || '';
+
         var html = '';
         products.forEach(function (product) {
             var imageUrl = product.image || '';
-            var price = product.price ? (parseFloat(product.price)).toFixed(2) + ' EGP' : '';
+            var price = product.price ? formatMoney(product.price, moneyFormat) : '';
             // Predictive search returns `available`; treat only an explicit
             // false as sold out so a missing field never mislabels a product.
             var soldOut = product.available === false;

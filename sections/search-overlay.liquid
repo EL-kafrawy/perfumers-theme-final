@@ -1,4 +1,9 @@
-<div class="search-overlay" data-search-overlay>
+{%- comment -%}
+  Results are rendered in JS, which has no access to Liquid's money filter — so
+  hand it the shop's own format string. Without this the overlay invents its own
+  ("1450.00 EGP") and disagrees with every price elsewhere on the site.
+{%- endcomment -%}
+<div class="search-overlay" data-search-overlay data-money-format="{{ shop.money_format | escape }}">
   <div class="search-overlay__inner">
     <div class="search-overlay__header">
       <h3 class="search-overlay__title">{{ 'search.title' | t }}</h3>

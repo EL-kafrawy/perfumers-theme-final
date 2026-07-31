@@ -13,8 +13,14 @@
 {%- unless product.available -%}{%- assign is_sold_out = true -%}{%- endunless -%}
 
 <div class="product-card{% if is_sold_out %} product-card--sold-out{% endif %}">
-  <a href="{{ product.url }}" class="product-card__link"
-     aria-label="{{ product.title }}{% if is_sold_out %} — {{ 'actions.sold_out' | t }}{% endif %}">
+  {%- comment -%}
+    No aria-label here on purpose. The link already contains the brand, title,
+    price and any Sold Out badge; an aria-label would REPLACE all of that as the
+    accessible name, so a screen reader would hear only the title and lose the
+    price. It also made text extraction read the title twice ("Turthi
+    ElectricTurthi Electric"), since the label and the heading both surface.
+  {%- endcomment -%}
+  <a href="{{ product.url }}" class="product-card__link">
     <div class="product-card__image-wrapper">
       {%- if product.featured_image -%}
         <img 

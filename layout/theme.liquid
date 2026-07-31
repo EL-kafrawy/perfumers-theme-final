@@ -46,7 +46,14 @@
   {%- if page_description -%}
     <meta name="description" content="{{ page_description | escape }}">
   {%- else -%}
-    <meta name="description" content="Shop luxury perfumes at PERFUMERS Egypt. Discover authentic designer scents and niche fragrances with complimentary shipping over 1500 EGP. Elevate your essence.">
+    {%- comment -%}
+      Deliberately states no free-shipping threshold. This string said 1500 EGP
+      while the announcement bar setting said 1000 and its message_1 said 500 —
+      three different promises, one of them in the search-engine snippet where
+      it's the first thing a customer reads. The threshold now lives in exactly
+      one place: the announcement bar settings.
+    {%- endcomment -%}
+    <meta name="description" content="Shop luxury perfumes at PERFUMERS Egypt. Discover authentic designer scents and niche fragrances, with delivery across Egypt. Elevate your essence.">
   {%- endif -%}
 
   {% render 'meta-tags' %}
@@ -67,6 +74,26 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
+  {%- comment -%}
+    Icon glyphs are ligatures, so until that font paints, every icon shows its
+    own name as text ("expand_more", "shopping_bag"). base.css keeps them hidden
+    until this confirms the font is usable. Runs inline in <head> so the class
+    lands before first paint on a warm cache.
+  {%- endcomment -%}
+  <script>
+    (function () {
+      var reveal = function () {
+        document.documentElement.classList.add('icons-ready');
+      };
+      if (document.fonts && document.fonts.load) {
+        document.fonts.load('24px "Material Symbols Outlined"').then(reveal, reveal);
+        // Never leave icons invisible because the font API stalled.
+        setTimeout(reveal, 2500);
+      } else {
+        reveal();
+      }
+    })();
+  </script>
 
   {%- comment -%}
     =============================================
