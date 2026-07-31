@@ -25,7 +25,7 @@
     "social_facebook": "https://www.facebook.com/perfumers.eg",
     "social_tiktok": "https://www.tiktok.com/@perfumers.eg",
     "social_twitter": "",
-    "social_whatsapp": "",
+    "social_whatsapp": "01119112182",
     "social_snapchat": "",
     "footer_copyright": "© 2026 PERFUMERS. All rights reserved.",
     "footer_about": "<p>Your trusted destination for authentic perfumes in Egypt.</p>",
@@ -34,7 +34,11 @@
       "header": {
         "type": "header",
         "settings": {
-          "logo_width": 180
+          "logo_width": 180,
+          "header_height": 70,
+          "wordmark_size": 24,
+          "wordmark_weight": "400",
+          "wordmark_tracking": 20
         }
       },
       "announcement-bar": {
@@ -53,7 +57,7 @@
           "email": "hello@perfumers.eg",
           "location": "Cairo, Egypt",
           "link_archive": "",
-          "link_authentication": "",
+          "link_sell": "",
           "link_story": "",
           "link_shipping": "",
           "link_returns": "",
@@ -69,6 +73,7 @@
       "cart-drawer": {
         "type": "cart-drawer",
         "settings": {
+          "show_upsell": true,
           "upsell_heading": "Complete the ritual...",
           "upsell_product": "",
           "upsell_desc": "12 curated samples, 2ml each"
@@ -85,8 +90,6 @@
           "featured_title": "The Discovery Kit",
           "featured_desc": "Twelve poetic journeys in glass.",
           "featured_url": "",
-          "show_account": false,
-          "account_url": "",
           "support_url": "",
           "brand_mark": "Est. 1924 • Paris • Grasse"
         }
