@@ -200,6 +200,7 @@
        data-brand-marquee
        data-speed="{{ section.settings.scroll_speed | default: 30 }}"
        data-autoplay="{% if section.settings.autoplay == false %}false{% else %}true{% endif %}"
+       data-respect-reduced-motion="{% if section.settings.respect_reduced_motion %}true{% else %}false{% endif %}"
        tabindex="0"
        role="region"
        aria-label="{{ section.settings.heading | default: 'Shop by Brand' | escape }}">
@@ -312,6 +313,13 @@
       "label": "Auto-scroll (showcase mode)",
       "info": "The strip glides on its own to show off the brands. Dragging and swiping keep working either way — turn this off to make it a purely manual menu.",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "respect_reduced_motion",
+      "label": "Pause for visitors who ask for reduced motion",
+      "info": "Some devices have an OS-level 'reduce motion' accessibility setting. With this ticked the strip stays still for those visitors — it is still scrollable by hand. Leave it unticked if the strip is not moving and you are not sure why: that setting is the usual cause.",
+      "default": false
     },
     {
       "type": "range",

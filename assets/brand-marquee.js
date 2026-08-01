@@ -22,9 +22,16 @@
   }
 
   function init() {
+    var instances = [];
     document.querySelectorAll('[data-brand-marquee]').forEach(function (root) {
-      new BrandMarquee(root);
+      instances.push(new BrandMarquee(root));
     });
+    window.__brandMarqueeStatus = function () {
+      if (!instances.length) return 'No brand marquee found on this page.';
+      return instances.map(function (i) {
+        return i && i.status ? i.status() : 'instance failed to initialise (fewer than 2 columns?)';
+      });
+    };
   }
 
   function BrandMarquee(root) {
@@ -34,6 +41,9 @@
 
     this.speed      = parseFloat(root.getAttribute('data-speed')) || 30; // seconds per loop
     this.autoplay   = root.getAttribute('data-autoplay') !== 'false';
+    // Opt-in, because an OS-level "reduce motion" setting silently stopping the
+    // strip is indistinguishable from it being broken.
+    this.respectReducedMotion = root.getAttribute('data-respect-reduced-motion') === 'true';
     this.wrapWidth  = 0;
     this.pos        = 0;
     this.rafId      = null;
@@ -67,9 +77,30 @@
   }
 
   BrandMarquee.prototype._prefersReduced = function () {
-    // Merchant's autoplay switch and the visitor's reduced-motion preference
-    // both suppress the glide; dragging and swiping stay available regardless.
-    return !this.autoplay || !!(this.reduceMotion && this.reduceMotion.matches);
+    if (!this.autoplay) return true;
+    if (!this.respectReducedMotion) return false;
+    return !!(this.reduceMotion && this.reduceMotion.matches);
+  };
+
+  /* Plain-English answer to "why isn't it moving?", callable from the console:
+     window.__brandMarqueeStatus(). Cheaper than guessing across environments. */
+  BrandMarquee.prototype.status = function () {
+    return {
+      scriptLoaded: true,
+      autoplaySetting: this.autoplay,
+      respectsReducedMotion: this.respectReducedMotion,
+      osAsksForReducedMotion: !!(this.reduceMotion && this.reduceMotion.matches),
+      animationRunning: this.rafId !== null,
+      pausedByHoverOrTouch: this.paused,
+      dragging: this.dragging,
+      loopWidth: this.wrapWidth,
+      containerWidth: this.root.clientWidth,
+      currentScroll: Math.round(this.root.scrollLeft),
+      tabHidden: document.hidden,
+      verdict: this.rafId === null
+        ? (this._prefersReduced() ? 'suppressed: autoplay off or reduced-motion' : 'loop not started')
+        : (this.wrapWidth > 0 ? 'running' : 'running but loop width is 0 — nothing to scroll')
+    };
   };
 
   /* The seamless loop distance is the offset between the two rendered copies,
