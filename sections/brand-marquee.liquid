@@ -125,7 +125,7 @@
 
   @media screen and (max-width: 767px) {
     .brand-logo-card {
-      height: var(--card-h-mob, 78px);
+      height: var(--card-h-mob, 76px);
       width: var(--card-w-mob, 156px);
       padding: 10px 14px;
     }
@@ -188,7 +188,7 @@
            --card-w: {{ section.settings.logo_width | default: 208 }}px;
            --card-h: {{ section.settings.logo_height | default: 100 }}px;
            --card-w-mob: {{ section.settings.logo_width_mobile | default: 156 }}px;
-           --card-h-mob: {{ section.settings.logo_height_mobile | default: 78 }}px;
+           --card-h-mob: {{ section.settings.logo_height_mobile | default: 76 }}px;
            --logo-fit: {{ section.settings.logo_fit | default: 'contain' }};
          ">
   {%- if section.settings.heading != blank -%}
@@ -370,7 +370,7 @@
       "step": 4,
       "unit": "px",
       "label": "Logo height (mobile)",
-      "default": 78
+      "default": 76
     },
     {
       "type": "select",
