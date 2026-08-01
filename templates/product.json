@@ -8,34 +8,49 @@
  * ------------------------------------------------------------
  */
 {
-    "sections": {
-        "product-gallery": {
-            "type": "product-gallery",
-            "settings": {}
-        },
-        "product-info": {
-            "type": "product-info",
-            "settings": {
-                "show_buy_now": true,
-                "delivery_text": "2-5 business days across Egypt",
-                "returns_text": "14-day hassle-free returns"
-            }
-        },
-        "related-products": {
-            "type": "related-products",
-            "settings": {
-                "accent_text": "Discover"
-            }
-        },
-        "product-sticky-bar": {
-            "type": "product-sticky-bar",
-            "settings": {}
-        }
+  "sections": {
+    "product-gallery": {
+      "type": "product-gallery",
+      "settings": {}
     },
-    "order": [
-        "product-gallery",
-        "product-info",
-        "related-products",
-        "product-sticky-bar"
-    ]
+    "product-info": {
+      "type": "product-info",
+      "settings": {
+        "accent_text": "Signature Collection",
+        "show_buy_now": true,
+        "essence_heading": "The Essence",
+        "essence_default": "",
+        "attr_family_label": "Family",
+        "attr_family": "Woody Floral",
+        "attr_occasion_label": "Occasion",
+        "attr_occasion": "Evening",
+        "attr_sillage_label": "Sillage",
+        "attr_sillage": "Moderate",
+        "notes_heading": "Fragrance Notes",
+        "notes_top": "Bergamot, Saffron, Black Pepper",
+        "notes_heart": "Damask Rose, Iris, Leather",
+        "notes_base": "",
+        "desc_heading": "The Perfumer's Art",
+        "delivery_text": "<p>2-5 business days across Egypt</p>",
+        "returns_text": "<p>14-day hassle-free returns</p>"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You May Also Like",
+        "products_count": 4
+      }
+    },
+    "product-sticky-bar": {
+      "type": "product-sticky-bar",
+      "settings": {}
+    }
+  },
+  "order": [
+    "product-gallery",
+    "product-info",
+    "related-products",
+    "product-sticky-bar"
+  ]
 }
