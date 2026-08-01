@@ -1,13 +1,13 @@
 <style>
   .brand-slider-section {
     background-color: #F5F1EB; /* bg-soft-ivory */
-    padding-top: 4.5rem; /* py-18 */
-    padding-bottom: 4.5rem;
+    padding-top: var(--section-pad-y, 2.5rem);
+    padding-bottom: var(--section-pad-y, 2.5rem);
     overflow: hidden;
   }
   .brand-slider__heading {
     text-align: center;
-    margin-bottom: 2.25rem; /* mb-9 */
+    margin-bottom: var(--section-head-gap, 1.5rem);
     padding: 0 1.5rem; /* px-6 */
   }
   .brand-slider__heading h3 {
@@ -112,8 +112,8 @@
     /* Driven by the section settings via custom properties on the section,
        so the box can be resized in the editor without touching CSS. A block
        may override either axis for one specific logo. */
-    height: var(--card-h, 80px);
-    width: var(--card-w, 172px);
+    height: var(--card-h, 100px);
+    width: var(--card-w, 208px);
     padding: 12px 20px;
     background-color: transparent;
     border: none;
@@ -125,8 +125,8 @@
 
   @media screen and (max-width: 767px) {
     .brand-logo-card {
-      height: var(--card-h-mob, 64px);
-      width: var(--card-w-mob, 132px);
+      height: var(--card-h-mob, 78px);
+      width: var(--card-w-mob, 156px);
       padding: 10px 14px;
     }
   }
@@ -185,10 +185,10 @@
 <section class="brand-slider-section{% if section.settings.compact %} brand-slider-section--compact{% endif %}"
          id="brandSliderSection"
          style="
-           --card-w: {{ section.settings.logo_width | default: 172 }}px;
-           --card-h: {{ section.settings.logo_height | default: 80 }}px;
-           --card-w-mob: {{ section.settings.logo_width_mobile | default: 132 }}px;
-           --card-h-mob: {{ section.settings.logo_height_mobile | default: 64 }}px;
+           --card-w: {{ section.settings.logo_width | default: 208 }}px;
+           --card-h: {{ section.settings.logo_height | default: 100 }}px;
+           --card-w-mob: {{ section.settings.logo_width_mobile | default: 156 }}px;
+           --card-h-mob: {{ section.settings.logo_height_mobile | default: 78 }}px;
            --logo-fit: {{ section.settings.logo_fit | default: 'contain' }};
          ">
   {%- if section.settings.heading != blank -%}
@@ -340,7 +340,7 @@
       "step": 4,
       "unit": "px",
       "label": "Logo width (desktop)",
-      "default": 172
+      "default": 208
     },
     {
       "type": "range",
@@ -350,7 +350,7 @@
       "step": 4,
       "unit": "px",
       "label": "Logo height (desktop)",
-      "default": 80
+      "default": 100
     },
     {
       "type": "range",
@@ -360,7 +360,7 @@
       "step": 4,
       "unit": "px",
       "label": "Logo width (mobile)",
-      "default": 132
+      "default": 156
     },
     {
       "type": "range",
@@ -370,7 +370,7 @@
       "step": 4,
       "unit": "px",
       "label": "Logo height (mobile)",
-      "default": 64
+      "default": 78
     },
     {
       "type": "select",

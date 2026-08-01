@@ -4,6 +4,36 @@
 (function () {
     'use strict';
 
+    /**
+     * Variant prices arrive from Shopify in cents. This used to render them as
+     * "1450.00 EGP", which disagreed with every Liquid-rendered price on the
+     * site ("LE 1,450.00"). Reads the shop's own format string off the form.
+     */
+    function formatMoney(cents) {
+        var amount = (parseInt(cents, 10) || 0) / 100;
+        var host = document.querySelector('[data-money-format]');
+        var format = host ? host.getAttribute('data-money-format') : '';
+        var placeholder = /\{\{\s*(\w+)\s*\}\}/.exec(format || '');
+
+        function group(num, decimals, thousands, decimalMark) {
+            var parts = Math.abs(num).toFixed(decimals).split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+            return (num < 0 ? '-' : '') + parts.join(parts[1] ? decimalMark : '');
+        }
+
+        var style = placeholder ? placeholder[1] : 'amount';
+        var out;
+        switch (style) {
+            case 'amount_no_decimals':                       out = group(amount, 0, ',', '.'); break;
+            case 'amount_with_comma_separator':              out = group(amount, 2, '.', ','); break;
+            case 'amount_no_decimals_with_comma_separator':  out = group(amount, 0, '.', ','); break;
+            case 'amount_with_apostrophe_separator':         out = group(amount, 2, "'", '.'); break;
+            default:                                         out = group(amount, 2, ',', '.');
+        }
+        if (!placeholder) return out;
+        return format.replace(/\{\{\s*\w+\s*\}\}/, out);
+    }
+
     var selectors = {
         productForm: '[data-product-form]',
         variantSelect: '[data-variant-select]',
@@ -181,15 +211,31 @@
         var comparePriceEl = document.querySelector(selectors.comparePriceDisplay);
 
         if (priceEl) {
-            priceEl.textContent = (variant.price / 100).toFixed(2) + ' EGP';
+            priceEl.textContent = formatMoney(variant.price);
         }
 
+        var onSale = !!(variant.compare_at_price && variant.compare_at_price > variant.price);
+
         if (comparePriceEl) {
-            if (variant.compare_at_price && variant.compare_at_price > variant.price) {
-                comparePriceEl.textContent = (variant.compare_at_price / 100).toFixed(2) + ' EGP';
+            if (onSale) {
+                comparePriceEl.textContent = formatMoney(variant.compare_at_price);
                 comparePriceEl.style.display = '';
             } else {
                 comparePriceEl.style.display = 'none';
+            }
+        }
+
+        /* The "-25%" badge is rendered by Liquid for the initial variant but was
+           never updated here, so switching to a non-discounted size left a stale
+           discount on screen. */
+        var savingsEl = document.querySelector('.pdp__savings');
+        if (savingsEl) {
+            if (onSale) {
+                var pct = Math.round((variant.compare_at_price - variant.price) * 100 / variant.compare_at_price);
+                savingsEl.textContent = '-' + pct + '%';
+                savingsEl.style.display = '';
+            } else {
+                savingsEl.style.display = 'none';
             }
         }
 
@@ -230,6 +276,7 @@
     };
 
     ProductPage.prototype.addToCart = function () {
+        var self = this;
         var variantInput = this.form.querySelector('input[name="id"]');
         var qtyInput = this.form.querySelector(selectors.quantityInput);
 
@@ -245,24 +292,60 @@
         if (addBtn) addBtn.disabled = true;
         if (addBtnText) addBtnText.innerHTML = '<span class="spinner"></span>';
 
-        if (window.PERFUMERS && window.PERFUMERS.addToCart) {
-            window.PERFUMERS.addToCart(variantId, quantity)
-                .then(function () {
-                    if (addBtnText) addBtnText.textContent = '✓ Added';
-                    setTimeout(function () {
-                        if (addBtn) addBtn.disabled = false;
-                        if (addBtnText) addBtnText.textContent = originalText;
-                    }, 1500);
-                })
-                .catch(function (err) {
-                    console.error('Add to cart error:', err);
-                    if (addBtnText) addBtnText.textContent = err.message || 'Unavailable';
-                    setTimeout(function () {
-                        if (addBtn) addBtn.disabled = false;
-                        if (addBtnText) addBtnText.textContent = originalText;
-                    }, 2000);
-                });
+        /* Falls back to a direct cart request when the cart drawer script hasn't
+           defined PERFUMERS.addToCart. Previously this whole branch was skipped
+           in that case, leaving the button disabled with a spinner forever and
+           no error anywhere. */
+        var add = (window.PERFUMERS && window.PERFUMERS.addToCart)
+            ? window.PERFUMERS.addToCart(variantId, quantity)
+            : fetch('/cart/add.js', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ items: [{ id: variantId, quantity: quantity }] })
+              }).then(function (res) {
+                  return res.json().then(function (data) {
+                      if (!res.ok) throw new Error(data.description || data.message || 'Could not add to cart');
+                      return data;
+                  });
+              });
+
+        var restore = function () {
+            if (addBtn) addBtn.disabled = false;
+            if (addBtnText) addBtnText.textContent = originalText;
+        };
+
+        add.then(function () {
+            if (addBtnText) addBtnText.textContent = '✓ Added';
+            setTimeout(restore, 1500);
+        }).catch(function (err) {
+            console.error('Add to cart error:', err);
+            /* Shopify's own wording ("All 2 X are in your cart") explains a
+               stock limit far better than a generic label, and it belongs
+               beside the button rather than replacing it — replacing the label
+               made a stock cap look like the product was sold out. */
+            self.showFormError(err && err.message ? err.message : 'Could not add to cart');
+            restore();
+        });
+    };
+
+    /* Inline, polite error region under the buy buttons. */
+    ProductPage.prototype.showFormError = function (message) {
+        if (!this.form) return;
+        var box = this.form.querySelector('[data-product-form-error]');
+        if (!box) {
+            box = document.createElement('p');
+            box.setAttribute('data-product-form-error', '');
+            box.setAttribute('role', 'status');
+            box.className = 'pdp__form-error';
+            this.form.appendChild(box);
         }
+        box.textContent = message;
+        box.style.display = '';
+        clearTimeout(this._errTimer);
+        var self = this;
+        this._errTimer = setTimeout(function () {
+            if (box) box.style.display = 'none';
+        }, 6000);
     };
 
     ProductPage.prototype.changeMainImage = function (thumbnail) {

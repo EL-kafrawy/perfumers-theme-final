@@ -12,6 +12,18 @@
 {%- assign is_sold_out = false -%}
 {%- unless product.available -%}{%- assign is_sold_out = true -%}{%- endunless -%}
 
+{%- comment -%}
+  Discount. Shopify has no "percent off" field, so it's derived from the
+  compare-at price. Rounded, because "-33%" reads and scans far faster than
+  a price pair the customer has to subtract themselves.
+{%- endcomment -%}
+{%- assign has_discount = false -%}
+{%- assign discount_pct = 0 -%}
+{%- if product.compare_at_price > product.price and product.compare_at_price > 0 -%}
+  {%- assign has_discount = true -%}
+  {%- assign discount_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+{%- endif -%}
+
 <div class="product-card{% if is_sold_out %} product-card--sold-out{% endif %}">
   {%- comment -%}
     No aria-label here on purpose. The link already contains the brand, title,
@@ -50,7 +62,9 @@
       {%- comment -%} Sold out outranks Sale/New — it's the fact that changes the decision. {%- endcomment -%}
       {%- if is_sold_out -%}
         <span class="product-card__badge product-card__badge--sold-out">{{ 'actions.sold_out' | t }}</span>
-      {%- elsif badge == 'sale' or product.compare_at_price > product.price -%}
+      {%- elsif has_discount -%}
+        <span class="product-card__badge product-card__badge--sale">−{{ discount_pct }}%</span>
+      {%- elsif badge == 'sale' -%}
         <span class="product-card__badge product-card__badge--sale">{{ 'product.sale' | t }}</span>
       {%- elsif badge == 'new' -%}
         <span class="product-card__badge product-card__badge--new">{{ 'product.new' | t }}</span>
@@ -64,14 +78,15 @@
       <p class="product-card__brand">{{ product.vendor }}</p>
       <h3 class="product-card__title">{{ product.title }}</h3>
       <div class="product-card__price-wrapper">
-        {%- if product.compare_at_price > product.price -%}
+        {%- comment -%} Sale price leads; the old price follows, struck through. {%- endcomment -%}
+        <span class="product-card__price{% if has_discount %} product-card__price--sale{% endif %}">
+          {% render 'price', price: product.price %}
+        </span>
+        {%- if has_discount -%}
           <span class="product-card__price--compare">
             {% render 'price', price: product.compare_at_price %}
           </span>
         {%- endif -%}
-        <span class="product-card__price">
-          {% render 'price', price: product.price %}
-        </span>
       </div>
     </div>
   </a>
@@ -114,7 +129,7 @@
     text-decoration: none;
   }
   .product-card__info {
-    padding-top: var(--space-md);
+    padding-top: 10px;
   }
   .product-card__price-wrapper {
     display: flex;
@@ -158,7 +173,7 @@
   }
   .product-card__title {
     font-family: var(--font-serif, 'Cormorant Garamond', serif);
-    font-size: 0.95rem;
+    font-size: 0.875rem;
     font-weight: 400;
     color: var(--color-charcoal, #2E2A33);
     margin: 0 0 4px;
@@ -168,13 +183,17 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 2.6em;
+    min-height: 2.4em;
   }
   .product-card__price {
     font-family: var(--font-sans, 'Montserrat', sans-serif);
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--color-taupe, #7E6C5F);
+  }
+  .product-card__price--sale {
+    color: var(--color-gold, #C8A46A);
+    font-weight: 600;
   }
   .product-card__price--compare {
     font-size: 0.7rem;

@@ -76,7 +76,7 @@
 
 <style>
   .featured-collection-section {
-    padding: 4.5rem 1.5rem; /* py-18 px-6 */
+    padding: var(--section-pad-y, 2.5rem) 1.5rem;
     background-color: rgba(231, 221, 212, 0.3); /* bg-pearl-beige/30 */
   }
   
@@ -94,23 +94,23 @@
     text-align: center;
     color: #2E2A33;
     margin-top: 0;
-    margin-bottom: 3rem; /* mb-12 */
+    margin-bottom: var(--section-head-gap, 1.5rem);
     font-weight: 400;
   }
 
   .treasured-finds__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 1.25rem;
-    row-gap: 3rem;
+    column-gap: 0.9rem;
+    row-gap: 1.6rem;
     align-items: stretch;
   }
 
   @media (min-width: 768px) {
     .treasured-finds__grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      column-gap: 2rem;
-      row-gap: 3.5rem;
+      column-gap: 1.25rem;
+      row-gap: 1.9rem;
     }
   }
 

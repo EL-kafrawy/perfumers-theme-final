@@ -26,7 +26,8 @@
       </div>
 
       <!-- Product Form -->
-      {%- form 'product', product, data-product-form: '' -%}
+      {%- comment -%} data-money-format lets the JS render variant prices exactly as Liquid does. {%- endcomment -%}
+      {%- form 'product', product, data-product-form: '', data-money-format: shop.money_format -%}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
         <!-- Volume / Variant Selection (shown only for multi-variant products) -->
@@ -195,6 +196,17 @@
     line-height: 1.15;
     color: var(--color-charcoal, #2E2A33);
     margin: 0 0 10px;
+  }
+  .pdp__form-error {
+    margin: 0.75rem 0 0;
+    padding: 0.6rem 0.75rem;
+    border-radius: 2px;
+    background: rgba(46, 42, 51, 0.06);
+    border-left: 2px solid var(--color-gold, #C8A46A);
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--color-charcoal, #2E2A33);
   }
   .pdp__price-row {
     display: flex;

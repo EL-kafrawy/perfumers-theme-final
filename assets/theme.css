@@ -74,6 +74,15 @@
   --space-3xl: 48px;
   --space-4xl: 72px;
 
+  /* --- Section rhythm ------------------------------------------------
+     Every section used to hard-code 4.5rem (72px) of padding top AND
+     bottom, so two stacked sections produced ~144px of dead space between
+     one heading and the next. These drive all of them from one place, so
+     the whole page can be tightened or loosened together. */
+  --section-pad-y: 2.5rem;      /* 40px — was 72px per side */
+  --section-pad-y-lg: 3rem;     /* for sections that carry a full-bleed image */
+  --section-head-gap: 1.5rem;   /* heading block -> content below it */
+
   /* Grid gutter used by .grid in base.css. This was previously referenced but
      never defined, so `gap: var(--grid-gutter)` was invalid and collapsed to 0 —
      which is why product cards sat flush against each other. */
@@ -105,6 +114,15 @@
      touches the screen edge. Full-bleed images use sections with no .container
      and are unaffected. Tune this single value to change the margin site-wide. */
   --grid-margin: 16px;
+}
+
+/* Phones have far less room to spare, so the rhythm tightens further. */
+@media screen and (max-width: 767px) {
+  :root {
+    --section-pad-y: 1.75rem;
+    --section-pad-y-lg: 2rem;
+    --section-head-gap: 1.1rem;
+  }
 }
 
 /* ==========================================================================
