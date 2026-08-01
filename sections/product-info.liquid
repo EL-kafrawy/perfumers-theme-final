@@ -8,9 +8,23 @@
       {% render 'schema-product', product: product %}
 
       <!-- Accent / Collection -->
-      <p class="pdp__accent">
-        {%- if section.settings.accent_text != blank -%}{{ section.settings.accent_text }}{%- else -%}{{ product.vendor }}{%- endif -%}
-      </p>
+      {%- comment -%}
+        Product tags as small chips instead of the fixed "SIGNATURE COLLECTION"
+        accent line. Each chip is a link into a filtered listing of the same
+        tag, so a customer who spots "Men" or "Oud" on this product can jump
+        straight to the rest. If the product carries no tags we fall back to
+        the section's accent_text — otherwise the block just doesn't render,
+        rather than leaving a blank strip above the title.
+      {%- endcomment -%}
+      {%- if product.tags.size > 0 -%}
+        <ul class="pdp__tags" aria-label="Product tags">
+          {%- for tag in product.tags -%}
+            <li><a class="pdp__tag" href="{{ routes.all_products_collection_url }}?filter.p.tag={{ tag | url_encode }}">{{ tag }}</a></li>
+          {%- endfor -%}
+        </ul>
+      {%- elsif section.settings.accent_text != blank -%}
+        <p class="pdp__accent">{{ section.settings.accent_text }}</p>
+      {%- endif -%}
 
       <!-- Title -->
       <h1 class="pdp__title">{{ product.title }}</h1>
@@ -169,6 +183,39 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     margin: 0 0 8px;
+  }
+  /* --- Product tags -----------------------------------------------------
+     Kept subtle on purpose: reads as metadata (like the accent line it
+     replaced) rather than competing with the title beneath. Chips wrap so
+     a product with many tags still lays out cleanly. */
+  .pdp__tags {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pdp__tag {
+    display: inline-block;
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold, #C8A46A);
+    text-decoration: none;
+    padding: 4px 9px;
+    border: 1px solid rgba(200, 164, 106, 0.35);
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .pdp__tag:hover,
+  .pdp__tag:focus-visible {
+    background: var(--color-gold, #C8A46A);
+    color: var(--color-ivory, #F5F1EB);
+    border-color: var(--color-gold, #C8A46A);
+    outline: none;
   }
   .pdp__title {
     font-family: var(--font-serif, 'Cormorant Garamond', serif);
