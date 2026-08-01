@@ -14,6 +14,31 @@
   'use strict';
 
   var IDLE_RESUME_MS = 2200;
+  var instances = [];
+  var initErrors = [];
+
+  /* Defined FIRST, before anything that could throw, and it logs on every
+     page load without anyone having to type a command. Previously the
+     status function was only assigned after every instance had been built
+     successfully — so if the constructor for even one of them threw, the
+     whole script halted right there and the function never existed at all.
+     That produced exactly the symptom this shipped to diagnose: "the file
+     loaded (200 in Network) but the console says the function doesn't
+     exist" — the failure was silent because nothing ever reported it. */
+  window.__brandMarqueeStatus = function () {
+    if (initErrors.length) {
+      return { scriptRan: true, initErrors: initErrors.map(function (e) { return e.message || String(e); }) };
+    }
+    if (!instances.length) {
+      return { scriptRan: true, marqueeElementsOnPage: document.querySelectorAll('[data-brand-marquee]').length,
+               note: 'No marquee instance was built. 0 elements on the page = wrong page/section removed; >0 = something else stopped construction (see initErrors).' };
+    }
+    return instances.map(function (i) {
+      return i && i.status ? i.status() : { note: 'instance object missing its own methods' };
+    });
+  };
+
+  console.log('[brand-marquee] script executing, ' + document.querySelectorAll('[data-brand-marquee]').length + ' container(s) on this page');
 
   if (document.readyState !== 'loading') {
     init();
@@ -22,16 +47,17 @@
   }
 
   function init() {
-    var instances = [];
     document.querySelectorAll('[data-brand-marquee]').forEach(function (root) {
-      instances.push(new BrandMarquee(root));
+      try {
+        instances.push(new BrandMarquee(root));
+      } catch (err) {
+        /* One brand strip failing to build must not silently disable every
+           other script on the page or hide the reason why. */
+        initErrors.push(err);
+        console.error('[brand-marquee] failed to initialise:', err);
+      }
     });
-    window.__brandMarqueeStatus = function () {
-      if (!instances.length) return 'No brand marquee found on this page.';
-      return instances.map(function (i) {
-        return i && i.status ? i.status() : 'instance failed to initialise (fewer than 2 columns?)';
-      });
-    };
+    console.log('[brand-marquee] ready — ' + instances.length + ' instance(s), ' + initErrors.length + ' error(s). Run __brandMarqueeStatus() for detail.');
   }
 
   function BrandMarquee(root) {
@@ -57,18 +83,32 @@
     this.dragStartScroll = 0;
     this.dragMoved  = 0;
 
-    this.reduceMotion = window.matchMedia
-      ? window.matchMedia('(prefers-reduced-motion: reduce)')
-      : null;
+    /* Some privacy/ad-blocking browser extensions patch matchMedia,
+       ResizeObserver, or pointer/clipboard APIs and throw from inside their
+       own wrapper instead of the native behavior. None of that is ours to
+       fix, but it must not stop the strip from being at least manually
+       scrollable — so every optional API call below is isolated. */
+    try {
+      this.reduceMotion = window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)')
+        : null;
+    } catch (err) {
+      console.warn('[brand-marquee] matchMedia unavailable:', err);
+      this.reduceMotion = null;
+    }
 
-    this._measure();
-    this._bind();
+    try { this._measure(); } catch (err) { console.warn('[brand-marquee] measure failed:', err); }
+    try { this._bind(); } catch (err) { console.warn('[brand-marquee] bind failed:', err); }
 
     // Logos are lazy-loaded, so the width isn't final at DOMContentLoaded.
-    if (window.ResizeObserver) {
-      var self = this;
-      this._ro = new ResizeObserver(function () { self._measure(); });
-      this._ro.observe(this.track);
+    try {
+      if (window.ResizeObserver) {
+        var self = this;
+        this._ro = new ResizeObserver(function () { self._measure(); });
+        this._ro.observe(this.track);
+      }
+    } catch (err) {
+      console.warn('[brand-marquee] ResizeObserver unavailable:', err);
     }
     window.addEventListener('load', this._measure.bind(this));
 
@@ -120,11 +160,18 @@
     if (needed < 2) needed = 2;
     var guard = 0;
     while (this.track.children.length < needed && guard++ < 12) {
-      var clone = this.track.children[0].cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      var links = clone.querySelectorAll('a');
-      for (var i = 0; i < links.length; i++) links[i].setAttribute('tabindex', '-1');
-      this.track.appendChild(clone);
+      try {
+        var clone = this.track.children[0].cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        var links = clone.querySelectorAll('a');
+        for (var i = 0; i < links.length; i++) links[i].setAttribute('tabindex', '-1');
+        this.track.appendChild(clone);
+      } catch (err) {
+        // Whatever brands are already in the DOM keep working; a failed
+        // clone just means less run-up before the loop wraps.
+        console.warn('[brand-marquee] could not clone a column for the loop:', err);
+        break;
+      }
     }
 
     this.wrapWidth = colW;
@@ -135,21 +182,26 @@
     var self = this;
     this.lastTs = 0;
     this.rafId = requestAnimationFrame(function step(ts) {
-      if (self.lastTs) {
-        var dt = (ts - self.lastTs) / 1000;
-        // Cap dt so a backgrounded tab doesn't jump on return.
-        if (dt > 0.1) dt = 0.1;
-        if (self.wrapWidth > 0 && !self.paused && !self.dragging) {
-          /* Accumulate in `pos` (a float) and only ever WRITE scrollLeft.
-             Reading it back would round-trip through the browser's device-pixel
-             grid — on a 1.25x display that snaps to 0.8px steps, so a sub-pixel
-             per-frame delta is silently discarded and the strip runs at the
-             wrong speed or, at the slow end of the range, never moves at all. */
-          self.pos = self._wrapValue(self.pos + (self.wrapWidth / self.speed) * dt);
-          self.root.scrollLeft = self.pos;
+      try {
+        if (self.lastTs) {
+          var dt = (ts - self.lastTs) / 1000;
+          // Cap dt so a backgrounded tab doesn't jump on return.
+          if (dt > 0.1) dt = 0.1;
+          if (self.wrapWidth > 0 && !self.paused && !self.dragging) {
+            /* Accumulate in `pos` (a float) and only ever WRITE scrollLeft.
+               Reading it back would round-trip through the browser's device-pixel
+               grid — on a 1.25x display that snaps to 0.8px steps, so a sub-pixel
+               per-frame delta is silently discarded and the strip runs at the
+               wrong speed or, at the slow end of the range, never moves at all. */
+            self.pos = self._wrapValue(self.pos + (self.wrapWidth / self.speed) * dt);
+            self.root.scrollLeft = self.pos;
+          }
         }
+        self.lastTs = ts;
+      } catch (err) {
+        /* One bad frame must not permanently silence the loop. */
+        console.warn('[brand-marquee] frame skipped:', err);
       }
-      self.lastTs = ts;
       self.rafId = requestAnimationFrame(step);
     });
   };
