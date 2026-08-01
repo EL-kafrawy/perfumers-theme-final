@@ -120,32 +120,14 @@
         </div>
       {%- endif -%}
 
-      <!-- Fragrance Notes -->
-      {%- if section.settings.notes_top != blank or section.settings.notes_heart != blank or section.settings.notes_base != blank -%}
-        <div class="pdp__block">
-          <h3 class="pdp__notes-title">{{ section.settings.notes_heading | default: 'Fragrance Notes' }}</h3>
-          <div class="pdp__notes">
-            {%- if section.settings.notes_top != blank -%}
-              <div class="pdp__note">
-                <div class="pdp__note-icon"><span class="material-symbols-outlined">eco</span></div>
-                <div><p class="pdp__note-level">Top</p><p class="pdp__note-value">{{ section.settings.notes_top }}</p></div>
-              </div>
-            {%- endif -%}
-            {%- if section.settings.notes_heart != blank -%}
-              <div class="pdp__note">
-                <div class="pdp__note-icon"><span class="material-symbols-outlined">local_florist</span></div>
-                <div><p class="pdp__note-level">Heart</p><p class="pdp__note-value">{{ section.settings.notes_heart }}</p></div>
-              </div>
-            {%- endif -%}
-            {%- if section.settings.notes_base != blank -%}
-              <div class="pdp__note">
-                <div class="pdp__note-icon"><span class="material-symbols-outlined">forest</span></div>
-                <div><p class="pdp__note-level">Base</p><p class="pdp__note-value">{{ section.settings.notes_base }}</p></div>
-              </div>
-            {%- endif -%}
-          </div>
-        </div>
-      {%- endif -%}
+      {%- comment -%}
+        Fragrance Notes removed at merchant request. The notes were pulled from
+        section settings (top/heart/base), so every product on the site rendered
+        the same three notes — misleading on a fragrance store. The settings
+        themselves are kept in the schema below so no saved data is lost; when
+        real per-product notes are wired up (via product metafields), reinstate
+        this block reading from those metafields instead.
+      {%- endcomment -%}
 
       <!-- Accordions -->
       <div class="pdp__accordions">
