@@ -101,19 +101,31 @@
     try { this._bind(); } catch (err) { console.warn('[brand-marquee] bind failed:', err); }
 
     // Logos are lazy-loaded, so the width isn't final at DOMContentLoaded.
+    var self = this;
+
     try {
       if (window.ResizeObserver) {
-        var self = this;
         this._ro = new ResizeObserver(function () { self._measure(); });
         this._ro.observe(this.track);
       }
     } catch (err) {
       console.warn('[brand-marquee] ResizeObserver unavailable:', err);
     }
-    window.addEventListener('load', this._measure.bind(this));
 
-    this.root.classList.add('is-interactive');
-    if (!this._prefersReduced()) this._play();
+    /* Wrapped in a plain closure rather than .bind() because your last
+       traceback showed .bind itself throwing on this._measure — a browser
+       extension is patching Function.prototype and making that call unsafe.
+       An arrow-equivalent closure sidesteps the poisoned method entirely. */
+    try {
+      window.addEventListener('load', function () {
+        try { self._measure(); } catch (e) { console.warn('[brand-marquee] late measure failed:', e); }
+      });
+    } catch (err) {
+      console.warn('[brand-marquee] load listener unavailable:', err);
+    }
+
+    try { this.root.classList.add('is-interactive'); } catch (err) {}
+    try { if (!this._prefersReduced()) this._play(); } catch (err) { console.warn('[brand-marquee] could not start:', err); }
   }
 
   BrandMarquee.prototype._prefersReduced = function () {
