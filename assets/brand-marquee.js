@@ -33,6 +33,7 @@
     if (!this.track || this.track.children.length < 2) return;
 
     this.speed      = parseFloat(root.getAttribute('data-speed')) || 30; // seconds per loop
+    this.autoplay   = root.getAttribute('data-autoplay') !== 'false';
     this.wrapWidth  = 0;
     this.pos        = 0;
     this.rafId      = null;
@@ -66,19 +67,36 @@
   }
 
   BrandMarquee.prototype._prefersReduced = function () {
-    return !!(this.reduceMotion && this.reduceMotion.matches);
+    // Merchant's autoplay switch and the visitor's reduced-motion preference
+    // both suppress the glide; dragging and swiping stay available regardless.
+    return !this.autoplay || !!(this.reduceMotion && this.reduceMotion.matches);
   };
 
   /* The seamless loop distance is the offset between the two rendered copies,
      which includes the flex gap — using scrollWidth/2 would drift by half a
      gap on every lap. */
   BrandMarquee.prototype._measure = function () {
-    var cols = this.track.children;
-    if (cols.length < 2) return;
-    var w = cols[1].offsetLeft - cols[0].offsetLeft;
-    // With too few brands one copy is narrower than the viewport, so there is
-    // nothing to scroll into after a wrap. Leave it static rather than jump.
-    this.wrapWidth = (w > 0 && w >= this.root.clientWidth) ? w : 0;
+    if (this.track.children.length < 2) return;
+    var colW = this.track.children[1].offsetLeft - this.track.children[0].offsetLeft;
+    if (colW <= 0) { this.wrapWidth = 0; return; }
+
+    /* A wrap jumps back by exactly one copy, so there must be at least a full
+       viewport of content BEYOND that point or the strip has nowhere to scroll
+       and autoplay silently does nothing. This used to disable autoplay in that
+       case — which is what made a short strip (few brands, wide screen, or small
+       logo boxes) look like a drag-only menu. Clone copies instead. */
+    var needed = Math.ceil(this.root.clientWidth / colW) + 1;
+    if (needed < 2) needed = 2;
+    var guard = 0;
+    while (this.track.children.length < needed && guard++ < 12) {
+      var clone = this.track.children[0].cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      var links = clone.querySelectorAll('a');
+      for (var i = 0; i < links.length; i++) links[i].setAttribute('tabindex', '-1');
+      this.track.appendChild(clone);
+    }
+
+    this.wrapWidth = colW;
   };
 
   BrandMarquee.prototype._play = function () {

@@ -109,8 +109,11 @@
     justify-content: center;
     text-decoration: none;
     flex-shrink: 0;
-    height: 80px;
-    width: 172px;
+    /* Driven by the section settings via custom properties on the section,
+       so the box can be resized in the editor without touching CSS. A block
+       may override either axis for one specific logo. */
+    height: var(--card-h, 80px);
+    width: var(--card-w, 172px);
     padding: 12px 20px;
     background-color: transparent;
     border: none;
@@ -122,8 +125,8 @@
 
   @media screen and (max-width: 767px) {
     .brand-logo-card {
-      height: 64px;
-      width: 132px;
+      height: var(--card-h-mob, 64px);
+      width: var(--card-w-mob, 132px);
       padding: 10px 14px;
     }
   }
@@ -155,7 +158,10 @@
        of 100% every logo is sized identically. */
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    /* contain = whole logo, letterboxed (never distorted).
+       cover   = fills the box edge to edge, cropping overflow.
+       Chosen per section in the editor. */
+    object-fit: var(--logo-fit, contain);
     object-position: center;
     transform: scale(var(--logo-scale, 1));
     pointer-events: none;
@@ -171,7 +177,20 @@
   }
 </style>
 
-<section class="brand-slider-section{% if section.settings.compact %} brand-slider-section--compact{% endif %}" id="brandSliderSection">
+{%- comment -%}
+  Box size lives on the section as custom properties so every logo inherits the
+  same rectangle — that is what makes them all render at one size regardless of
+  the source artwork's own aspect ratio.
+{%- endcomment -%}
+<section class="brand-slider-section{% if section.settings.compact %} brand-slider-section--compact{% endif %}"
+         id="brandSliderSection"
+         style="
+           --card-w: {{ section.settings.logo_width | default: 172 }}px;
+           --card-h: {{ section.settings.logo_height | default: 80 }}px;
+           --card-w-mob: {{ section.settings.logo_width_mobile | default: 132 }}px;
+           --card-h-mob: {{ section.settings.logo_height_mobile | default: 64 }}px;
+           --logo-fit: {{ section.settings.logo_fit | default: 'contain' }};
+         ">
   {%- if section.settings.heading != blank -%}
     <div class="brand-slider__heading">
       <h3>{{ section.settings.heading }}</h3>
@@ -180,6 +199,7 @@
   <div class="brand-slider-wrapper"
        data-brand-marquee
        data-speed="{{ section.settings.scroll_speed | default: 30 }}"
+       data-autoplay="{% if section.settings.autoplay == false %}false{% else %}true{% endif %}"
        tabindex="0"
        role="region"
        aria-label="{{ section.settings.heading | default: 'Shop by Brand' | escape }}">
@@ -219,9 +239,20 @@
                 {%- assign brand_link = routes.all_products_collection_url -%}
               {%- endif -%}
               {%- assign logo_scale = block.settings.logo_scale | default: 100 | divided_by: 100.0 -%}
+              {%- comment -%}
+                Per-logo overrides. 0 means "inherit the section box", which is
+                how a range setting expresses "unset" — so by default every
+                logo stays exactly the same size as its neighbours.
+              {%- endcomment -%}
+              {%- capture card_style -%}
+                --logo-scale: {{ logo_scale }};
+                {%- if block.settings.width_override > 0 %} --card-w: {{ block.settings.width_override }}px; --card-w-mob: {{ block.settings.width_override }}px;{% endif -%}
+                {%- if block.settings.height_override > 0 %} --card-h: {{ block.settings.height_override }}px; --card-h-mob: {{ block.settings.height_override }}px;{% endif -%}
+                {%- if block.settings.fit_override != 'inherit' and block.settings.fit_override != blank %} --logo-fit: {{ block.settings.fit_override }};{% endif -%}
+              {%- endcapture -%}
               <a href="{{ brand_link }}"
                  class="brand-logo-card"
-                 style="--logo-scale: {{ logo_scale }};"
+                 style="{{ card_style | strip_newlines | strip }}"
                  {% if is_clone %}aria-hidden="true" tabindex="-1"{% endif %}
                  {{ block.shopify_attributes }}>
                 {%- if block.settings.logo != blank -%}
@@ -272,6 +303,17 @@
       "default": false
     },
     {
+      "type": "header",
+      "content": "Movement"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-scroll (showcase mode)",
+      "info": "The strip glides on its own to show off the brands. Dragging and swiping keep working either way — turn this off to make it a purely manual menu.",
+      "default": true
+    },
+    {
       "type": "range",
       "id": "scroll_speed",
       "min": 10,
@@ -279,8 +321,67 @@
       "step": 5,
       "unit": "s",
       "label": "Seconds per loop",
-      "info": "Lower is faster. Customers can drag the strip at any time; this only controls the idle auto-scroll.",
+      "info": "Lower is faster. Only affects the idle auto-scroll.",
       "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Logo size"
+    },
+    {
+      "type": "paragraph",
+      "content": "Every logo is drawn inside an identical box, which is what makes them all appear the same size no matter what shape the original file is. Change the box here and all logos follow."
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 320,
+      "step": 4,
+      "unit": "px",
+      "label": "Logo width (desktop)",
+      "default": 172
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 40,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "label": "Logo height (desktop)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "min": 60,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "label": "Logo width (mobile)",
+      "default": 132
+    },
+    {
+      "type": "range",
+      "id": "logo_height_mobile",
+      "min": 32,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Logo height (mobile)",
+      "default": 64
+    },
+    {
+      "type": "select",
+      "id": "logo_fit",
+      "label": "How logos fill the box",
+      "info": "Fit whole logo keeps every logo undistorted (recommended). Fill box crops the edges to fill the rectangle completely.",
+      "options": [
+        { "value": "contain", "label": "Fit whole logo (no cropping)" },
+        { "value": "cover", "label": "Fill box (crops edges)" }
+      ],
+      "default": "contain"
     }
   ],
   "blocks": [
@@ -322,8 +423,49 @@
           "step": 5,
           "unit": "%",
           "label": "Logo scale",
-          "info": "Nudge this logo up or down so it looks balanced next to the others.",
+          "info": "Nudge this logo up or down so it looks balanced next to the others. The box stays the same size.",
           "default": 100
+        },
+        {
+          "type": "header",
+          "content": "Override size for this logo only"
+        },
+        {
+          "type": "paragraph",
+          "content": "Leave these at 0 to keep this logo the same size as every other one. Only change them if a single brand's artwork needs a different box."
+        },
+        {
+          "type": "range",
+          "id": "width_override",
+          "min": 0,
+          "max": 320,
+          "step": 4,
+          "unit": "px",
+          "label": "Width",
+          "info": "0 = use the section width.",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "height_override",
+          "min": 0,
+          "max": 180,
+          "step": 4,
+          "unit": "px",
+          "label": "Height",
+          "info": "0 = use the section height.",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "fit_override",
+          "label": "How this logo fills its box",
+          "options": [
+            { "value": "inherit", "label": "Same as section" },
+            { "value": "contain", "label": "Fit whole logo (no cropping)" },
+            { "value": "cover", "label": "Fill box (crops edges)" }
+          ],
+          "default": "inherit"
         }
       ]
     }

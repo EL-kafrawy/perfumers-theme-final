@@ -54,7 +54,7 @@
         "settings": {
           "about_text": "Selling authentic middle eastern fragrances. Shipping all over Egypt",
           "phone": "01119112182",
-          "email": "hello@perfumers.eg",
+          "email": "perfumers.eg@gmail.com",
           "location": "Cairo, Egypt",
           "link_archive": "",
           "link_sell": "",
@@ -68,7 +68,83 @@
           "social_tiktok": "https://www.tiktok.com/@perfumers_eg?_r=1&_t=ZS-96gExiwYnES",
           "social_whatsapp": "",
           "copyright": "© 2026 PERFUMERS. All rights reserved."
-        }
+        },
+        "blocks": {
+          "brand_1": {
+            "type": "brand_logo",
+            "settings": {
+              "brand_name": "Lattafa",
+              "logo_file": "brand-logo-lattafa.png",
+              "link": "/collections/lattafa"
+            }
+          },
+          "brand_2": {
+            "type": "brand_logo",
+            "settings": {
+              "brand_name": "Afnan",
+              "logo_file": "brand-logo-afnan.jpg",
+              "link": "/collections/afnan"
+            }
+          },
+          "brand_3": {
+            "type": "brand_logo",
+            "settings": {
+              "brand_name": "Rasasi",
+              "logo_file": "brand-logo-rasasi.webp",
+              "link": "/collections/rasasi"
+            }
+          },
+          "brand_4": {
+            "type": "brand_logo",
+            "settings": {
+              "brand_name": "Assaf",
+              "logo_file": "brand-logo-assaf.png",
+              "link": "/collections/assaf"
+            }
+          },
+          "brand_5": {
+            "type": "brand_logo",
+            "settings": {
+              "brand_name": "French Avenue",
+              "logo_file": "brand-logo-french-avenue.jpg",
+              "link": "/collections/french-avenue"
+            }
+          },
+          "brand_6": {
+            "type": "brand_logo",
+            "settings": {
+              "brand_name": "Ibraq",
+              "logo_file": "brand-logo-ibraq.jpg",
+              "link": "/collections/ibraq"
+            }
+          },
+          "brand_7": {
+            "type": "brand_logo",
+            "settings": {
+              "brand_name": "Khadlaj",
+              "logo_file": "KHADLAJ-1728143202371.webp",
+              "link": "/collections/khadlaj"
+            }
+          },
+          "brand_8": {
+            "type": "brand_logo",
+            "settings": {
+              "brand_name": "Zimaya",
+              "logo_file": "Logo_zimaya.webp",
+              "link": "/collections/zimaya"
+            }
+          }
+        },
+        "block_order": [
+          "brand_1",
+          "brand_2",
+          "brand_3",
+          "brand_4",
+          "brand_5",
+          "brand_6",
+          "brand_7",
+          "brand_8"
+        ]
       },
       "cart-drawer": {
         "type": "cart-drawer",
