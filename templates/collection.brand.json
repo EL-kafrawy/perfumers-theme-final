@@ -17,7 +17,8 @@
         "show_description": true,
         "text_alignment": "center",
         "padding_top": 60,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "fallback_description": "Explore our curated fragrance selection from this renowned luxury house."
       }
     },
     "brand-switcher": {
@@ -30,27 +31,38 @@
             "logo_url": "",
             "logo_file": "brand-logo-afnan.jpg",
             "link": "/collections/afnan",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-2": {
           "type": "logo",
           "settings": {
             "brand_name": "Arabiyat Prestige",
+            "logo": "shopify://shop_images/arabiyat_perstige_logo.webp",
             "logo_url": "",
             "logo_file": "",
             "link": "/collections/arabiyat-prestige",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-3": {
           "type": "logo",
           "settings": {
             "brand_name": "Armaf",
+            "logo": "shopify://shop_images/armaf_logo.jpg",
             "logo_url": "",
             "logo_file": "",
             "link": "/collections/armaf",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-4": {
@@ -60,7 +72,10 @@
             "logo_url": "",
             "logo_file": "brand-logo-assaf.png",
             "link": "/collections/assaf",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-5": {
@@ -70,7 +85,10 @@
             "logo_url": "",
             "logo_file": "brand-logo-french-avenue.jpg",
             "link": "/collections/french-avenue",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-6": {
@@ -80,7 +98,10 @@
             "logo_url": "",
             "logo_file": "brand-logo-ibraq.jpg",
             "link": "/collections/ibraq",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-7": {
@@ -90,7 +111,10 @@
             "logo_url": "",
             "logo_file": "KHADLAJ-1728143202371.webp",
             "link": "/collections/khadlaj",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-8": {
@@ -100,7 +124,10 @@
             "logo_url": "",
             "logo_file": "brand-logo-lattafa.png",
             "link": "/collections/lattafa",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-9": {
@@ -110,7 +137,10 @@
             "logo_url": "",
             "logo_file": "",
             "link": "/collections/laverne",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-10": {
@@ -120,7 +150,10 @@
             "logo_url": "",
             "logo_file": "",
             "link": "/collections/maison-asrar",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-11": {
@@ -130,7 +163,10 @@
             "logo_url": "",
             "logo_file": "",
             "link": "/collections/paris-corner",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-12": {
@@ -140,7 +176,10 @@
             "logo_url": "",
             "logo_file": "brand-logo-rasasi.webp",
             "link": "/collections/rasasi",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-13": {
@@ -150,7 +189,10 @@
             "logo_url": "",
             "logo_file": "",
             "link": "/collections/rayhaan",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-14": {
@@ -160,7 +202,10 @@
             "logo_url": "",
             "logo_file": "Logo_zimaya.webp",
             "link": "/collections/zimaya",
-            "logo_scale": 100
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         }
       },
@@ -182,7 +227,15 @@
       ],
       "settings": {
         "heading": "",
-        "compact": true
+        "compact": true,
+        "autoplay": true,
+        "respect_reduced_motion": false,
+        "scroll_speed": 30,
+        "logo_width": 208,
+        "logo_height": 100,
+        "logo_width_mobile": 156,
+        "logo_height_mobile": 76,
+        "logo_fit": "contain"
       }
     },
     "filter-drawer": {
