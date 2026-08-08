@@ -34,9 +34,9 @@
             "logo_file": "",
             "link": "",
             "logo_scale": 100,
-            "width_override": 0,
-            "height_override": 0,
-            "fit_override": "inherit"
+            "width_override": 320,
+            "height_override": 8,
+            "fit_override": "cover"
           }
         },
         "brand-1": {
