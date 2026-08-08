@@ -340,6 +340,124 @@
         "gender_link": "",
         "brand_link": ""
       }
+    },
+    "brand_marquee_VcaDtT": {
+      "type": "brand-marquee",
+      "blocks": {
+        "logo_hkzVw8": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Dkhoon",
+            "logo_url": "",
+            "logo_file": "brand-logo-dkhoon.jpg",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        },
+        "logo_tL9bGd": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Afnan",
+            "logo_url": "",
+            "logo_file": "brand-logo-afnan.jpg",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        },
+        "logo_VDCAqF": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Assaf",
+            "logo_url": "",
+            "logo_file": "brand-logo-assaf.png",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        },
+        "logo_jWkPUq": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Lattafa",
+            "logo_url": "",
+            "logo_file": "brand-logo-lattafa.png",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        },
+        "logo_cTDi73": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "French Avenue",
+            "logo_url": "",
+            "logo_file": "brand-logo-french-avenue.jpg",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        },
+        "logo_KW9qiT": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "IBRAQ",
+            "logo_url": "",
+            "logo_file": "brand-logo-ibraq.jpg",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        },
+        "logo_yMLPq3": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "Rasasi",
+            "logo_url": "",
+            "logo_file": "brand-logo-rasasi.webp",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        }
+      },
+      "block_order": [
+        "logo_hkzVw8",
+        "logo_tL9bGd",
+        "logo_VDCAqF",
+        "logo_jWkPUq",
+        "logo_cTDi73",
+        "logo_KW9qiT",
+        "logo_yMLPq3"
+      ],
+      "name": "Brand Marquee",
+      "settings": {
+        "heading": "Shop by Brand",
+        "compact": false,
+        "autoplay": true,
+        "respect_reduced_motion": false,
+        "scroll_speed": 10,
+        "logo_width": 208,
+        "logo_height": 100,
+        "logo_width_mobile": 156,
+        "logo_height_mobile": 76,
+        "logo_fit": "contain"
+      }
     }
   },
   "order": [
@@ -350,6 +468,7 @@
     "all-products",
     "shop-by-occasion",
     "email-signup",
-    "mobile-bottom-nav"
+    "mobile-bottom-nav",
+    "brand_marquee_VcaDtT"
   ]
 }
