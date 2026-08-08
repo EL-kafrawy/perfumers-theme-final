@@ -12,9 +12,9 @@
     "hero": {
       "type": "hero-banner",
       "settings": {
-        "image": "",
         "image_alt": "Luxury perfume bottle detail",
         "accent_text": "",
+        "seo_heading": "PERFUMERS — Authentic Middle Eastern Fragrances in Egypt",
         "heading": "",
         "subheading": "",
         "button_text": "Shop Now",
@@ -31,7 +31,11 @@
             "brand_name": "Afnan",
             "logo_url": "",
             "logo_file": "brand-logo-afnan.jpg",
-            "link": "/collections/afnan"
+            "link": "/collections/afnan",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-2": {
@@ -40,7 +44,11 @@
             "brand_name": "Arabiyat Prestige",
             "logo_url": "",
             "logo_file": "",
-            "link": "/collections/arabiyat-prestige"
+            "link": "/collections/arabiyat-prestige",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-3": {
@@ -49,7 +57,11 @@
             "brand_name": "Armaf",
             "logo_url": "",
             "logo_file": "",
-            "link": "/collections/armaf"
+            "link": "/collections/armaf",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-4": {
@@ -58,7 +70,11 @@
             "brand_name": "Assaf",
             "logo_url": "",
             "logo_file": "brand-logo-assaf.png",
-            "link": "/collections/assaf"
+            "link": "/collections/assaf",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-5": {
@@ -67,7 +83,11 @@
             "brand_name": "French Avenue",
             "logo_url": "",
             "logo_file": "brand-logo-french-avenue.jpg",
-            "link": "/collections/french-avenue"
+            "link": "/collections/french-avenue",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-6": {
@@ -76,7 +96,11 @@
             "brand_name": "Ibraq",
             "logo_url": "",
             "logo_file": "brand-logo-ibraq.jpg",
-            "link": "/collections/ibraq"
+            "link": "/collections/ibraq",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-7": {
@@ -85,7 +109,11 @@
             "brand_name": "Khadlaj",
             "logo_url": "",
             "logo_file": "KHADLAJ-1728143202371.webp",
-            "link": "/collections/khadlaj"
+            "link": "/collections/khadlaj",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-8": {
@@ -94,7 +122,11 @@
             "brand_name": "Lattafa",
             "logo_url": "",
             "logo_file": "brand-logo-lattafa.png",
-            "link": "/collections/lattafa"
+            "link": "/collections/lattafa",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-9": {
@@ -103,7 +135,11 @@
             "brand_name": "Laverne",
             "logo_url": "",
             "logo_file": "",
-            "link": "/collections/laverne"
+            "link": "/collections/laverne",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-10": {
@@ -112,7 +148,11 @@
             "brand_name": "Maison Asrar",
             "logo_url": "",
             "logo_file": "",
-            "link": "/collections/maison-asrar"
+            "link": "/collections/maison-asrar",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-11": {
@@ -121,7 +161,11 @@
             "brand_name": "Paris Corner",
             "logo_url": "",
             "logo_file": "",
-            "link": "/collections/paris-corner"
+            "link": "/collections/paris-corner",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-12": {
@@ -130,7 +174,11 @@
             "brand_name": "Rasasi",
             "logo_url": "",
             "logo_file": "brand-logo-rasasi.webp",
-            "link": "/collections/rasasi"
+            "link": "/collections/rasasi",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-13": {
@@ -139,7 +187,11 @@
             "brand_name": "Rayhaan",
             "logo_url": "",
             "logo_file": "",
-            "link": "/collections/rayhaan"
+            "link": "/collections/rayhaan",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         },
         "brand-14": {
@@ -148,7 +200,11 @@
             "brand_name": "Zimaya",
             "logo_url": "",
             "logo_file": "Logo_zimaya.webp",
-            "link": "/collections/zimaya"
+            "link": "/collections/zimaya",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
           }
         }
       },
@@ -169,7 +225,28 @@
         "brand-14"
       ],
       "settings": {
-        "heading": "Shop by Brand"
+        "heading": "Shop by Brand",
+        "compact": false,
+        "autoplay": true,
+        "respect_reduced_motion": false,
+        "scroll_speed": 30,
+        "logo_width": 208,
+        "logo_height": 100,
+        "logo_width_mobile": 156,
+        "logo_height_mobile": 76,
+        "logo_fit": "contain"
+      }
+    },
+    "best_sellers_EfgxyV": {
+      "type": "best-sellers",
+      "name": "Best Sellers",
+      "settings": {
+        "accent_text": "",
+        "title": "Best Sellers",
+        "subtitle": "Perfumers most sold",
+        "collection": "",
+        "products_limit": 8,
+        "view_all_link": ""
       }
     },
     "featured-products": {
@@ -180,6 +257,15 @@
         "collection": "best-sellers",
         "products_to_show": 4,
         "show_view_all": false
+      }
+    },
+    "all-products": {
+      "type": "all-products",
+      "settings": {
+        "accent_text": "The Full Collection",
+        "title": "All Products",
+        "products_to_show": 12,
+        "show_view_all": true
       }
     },
     "shop-by-occasion": {
@@ -222,15 +308,6 @@
         "title": "Shop by Gender"
       }
     },
-    "all-products": {
-      "type": "all-products",
-      "settings": {
-        "accent_text": "The Full Collection",
-        "title": "All Products",
-        "products_to_show": 12,
-        "show_view_all": true
-      }
-    },
     "email-signup": {
       "type": "email-signup",
       "settings": {
@@ -253,6 +330,7 @@
   "order": [
     "hero",
     "brand-marquee",
+    "best_sellers_EfgxyV",
     "featured-products",
     "all-products",
     "shop-by-occasion",
