@@ -44,31 +44,13 @@
       "announcement-bar": {
         "type": "announcement-bar",
         "settings": {
-          "message_1": "🚚 Delivery in 1–3 Days Across Cairo | Free Shipping Over 500 EGP",
-          "message_2": "✅ Cash on Delivery Available Storewide",
-          "message_3": "💯 100% Authentic Fragrances — Guaranteed"
+          "message_1": "",
+          "message_2": "",
+          "message_3": ""
         }
       },
       "footer": {
         "type": "footer",
-        "settings": {
-          "about_text": "Selling authentic middle eastern fragrances. Shipping all over Egypt",
-          "phone": "01119112182",
-          "email": "perfumers.eg@gmail.com",
-          "location": "Cairo, Egypt",
-          "link_archive": "",
-          "link_sell": "",
-          "link_story": "",
-          "link_shipping": "",
-          "link_returns": "",
-          "link_care": "",
-          "link_contact": "",
-          "social_facebook": "",
-          "social_instagram": "https://www.instagram.com/perfumers_eg?utm_source=qr",
-          "social_tiktok": "https://www.tiktok.com/@perfumers_eg?_r=1&_t=ZS-96gExiwYnES",
-          "social_whatsapp": "",
-          "copyright": "© 2026 PERFUMERS. All rights reserved."
-        },
         "blocks": {
           "brand_1": {
             "type": "brand_logo",
@@ -144,7 +126,25 @@
           "brand_6",
           "brand_7",
           "brand_8"
-        ]
+        ],
+        "settings": {
+          "about_text": "Selling authentic middle eastern fragrances. Shipping all over Egypt",
+          "phone": "01119112182",
+          "email": "perfumers.eg@gmail.com",
+          "location": "Cairo, Egypt",
+          "link_archive": "",
+          "link_sell": "",
+          "link_story": "",
+          "link_shipping": "",
+          "link_returns": "",
+          "link_care": "",
+          "link_contact": "",
+          "social_facebook": "",
+          "social_instagram": "https://www.instagram.com/perfumers_eg?utm_source=qr",
+          "social_tiktok": "https://www.tiktok.com/@perfumers_eg?_r=1&_t=ZS-96gExiwYnES",
+          "social_whatsapp": "",
+          "copyright": "© 2026 PERFUMERS. All rights reserved."
+        }
       },
       "cart-drawer": {
         "type": "cart-drawer",
