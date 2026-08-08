@@ -25,6 +25,20 @@
     "brand-marquee": {
       "type": "brand-marquee",
       "blocks": {
+        "logo_zDPmNN": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "zimaya",
+            "logo": "shopify://shop_images/zimaya_logo_1.png",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        },
         "brand-1": {
           "type": "logo",
           "settings": {
@@ -209,6 +223,7 @@
         }
       },
       "block_order": [
+        "logo_zDPmNN",
         "brand-1",
         "brand-2",
         "brand-3",
