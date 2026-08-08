@@ -344,6 +344,19 @@
     "brand_marquee_VcaDtT": {
       "type": "brand-marquee",
       "blocks": {
+        "logo_cjBcV6": {
+          "type": "logo",
+          "settings": {
+            "brand_name": "",
+            "logo_url": "",
+            "logo_file": "",
+            "link": "",
+            "logo_scale": 100,
+            "width_override": 0,
+            "height_override": 0,
+            "fit_override": "inherit"
+          }
+        },
         "logo_hkzVw8": {
           "type": "logo",
           "settings": {
@@ -437,6 +450,7 @@
         }
       },
       "block_order": [
+        "logo_cjBcV6",
         "logo_hkzVw8",
         "logo_tL9bGd",
         "logo_VDCAqF",
