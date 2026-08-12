@@ -361,9 +361,10 @@
           "type": "logo",
           "settings": {
             "brand_name": "Dkhoon",
+            "logo": "shopify://shop_images/arabiyat_perstige_logo.webp",
             "logo_url": "",
             "logo_file": "brand-logo-dkhoon.jpg",
-            "link": "",
+            "link": "shopify://collections/arabiyat-prestige",
             "logo_scale": 100,
             "width_override": 0,
             "height_override": 0,
