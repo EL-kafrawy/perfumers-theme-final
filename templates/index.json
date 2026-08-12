@@ -259,7 +259,7 @@
         "accent_text": "",
         "title": "Best Sellers",
         "subtitle": "Perfumers most sold",
-        "collection": "",
+        "collection": "best-sellers-1",
         "products_limit": 8,
         "view_all_link": ""
       }
@@ -351,8 +351,8 @@
             "logo_url": "",
             "logo_file": "",
             "link": "",
-            "logo_scale": 100,
-            "width_override": 0,
+            "logo_scale": 60,
+            "width_override": 200,
             "height_override": 0,
             "fit_override": "inherit"
           }
@@ -461,6 +461,7 @@
         "logo_KW9qiT",
         "logo_yMLPq3"
       ],
+      "disabled": true,
       "name": "Brand Marquee",
       "settings": {
         "heading": "Shop by Brand",
