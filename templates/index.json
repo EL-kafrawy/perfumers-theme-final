@@ -239,6 +239,7 @@
         "brand-13",
         "brand-14"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Shop by Brand",
         "compact": false,
@@ -475,6 +476,98 @@
         "logo_height_mobile": 76,
         "logo_fit": "contain"
       }
+    },
+    "icon_slider_afMJTT": {
+      "type": "icon-slider",
+      "blocks": {
+        "icon_hJiK36": {
+          "type": "icon",
+          "settings": {
+            "link": "",
+            "show_icon": true,
+            "title": "Easy.",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh enim, ornare at consequat sed, placerat quis libero.</p><p><a>Learn more</a></p>"
+          }
+        },
+        "icon_MTtbi4": {
+          "type": "icon",
+          "settings": {
+            "link": "",
+            "show_icon": true,
+            "title": "Breezy.",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh enim, ornare at consequat sed, placerat quis libero.</p><p><a>Learn more</a></p>"
+          }
+        },
+        "icon_L479py": {
+          "type": "icon",
+          "settings": {
+            "link": "",
+            "show_icon": true,
+            "title": "Beautiful.",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh enim, ornare at consequat sed, placerat quis libero.</p><p><a>Learn more</a></p>"
+          }
+        },
+        "icon_66WeGq": {
+          "type": "icon",
+          "settings": {
+            "link": "",
+            "show_icon": true,
+            "title": "Effortless.",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh enim, ornare at consequat sed, placerat quis libero.</p><p><a>Learn more</a></p>"
+          }
+        },
+        "icon_Bfz3qz": {
+          "type": "icon",
+          "settings": {
+            "link": "",
+            "show_icon": true,
+            "title": "Simple.",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh enim, ornare at consequat sed, placerat quis libero.</p><p><a>Learn more</a></p>"
+          }
+        },
+        "icon_LxCKiA": {
+          "type": "icon",
+          "settings": {
+            "link": "",
+            "show_icon": true,
+            "title": "Refined.",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh enim, ornare at consequat sed, placerat quis libero.</p><p><a>Learn more</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_hJiK36",
+        "icon_MTtbi4",
+        "icon_L479py",
+        "icon_66WeGq",
+        "icon_Bfz3qz",
+        "icon_LxCKiA"
+      ],
+      "disabled": true,
+      "name": "Icons Slider",
+      "settings": {
+        "icon_alignment": "center",
+        "icon_size": 10,
+        "per_row": 2,
+        "gap": 0,
+        "show_arrows": true,
+        "text_size": 60,
+        "heading_color": "#000000",
+        "text_color": "#666666",
+        "background_color": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 100%)",
+        "mobile_icon_alignment": "center",
+        "mobile_icon_size": 30,
+        "mobile_per_row": "1",
+        "base_width": 80,
+        "max_width": "",
+        "inner_padding": 0,
+        "outer_margin": 0,
+        "custom_css": "",
+        "mobile_custom_css": "",
+        "override_theme_font": false,
+        "heading_font": "serif",
+        "main_font": "system_ui_n4"
+      }
     }
   },
   "order": [
@@ -486,6 +579,7 @@
     "shop-by-occasion",
     "email-signup",
     "mobile-bottom-nav",
-    "brand_marquee_VcaDtT"
+    "brand_marquee_VcaDtT",
+    "icon_slider_afMJTT"
   ]
 }
