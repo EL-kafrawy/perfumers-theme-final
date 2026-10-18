@@ -15,6 +15,9 @@
     },
     "product-info": {
       "type": "product-info",
+      "custom_css": [
+        ".product-tag {font-size: 14px; /* text size */ padding: 10px 18px; /* makes the pill bigger or smaller */ border-radius: 999px; /* keeps the rounded pill shape */}"
+      ],
       "settings": {
         "accent_text": "Signature Collection",
         "show_buy_now": true,
